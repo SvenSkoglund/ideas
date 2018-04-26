@@ -2,6 +2,7 @@ package com.skilldistillery.ideasjpa.entities;
 
 //sql date does not need @Temporal annotation
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Comment {
@@ -36,7 +38,8 @@ public class Comment {
 	@Column(name="date_created")
 	private Date dateCreated;
 	
-	private int likes;
+	@OneToMany(mappedBy="comment")
+	private List<IdeaLike> likes;
 
 	//Gets & Sets
 	public Profile getProfile() {
@@ -75,11 +78,11 @@ public class Comment {
 		return id;
 	}
 
-	public int getLikes() {
+	public List<IdeaLike> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(List<IdeaLike> likes) {
 		this.likes = likes;
 	}
 
