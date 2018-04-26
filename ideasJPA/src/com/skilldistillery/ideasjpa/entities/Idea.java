@@ -39,7 +39,8 @@ public class Idea {
 	@OneToMany(mappedBy="idea")
 	private List<Comment> comments;
 	
-	private int likes;
+	@OneToMany(mappedBy="idea")
+	private List<IdeaLike> likes;
 
 	
 	// Gets & Sets
@@ -87,11 +88,11 @@ public class Idea {
 		return id;
 	}
 
-	public int getLikes() {
+	public List<IdeaLike> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(List<IdeaLike> likes) {
 		this.likes = likes;
 	}
 
@@ -148,12 +149,12 @@ public class Idea {
 			return false;
 		return true;
 	}
-
-	// toString()
+	
+	// toString
 	@Override
 	public String toString() {
 		return "Idea [id=" + id + ", name=" + name + ", content=" + content + ", dateCreated=" + dateCreated
-				+ ", profile=" + profile + ", comments=" + comments + "]";
+				+ ", profile=" + profile + ", comments=" + comments + ", likes=" + likes + "]";
 	}
 	
 	
