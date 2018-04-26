@@ -15,45 +15,15 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	</nav>
-
-	<!-- Header for website -->
-	<h1>ideas.</h1>
-
-	<hr>
 	
-	<!-- Search bar for ideas -->
-	<form action="" method="GET">
-		<input type="text" name="ideaName" />
-		<input type="submit" value="Search for Idea" />
+	<!-- Login form -->
+	<form action="" method="POST">
+		<label for="username">Username</label>
+		<input type="text" name="username" /><br>
+		<label for="password">Password</label>
+		<input type="text" name="password" />
+		<input type="submit" value="Log In" />
 	</form><br>
-	
-	<!-- Sort by, don't know if this was stretch goal or not -->
-	<form action="" method="GET">
-		<input type="submit" value="Sort by Date" />
-	</form>
-	
-	<form action="" method="GET">
-		<input type="submit" value="Sort by Likes" />
-	</form>
-	
-	<form action="" method="GET">
-		<input type="submit" value="Sort by Controversy" />
-	</form>
-	
-	<form action="" method="GET">
-		<input type="submit" value="Sort by Username" />
-	</form>
-	
-	<hr>
-
-	<!-- Listing for ideas -->
-	<c:forEach var="i" items="${ideaList}">
-		<h3>
-			<a href="show.do?iid=${i.id }" id="ideaLink">${i.name}</a>
-		</h3>
-		<br>
-	</c:forEach>
-
 
 </body>
 </html>
