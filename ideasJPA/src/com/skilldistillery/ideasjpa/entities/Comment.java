@@ -39,7 +39,7 @@ public class Comment {
 	private Date dateCreated;
 	
 	@OneToMany(mappedBy="comment")
-	private List<IdeaLike> likes;
+	private List<CommentLike> likes;
 
 	//Gets & Sets
 	public Profile getProfile() {
@@ -78,11 +78,11 @@ public class Comment {
 		return id;
 	}
 
-	public List<IdeaLike> getLikes() {
+	public List<CommentLike> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(List<IdeaLike> likes) {
+	public void setLikes(List<CommentLike> likes) {
 		this.likes = likes;
 	}
 
