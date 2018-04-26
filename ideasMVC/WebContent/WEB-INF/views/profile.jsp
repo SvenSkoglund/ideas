@@ -16,12 +16,30 @@
 	</button>
 	</nav>
 	
+	<!-- Big headline telling you whose profile you're looking at -->
 	<h1>${profile.username }</h1><br>
 	
 	<img alt="Profile picture of ${profile.username }" src="${profile.profilePic }"><br>
-	
+
+	<h5>Member since: ${profile.createdDate }</h5><br>
 	<p>${profile.bio }</p>
 	
+	<hr>
+	
+	<!-- Reputation probably special object in Controller -->
+	<h5>Reputation: ${reputation }</h5><br>
+	
+	<!-- ideaCount probably special object in Controller -->
+	<h5>Total Ideas: ${ideaCount }</h5><br>
+	
+	
+	<!-- Listing for user's ideas -->
+	<c:forEach var="i" items="${profile.ideaList}">
+		<h3>
+			<a href="" id="ideaLink">${i.name}</a>
+		</h3>
+		<br>
+	</c:forEach>
 	
 </body>
 </html>
