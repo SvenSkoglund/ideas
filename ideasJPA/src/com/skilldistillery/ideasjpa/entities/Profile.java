@@ -176,12 +176,13 @@ public class Profile {
 			return false;
 		return true;
 	}
-
+	
 	// toString
 	@Override
 	public String toString() {
 		return "Profile [id=" + id + ", user=" + user + ", bio=" + bio + ", profilePic=" + profilePic + ", createdDate="
-				+ createdDate + ", ideas=" + ideas + ", comments=" + comments + "]";
+				+ createdDate + ", ideas=" + ideas + ", comments=" + comments + ", reputation=" + reputation
+				+ ", postCount=" + postCount + "]";
 	}
 
 }
