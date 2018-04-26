@@ -22,7 +22,7 @@ Button to redirect to Login page if already a user
 Login button:
 <ul>
  <li>insert username and password to sign in</li>
-<ul>
+</ul>
 Create account button if not a member to redirect to Create Account page.
 
 
