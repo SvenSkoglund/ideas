@@ -28,25 +28,25 @@
 	<hr>
 	
 	<!-- Search bar for ideas -->
-	<form action="" method="GET">
-		<input type="text" name="ideaName" />
+	<form action="search.do" method="GET">
+		<input type="text" name="ideaKeyword" />
 		<input type="submit" value="Search for Idea" />
 	</form><br>
 	
 	<!-- Sort by, don't know if this was stretch goal or not -->
-	<form action="" method="GET">
+	<form action="date.do" method="GET">
 		<input type="submit" value="Sort by Date" />
 	</form>
 	
-	<form action="" method="GET">
+	<form action="like.do" method="GET">
 		<input type="submit" value="Sort by Likes" />
 	</form>
 	
-	<form action="" method="GET">
+	<form action="controversy.do" method="GET">
 		<input type="submit" value="Sort by Controversy" />
 	</form>
 	
-	<form action="" method="GET">
+	<form action="username.do" method="GET">
 		<input type="submit" value="Sort by Username" />
 	</form>
 	
@@ -55,7 +55,7 @@
 	<!-- Listing for ideas -->
 	<c:forEach var="i" items="${ideaList}">
 		<h3>
-			<a href="show.do?iid=${i.id }" id="ideaLink">${i.name}</a>
+			<a href="" id="ideaLink">${i.name}</a>
 		</h3>
 		<br>
 	</c:forEach>
