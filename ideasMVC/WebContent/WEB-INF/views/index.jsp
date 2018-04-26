@@ -9,7 +9,8 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a class="navbar-brand" href="#">Menu</a>
+	<!-- Leading navigation bar, need to figure out logic for user -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a class="navbar-brand" href="#">Home</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -21,10 +22,37 @@
 	</div>
 	</nav>
 
+	<!-- Header for website -->
 	<h1>ideas.</h1>
 
 	<hr>
+	
+	<!-- Search bar for ideas -->
+	<form action="" method="GET">
+		<input type="text" name="ideaName" />
+		<input type="submit" value="Search for Idea" />
+	</form><br>
+	
+	<!-- Sort by, don't know if this was stretch goal or not -->
+	<form action="" method="GET">
+		<input type="submit" value="Sort by Date" />
+	</form>
+	
+	<form action="" method="GET">
+		<input type="submit" value="Sort by Likes" />
+	</form>
+	
+	<form action="" method="GET">
+		<input type="submit" value="Sort by Controversy" />
+	</form>
+	
+	<form action="" method="GET">
+		<input type="submit" value="Sort by Username" />
+	</form>
+	
+	<hr>
 
+	<!-- Listing for ideas -->
 	<c:forEach var="i" items="${ideaList}">
 		<h3>
 			<a href="show.do?iid=${i.id }" id="ideaLink">${i.name}</a>
