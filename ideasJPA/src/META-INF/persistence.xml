@@ -19,7 +19,7 @@
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/ideasdb" />
+				value="jdbc:mysql://localhost:3306/ideadb" />
 			<property name="javax.persistence.jdbc.user" value="ideaUser" />
 			<property name="javax.persistence.jdbc.password"
 				value="midterm" />
