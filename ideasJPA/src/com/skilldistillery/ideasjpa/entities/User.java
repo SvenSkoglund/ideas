@@ -114,12 +114,11 @@ public class User {
 		return true;
 	}
 
-	
 	// toString
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", admin=" + admin + ", email="
-				+ email + "]";
+				+ email + ", profile=" + profile + "]";
 	}
 	
 	

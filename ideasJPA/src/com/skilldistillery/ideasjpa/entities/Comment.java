@@ -131,11 +131,11 @@ public class Comment {
 		return true;
 	}
 
-	//toString
+	// toString
 	@Override
 	public String toString() {
 		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea + ", content=" + content
-				+ ", dateCreated=" + dateCreated + "]";
+				+ ", dateCreated=" + dateCreated + ", likes=" + likes + "]";
 	}
 	
 	
