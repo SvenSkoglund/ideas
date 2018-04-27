@@ -30,7 +30,7 @@ public class IdeaController {
 	@RequestMapping(path="index.do", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-//		List<Idea> ideaList = ideaDao.something();//SOMETHING
+//		List<Idea> ideaList = ideaDao.something();
 	//	mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 		
@@ -52,6 +52,22 @@ public class IdeaController {
 		return mv;
 	}
 	
-	
+	@RequestMapping(path="update.do", method =RequestMethod.POST)
+	public ModelAndView updateIdea(@RequestParam(name="idea") Idea idea) {
+		ModelAndView mv = new ModelAndView();
+		Idea newIdea = idea;
+//		Idea oldIdea =
+		if(oldIdea.equals(newIdea)) {
+			mv.addObject("message", "Idea not updated!");
+			mv.addObject("idea", newIdea);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+		}else {
+			mv.addObject("message", "Idea Updated!");
+			mv.addObject("idea", newIdea);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+		}
+			
+		return mv;
+	}
 	
 }
