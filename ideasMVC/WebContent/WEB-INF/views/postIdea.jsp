@@ -19,7 +19,7 @@
 	
 	<!-- I know that this page has to have a form or sorts to fill out and submit/post but I feel a little over my head and need walk through it with some help -->
 <!-- Posting Idea form -->
-	<form action="postidea.do" method="POST">
+	<form action="postIdea.do" method="POST">
 		<input type="Text" placeholder="Title/Heading" name="name" /><br/>
 	
 	<!-- Stylesheet to make text box in a box form using divs to style? -->
