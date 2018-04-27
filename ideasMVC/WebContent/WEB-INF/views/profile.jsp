@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Profile</title>
+<title>${profile.username } Profile</title>
 </head>
 <body>
 
@@ -27,19 +27,26 @@
 	<hr>
 	
 	<!-- Reputation probably special object in Controller -->
-	<h5>Reputation: ${reputation }</h5><br>
+	<h5>Reputation: ${profile.reputation }</h5><br>
 	
 	<!-- ideaCount probably special object in Controller -->
-	<h5>Total Ideas: ${ideaCount }</h5><br>
+	<h5>Total Ideas: ${profile.ideas }</h5><br>
 	
 	
 	<!-- Listing for user's ideas -->
-	<c:forEach var="i" items="${profile.ideaList}">
+	<c:forEach var="i" items="${profile.ideas }">
 		<h3>
 			<a href="" id="ideaLink">${i.name}</a>
 		</h3>
 		<br>
 	</c:forEach>
+	
+	
+	<!-- Account Settings form -->
+	<form action="settings.do" method="POST">
+		<input type="submit" value="Account Settings" />
+		<input type="hidden" name="pid" value="${profile.id }">
+	</form>
 	
 </body>
 </html>

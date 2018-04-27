@@ -18,24 +18,23 @@
 	
 	<!-- Create Account form -->
 	<form action="create.do" method="POST">
-		<label for="firstName">First Name</label>
-		<input type="text" name="firstName" /><br>
-		
-		<label for="lastName">Last Name</label>
-		<input type="text" name="lastName" /><br>
-		
-		<label for="email">Email</label>
-		<input type="text" name="email" /><br>
-		
-		<label for="username">Username</label>
+		<label for="username">Username</label><br>
 		<input type="text" name="username" /><br>
 		
-		<label for="password">Password</label>
+		<label for="password">Password</label><br>
 		<input type="text" name="password" /><br>
 		
-		<label for="confirmPassword">Confirm Password</label>
+		<label for="email">Email</label><br>
+		<input type="text" name="email" /><br>
+		
+		<label for="confirmPassword">Confirm Password</label><br>
 		<input type="text" name="confirmPassword" /><br>
 		
+		<!-- If we are directing the new user to settings.jsp, we need  -->
+		<!-- to make sure we create a Profile object in the controller  -->
+		<!-- first and associate it with that User object. Otherwise,   -->
+		<!-- you'll get a NullPointerException in settings.jsp. Whoever -->
+		<!-- will be in charge of Controller should touch base with me  -->
 		<input type="submit" value="Create Account" />
 	</form>
 	
