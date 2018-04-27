@@ -1,4 +1,4 @@
-package ideasMVC.DAO;
+package com.skilldistillery.ideas.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

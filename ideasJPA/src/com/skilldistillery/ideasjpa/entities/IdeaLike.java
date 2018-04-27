@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name="idea_like")
 public class IdeaLike {
 	// Constructor
-	private IdeaLike() {
+	public IdeaLike() {
 		
 	}
 	
