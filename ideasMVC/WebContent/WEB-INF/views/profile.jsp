@@ -37,7 +37,10 @@
 	<c:forEach var="i" items="${profile.ideas }">
 		<h3>
 			<a href="" id="ideaLink">${i.name}</a>
-		</h3>
+		</h3><br>
+			<form action="destoryIdea.do" method="POST">
+				<input type="hidden" value="${i }" name="idea">
+			</form>
 		<br>
 	</c:forEach>
 	
