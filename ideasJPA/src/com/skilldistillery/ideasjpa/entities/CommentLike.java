@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name="comment_like")
 public class CommentLike {
 	// Constructor
-	private CommentLike() {
+	public CommentLike() {
 		
 	}
 	
@@ -18,7 +18,7 @@ public class CommentLike {
 	@EmbeddedId
 	private CommentLikeKey id;
 	
-	private boolean vote;
+	private Boolean vote;
 
 	public CommentLikeKey getId() {
 		return id;
@@ -28,11 +28,11 @@ public class CommentLike {
 		this.id = id;
 	}
 
-	public boolean isVote() {
+	public Boolean isVote() {
 		return vote;
 	}
 
-	public void setVote(boolean vote) {
+	public void setVote(Boolean vote) {
 		this.vote = vote;
 	}
 

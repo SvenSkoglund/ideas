@@ -1,4 +1,4 @@
-package ideasMVC;
+package ideasMVC.entities;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,6 +10,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.ideasjpa.entities.Comment;
+import com.skilldistillery.ideasjpa.entities.CommentLike;
+import com.skilldistillery.ideasjpa.entities.CommentLikeKey;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.IdeaLike;
 import com.skilldistillery.ideasjpa.entities.IdeaLikeKey;
@@ -47,5 +50,15 @@ class CompositeTest {
 	}
 	@Test
 	void test_comopsite_comment_like() {
+		CommentLikeKey clk = new CommentLikeKey();
+		
+		Comment comment = em.find(Comment.class, 3);
+		Profile profile = em.find(Profile.class, 1);
+		
+		clk.setComment(comment);
+		clk.setProfile(profile);
+		
+		CommentLike cl = em.find(CommentLike.class, clk);
+		assertEquals(3,cl.getId().getComment().getId());
 	}
 }

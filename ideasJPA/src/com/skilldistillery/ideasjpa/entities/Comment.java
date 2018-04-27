@@ -135,11 +135,15 @@ public class Comment {
 	}
 
 	// toString
-//	@Override
-//	public String toString() {
-//		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea + ", content=" + content
-//				+ ", dateCreated=" + dateCreated + ", likes=" + likes + "]";
-//	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Comment [id=").append(id).append(", profile=").append(profile).append(", idea=").append(idea)
+				.append(", content=").append(content).append(", dateCreated=").append(dateCreated).append("]");
+		return builder.toString();
+	}
+
+
 	
 	
 	

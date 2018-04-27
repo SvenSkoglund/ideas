@@ -1,6 +1,6 @@
-package ideasMVC;
+package ideasMVC.entities;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,13 +10,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.ideasjpa.entities.Comment;
+import com.skilldistillery.ideasjpa.entities.Idea;
 
-class CommentTest {
+class IdeaTest {
 
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private Comment comment;
+	private Idea idea;
 
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -31,8 +31,12 @@ class CommentTest {
 	}
 	@Test
 	void test() {
-		comment = em.find(Comment.class, 1);
-		System.out.println(comment);
+		idea = em.find(Idea.class, 1);
+		System.out.println(idea);
+		idea = em.find(Idea.class, 2);
+		System.out.println(idea);
+		idea = em.find(Idea.class, 3);
+		System.out.println(idea);
 	}
 
 }
