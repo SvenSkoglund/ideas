@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `idea_like` ;
 CREATE TABLE IF NOT EXISTS `idea_like` (
   `profile_id` INT NOT NULL,
   `idea_id` INT NOT NULL,
-  `like` TINYINT NOT NULL,
+  `vote` TINYINT NULL,
   PRIMARY KEY (`profile_id`, `idea_id`),
   INDEX `idea_id_idx` (`idea_id` ASC),
   CONSTRAINT `fk_profile_idea_like`
@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS `comment_like` ;
 CREATE TABLE IF NOT EXISTS `comment_like` (
   `profile_id` INT NOT NULL,
   `comment_id` INT NOT NULL,
-  `like` TINYINT NOT NULL,
+  `vote` TINYINT NULL,
   INDEX `profile_id_idx` (`profile_id` ASC),
   PRIMARY KEY (`profile_id`, `comment_id`),
   INDEX `fk_comment_comment_like_idx` (`comment_id` ASC),
@@ -201,6 +201,19 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `idea_like`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `ideadb`;
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (2, 4, 1);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (3, 1, 1);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (1, 1, NULL);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (4, 2, 0);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `comment`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -210,5 +223,18 @@ INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`)
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (3, 4, 2, 'Go to Hawaii if you want pineapple! We don\'t care for your fruity ways!', DEFAULT);
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (4, 2, 4, 'Pineapple on spaghetti sounds pretty good. I\'ll have to try it!', DEFAULT);
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (5, 4, 4, 'Hey guys, tone down the weed, will ya?', DEFAULT);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment_like`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `ideadb`;
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 2, NULL);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 3, NULL);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (1, 3, 1);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (4, 4, 0);
 
 COMMIT;
