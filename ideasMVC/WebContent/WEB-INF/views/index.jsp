@@ -51,6 +51,12 @@
 	</form>
 	
 	<hr>
+	
+	<!-- Create your own idea form -->
+	<form action="toPostIdea.do" method="GET">
+		<input type="hidden" value="${profile }" name="profile"/>
+		<input type="Submit" value="Create your own idea!" />
+	</form>
 
 	<!-- Listing for ideas -->
 	<c:forEach var="i" items="${ideaList}">
