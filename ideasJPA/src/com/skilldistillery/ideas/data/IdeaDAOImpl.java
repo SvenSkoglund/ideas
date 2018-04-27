@@ -88,4 +88,8 @@ public class IdeaDAOImpl implements IdeaDAO {
 		em.getTransaction().commit();
 		return managed;
 	}
+	@Override
+	public Idea showIdea(int id ) {
+		return em.find(Idea.class, id);
+	}
 }

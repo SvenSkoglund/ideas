@@ -1,11 +1,14 @@
 package com.skilldistillery.ideas.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 import com.skilldistillery.ideasjpa.entities.User;
 
@@ -53,6 +56,16 @@ public class UserDAOImpl implements UserDAO {
 		// commit the changes (actually perform the operation)
 
 		return user;
+	}
+	@Override
+	public Idea showIdea(int id ) {
+		return em.find(Idea.class, id);
+	}
+	@Override
+	public List<Idea> showAllIdeas() {
+		String sql = "select i from Idea i";
+		List<Idea> ideas = em.createQuery(sql, Idea.class).getResultList();
+		return ideas;
 	}
 
 }

@@ -51,5 +51,11 @@ public class IdeaDAOImpl implements IdeaDAO {
 		// commit the changes (actually perform the operation)
 		return idea;
 	}
+	@Override
+	public List<Idea> showIdeasByProfile(int profileId){
+		String sql = "select i from Idea i where profile.id = :profileId";
+		List<Idea> ideasByProfile = em.createQuery(sql, Idea.class).setParameter("profileId", profileId).getResultList();
+		return ideasByProfile;
+	}
 
 }

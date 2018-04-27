@@ -34,6 +34,10 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return managed;
 	
 	}
+	@Override
+	public Profile showProfile(int id) {
+		return em.find(Profile.class, id);
+	}
 
 
 }

@@ -1,5 +1,7 @@
 package com.skilldistillery.ideas.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -73,6 +75,17 @@ public class CommentDAOImpl implements CommentDAO {
 		CommentLike managed = em.find(CommentLike.class, clk);
 		managed.setVote(vote);
 		return managed;
+	}
+	
+	@Override
+	public Comment showComment(int id) {
+		return em.find(Comment.class, id);
+	}
+	@Override
+	public List<Comment> showCommentsByIdea(int ideaId){
+		String sql = "select c from Comment c where idea.id = :ideaId";
+		List<Comment> commentsByIdea = em.createNativeQuery(sql, Comment.class).setParameter("ideaId", ideaId).getResultList();
+		return commentsByIdea;
 	}
 
 }
