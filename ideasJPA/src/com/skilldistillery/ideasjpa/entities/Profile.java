@@ -23,7 +23,7 @@ public class Profile {
 
 	// Fields
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@OneToOne

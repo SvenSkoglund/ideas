@@ -15,7 +15,7 @@ public class User {
 	
 	// Fields
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String username;
@@ -68,6 +68,14 @@ public class User {
 	}
 
 	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	// Hashcode
 	@Override
 	public int hashCode() {
