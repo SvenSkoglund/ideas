@@ -19,21 +19,21 @@
 	
 	<!-- I know that this page has to have a form or sorts to fill out and submit/post but I feel a little over my head and need walk through it with some help -->
 <!-- Posting Idea form -->
-	<form action="postidea.do" method="GET">
-		<input type="Text" value="Heading/Title" />
-	</form>
+	<form action="postidea.do" method="POST">
+		<input type="Text" placeholder="Title/Heading" name="name" /><br/>
+	
 	<!-- Stylesheet to make text box in a box form using divs to style? -->
 	
-<div>	
-		<form action="postidea.do" method="GET">
-		<input type="Text" value="idea goes here" />
-	</form>
-]
-</div>
+
+		
+		<input class="" type="Text" value="idea goes here" name="content" />
+		<input class="" type="hidden" value="" name="profile" />
+	
+
 	
 	<!-- I feel like the idea should get posted before people can start commenting. do we need another jsp? -->
-<form action="comment.do" method="GET">
-		<input type="Text" value="Comment" />
+
+		<input type="Submit" value="Post Idea" />
 	</form>
 
 </body>
