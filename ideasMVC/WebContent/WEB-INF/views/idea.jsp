@@ -30,7 +30,7 @@
 	<br>
 
 	<form action="destoryIdea.do" method="POST">
-		<input type="hidden" value="${i }" name="idea">
+		<input type="hidden" value="${idea }" name="idea">
 	</form>
 
 	<hr>
