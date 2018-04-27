@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.ideas.data.CommentDAO;
 import com.skilldistillery.ideas.data.IdeaDAO;
 import com.skilldistillery.ideas.data.ProfileDAO;
 import com.skilldistillery.ideas.data.UserDAO;
+import com.skilldistillery.ideasjpa.entities.Idea;
 
 @Controller
 public class IdeaController {
@@ -36,6 +38,19 @@ public class IdeaController {
 	}
 	
 	
+	@RequestMapping(path="destoryIdea.do", method =RequestMethod.POST)
+	public ModelAndView deleteIdea(@RequestParam(name="idea") Idea idea) {
+		ModelAndView mv = new ModelAndView();
+		Boolean result = ideaDao.destroy(idea);
+		if(result) {
+			mv.setViewName("redirect:index.do");
+		}else {
+			mv.addObject("message", "Idea not deleted!");
+			mv.addObject("idea", idea);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+		}
+		return mv;
+	}
 	
 	
 	
