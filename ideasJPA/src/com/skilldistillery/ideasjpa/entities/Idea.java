@@ -150,13 +150,13 @@ public class Idea {
 //		return true;
 //	}
 //	
-//	// toString
-//	@Override
-//	public String toString() {
-//		return "Idea [id=" + id + ", name=" + name + ", content=" + content + ", dateCreated=" + dateCreated
-//				+ ", profile=" + profile + ", comments=" + comments + ", likes=" + likes + "]";
-//	}
-//	
+	// toString
+	@Override
+	public String toString() {
+		return "Idea [id=" + id + ", name=" + name + ", content=" + content + ", dateCreated=" + dateCreated
+				+ ", profile=" + profile.getId() + ", comments=" + comments.size() + "]";
+	}
+		
 	
 	
 	

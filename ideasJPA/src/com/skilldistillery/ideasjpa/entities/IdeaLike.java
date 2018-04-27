@@ -18,7 +18,7 @@ public class IdeaLike {
 	@EmbeddedId
 	private IdeaLikeKey id;
 	
-	private boolean vote;
+	private Boolean vote;
 
 	public IdeaLikeKey getId() {
 		return id;
@@ -28,11 +28,11 @@ public class IdeaLike {
 		this.id = id;
 	}
 
-	public boolean isVote() {
+	public Boolean isVote() {
 		return vote;
 	}
 
-	public void setVote(boolean vote) {
+	public void setVote(Boolean vote) {
 		this.vote = vote;
 	}
 

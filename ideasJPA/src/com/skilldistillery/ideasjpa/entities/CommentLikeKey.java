@@ -13,14 +13,22 @@ public class CommentLikeKey implements Serializable{
 	}
 	
 	@ManyToOne
+	@JoinColumn(name = "comment_id")
+	private Comment comment;
+	
+	@ManyToOne
 	@JoinColumn(name = "profile_id")
 	private Profile profile;
 	
 
-	@ManyToOne
-	@JoinColumn(name = "comment_id")
-	private Comment comment;
+	public Comment getComment() {
+		return comment;
+	}
 
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
 
 	public Profile getProfile() {
 		return profile;
@@ -32,14 +40,7 @@ public class CommentLikeKey implements Serializable{
 	}
 
 
-	public Comment getComment() {
-		return comment;
-	}
 
-
-	public void setComment(Comment comment) {
-		this.comment = comment;
-	}
 
 
 	@Override

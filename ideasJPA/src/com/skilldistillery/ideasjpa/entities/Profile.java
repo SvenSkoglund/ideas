@@ -102,6 +102,8 @@ public class Profile {
 		return id;
 	}
 
+
+
 	// public int getReputation() {
 	// return reputation;
 	// }
@@ -119,4 +121,14 @@ public class Profile {
 	// }
 
 	// HashCode
+	
+	// toString
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Profile [id=").append(id).append(", bio=").append(bio)
+				.append(", profilePic=").append(profilePic).append(", createdDate=").append(createdDate).append("]");
+		return builder.toString();
+	}
+	
 }
