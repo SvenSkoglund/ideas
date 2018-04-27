@@ -15,7 +15,7 @@ import com.skilldistillery.ideasjpa.entities.Idea;
 
 @Controller
 public class IdeaController {
-	
+
 	@Autowired
 	private CommentDAO commentDao;
 	@Autowired
@@ -25,49 +25,66 @@ public class IdeaController {
 	@Autowired
 	private UserDAO userDao;
 
-	
 	// Home page
-	@RequestMapping(path="index.do", method = RequestMethod.GET)
+	@RequestMapping(path = "index.do", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-//		List<Idea> ideaList = ideaDao.something();
-	//	mv.addObject("ideaList", ideaList);
+		// List<Idea> ideaList = ideaDao.something();
+		// mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
-		
-		  return mv;
+
+		return mv;
 	}
-	
-	
-	@RequestMapping(path="destoryIdea.do", method =RequestMethod.POST)
-	public ModelAndView deleteIdea(@RequestParam(name="idea") Idea idea) {
+
+	@RequestMapping(path = "destoryIdea.do", method = RequestMethod.POST)
+	public ModelAndView deleteIdea(@RequestParam(name = "idea") Idea idea) {
 		ModelAndView mv = new ModelAndView();
 		Boolean result = ideaDao.destroy(idea);
-		if(result) {
+		if (result) {
 			mv.setViewName("redirect:index.do");
-		}else {
+		} else {
 			mv.addObject("message", "Idea not deleted!");
 			mv.addObject("idea", idea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(path="update.do", method =RequestMethod.POST)
-	public ModelAndView updateIdea(@RequestParam(name="idea") Idea idea) {
+
+	@RequestMapping(path = "update.do", method = RequestMethod.POST)
+	public ModelAndView updateIdea(@RequestParam(name = "idea") Idea idea) {
 		ModelAndView mv = new ModelAndView();
-		Idea newIdea = idea;
-//		Idea oldIdea =
-		if(oldIdea.equals(newIdea)) {
+		Idea oldIdea = em.find(Idea.class, idea.getId());
+		Idea newIdea = ideaDao.update(idea);
+
+		if (oldIdea.equals(newIdea)) {
 			mv.addObject("message", "Idea not updated!");
 			mv.addObject("idea", newIdea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
-		}else {
+		} else {
 			mv.addObject("message", "Idea Updated!");
 			mv.addObject("idea", newIdea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
 		}
-			
+
 		return mv;
 	}
-	
+
+	@RequestMapping(path = "postIdea.do", method = RequestMethod.POST)
+	public ModelAndView createIdea(@RequestParam(name = "idea") Idea idea) {
+		ModelAndView mv = new ModelAndView();
+		Idea createdIdea = ideaDao.create(idea);
+
+		if (createdIdea.getId() == 0) {
+			mv.addObject("message", "Idea not created!");
+
+			mv.setViewName("WEB-INF/views/idea.jsp");
+		} else {
+			mv.addObject("message", "Idea Created!");
+			mv.addObject("idea", createdIdea);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+		}
+
+		return mv;
+	}
+
 }
