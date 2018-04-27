@@ -26,7 +26,7 @@ public class User {
 	
 	private String email;
 	
-	@OneToOne
+	@OneToOne(mappedBy="user")
 	private Profile profile;
 	
 	

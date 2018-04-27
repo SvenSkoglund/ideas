@@ -39,8 +39,8 @@ public class Idea {
 	@OneToMany(mappedBy="idea")
 	private List<Comment> comments;
 	
-	@OneToMany(mappedBy="idea")
-	private List<IdeaLike> likes;
+//	@OneToMany(mappedBy="idea")
+//	private List<IdeaLike> likes;
 
 	
 	// Gets & Sets
@@ -88,75 +88,75 @@ public class Idea {
 		return id;
 	}
 
-	public List<IdeaLike> getLikes() {
-		return likes;
-	}
-
-	public void setLikes(List<IdeaLike> likes) {
-		this.likes = likes;
-	}
-
-	// HashCode
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((content == null) ? 0 : content.hashCode());
-		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-		return result;
-	}
-
-	// .equals
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Idea other = (Idea) obj;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
-			return false;
-		if (content == null) {
-			if (other.content != null)
-				return false;
-		} else if (!content.equals(other.content))
-			return false;
-		if (dateCreated == null) {
-			if (other.dateCreated != null)
-				return false;
-		} else if (!dateCreated.equals(other.dateCreated))
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
-			return false;
-		return true;
-	}
-	
-	// toString
-	@Override
-	public String toString() {
-		return "Idea [id=" + id + ", name=" + name + ", content=" + content + ", dateCreated=" + dateCreated
-				+ ", profile=" + profile + ", comments=" + comments + ", likes=" + likes + "]";
-	}
-	
+//	public List<IdeaLike> getLikes() {
+//		return likes;
+//	}
+//
+//	public void setLikes(List<IdeaLike> likes) {
+//		this.likes = likes;
+//	}
+//
+//	// HashCode
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+//		result = prime * result + ((content == null) ? 0 : content.hashCode());
+//		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
+//		result = prime * result + id;
+//		result = prime * result + ((name == null) ? 0 : name.hashCode());
+//		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+//		return result;
+//	}
+//
+//	// .equals
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Idea other = (Idea) obj;
+//		if (comments == null) {
+//			if (other.comments != null)
+//				return false;
+//		} else if (!comments.equals(other.comments))
+//			return false;
+//		if (content == null) {
+//			if (other.content != null)
+//				return false;
+//		} else if (!content.equals(other.content))
+//			return false;
+//		if (dateCreated == null) {
+//			if (other.dateCreated != null)
+//				return false;
+//		} else if (!dateCreated.equals(other.dateCreated))
+//			return false;
+//		if (id != other.id)
+//			return false;
+//		if (name == null) {
+//			if (other.name != null)
+//				return false;
+//		} else if (!name.equals(other.name))
+//			return false;
+//		if (profile == null) {
+//			if (other.profile != null)
+//				return false;
+//		} else if (!profile.equals(other.profile))
+//			return false;
+//		return true;
+//	}
+//	
+//	// toString
+//	@Override
+//	public String toString() {
+//		return "Idea [id=" + id + ", name=" + name + ", content=" + content + ", dateCreated=" + dateCreated
+//				+ ", profile=" + profile + ", comments=" + comments + ", likes=" + likes + "]";
+//	}
+//	
 	
 	
 	

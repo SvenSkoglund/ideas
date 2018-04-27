@@ -48,7 +48,7 @@ public class ProfileDAOImpl implements ProfileDAO {
 		// update the "local" Customer object
 		em.flush();
 		// commit the changes (actually perform the operation)
-		em.getTransaction().commit();
+		em.getTransaction().commit();	
 		return profile;
 	}
 

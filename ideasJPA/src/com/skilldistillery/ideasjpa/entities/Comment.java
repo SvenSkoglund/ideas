@@ -38,8 +38,8 @@ public class Comment {
 	@Column(name="date_created")
 	private Date dateCreated;
 	
-	@OneToMany(mappedBy="comment")
-	private List<CommentLike> likes;
+//	@OneToMany(mappedBy="comment")
+//	private List<CommentLike> likes;
 
 	//Gets & Sets
 	public Profile getProfile() {
@@ -78,13 +78,13 @@ public class Comment {
 		return id;
 	}
 
-	public List<CommentLike> getLikes() {
-		return likes;
-	}
-
-	public void setLikes(List<CommentLike> likes) {
-		this.likes = likes;
-	}
+//	public List<CommentLike> getLikes() {
+//		return likes;
+//	}
+//
+//	public void setLikes(List<CommentLike> likes) {
+//		this.likes = likes;
+//	}
 
 	//HashCode
 	@Override
@@ -135,11 +135,11 @@ public class Comment {
 	}
 
 	// toString
-	@Override
-	public String toString() {
-		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea + ", content=" + content
-				+ ", dateCreated=" + dateCreated + ", likes=" + likes + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea + ", content=" + content
+//				+ ", dateCreated=" + dateCreated + ", likes=" + likes + "]";
+//	}
 	
 	
 	

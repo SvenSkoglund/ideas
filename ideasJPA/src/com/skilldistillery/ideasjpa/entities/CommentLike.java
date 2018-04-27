@@ -1,6 +1,6 @@
 package com.skilldistillery.ideasjpa.entities;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,78 +15,36 @@ public class CommentLike {
 	}
 	
 	// Fields
-	@Column(name="profile_id")
-	private int profileId;
-
-	@Column(name="idea_id")
-	private int ideaId;
+	@EmbeddedId
+	private CommentLikeKey id;
 	
-	private boolean like;
-	
-	@ManyToOne
-	@JoinColumn(name="profile_id")
-	private Profile profile;
+	private boolean vote;
 
-	@ManyToOne
-	@JoinColumn(name="comment_id")
-	private Comment comment;
-	
-	
-	//Gets & Sets
-	public int getProfileId() {
-		return profileId;
+	public CommentLikeKey getId() {
+		return id;
 	}
 
-	public void setProfileId(int profileId) {
-		this.profileId = profileId;
+	public void setId(CommentLikeKey id) {
+		this.id = id;
 	}
 
-	public int getIdeaId() {
-		return ideaId;
+	public boolean isVote() {
+		return vote;
 	}
 
-	public void setIdeaId(int ideaId) {
-		this.ideaId = ideaId;
+	public void setVote(boolean vote) {
+		this.vote = vote;
 	}
 
-	public boolean isLike() {
-		return like;
-	}
-
-	public void setLike(boolean like) {
-		this.like = like;
-	}
-
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
-
-	public Comment getComment() {
-		return comment;
-	}
-
-	public void setComment(Comment comment) {
-		this.comment = comment;
-	}
-
-	//HashCode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
-		result = prime * result + ideaId;
-		result = prime * result + (like ? 1231 : 1237);
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
-		result = prime * result + profileId;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (vote ? 1231 : 1237);
 		return result;
 	}
 
-	// .equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -96,36 +54,23 @@ public class CommentLike {
 		if (getClass() != obj.getClass())
 			return false;
 		CommentLike other = (CommentLike) obj;
-		if (comment == null) {
-			if (other.comment != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!comment.equals(other.comment))
+		} else if (!id.equals(other.id))
 			return false;
-		if (ideaId != other.ideaId)
-			return false;
-		if (like != other.like)
-			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
-			return false;
-		if (profileId != other.profileId)
+		if (vote != other.vote)
 			return false;
 		return true;
 	}
-	
-	// toString
+
 	@Override
 	public String toString() {
-		return "CommentLike [profileId=" + profileId + ", ideaId=" + ideaId + ", like=" + like + ", profile=" + profile
-				+ ", comment=" + comment + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("CommentLike [id=").append(id).append(", vote=").append(vote).append("]");
+		return builder.toString();
 	}
+		
+	//Gets & Sets
 
-
-	
-	
-	
-	
-	
 }

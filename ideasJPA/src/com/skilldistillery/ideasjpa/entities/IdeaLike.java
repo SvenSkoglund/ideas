@@ -1,6 +1,6 @@
 package com.skilldistillery.ideasjpa.entities;
 
-import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,55 +15,36 @@ public class IdeaLike {
 	}
 	
 	// Fields
+	@EmbeddedId
+	private IdeaLikeKey id;
 	
-	private boolean like;
-	
-	@ManyToOne
-	@JoinColumn(name="profile_id")
-	private Profile profile;
+	private boolean vote;
 
-	@ManyToOne
-	@JoinColumn(name="idea_id")
-	private Idea idea;
-	
-	
-	//Gets & Sets
-	public boolean isLike() {
-		return like;
+	public IdeaLikeKey getId() {
+		return id;
 	}
 
-	public void setLike(boolean like) {
-		this.like = like;
+	public void setId(IdeaLikeKey id) {
+		this.id = id;
 	}
 
-	public Profile getProfile() {
-		return profile;
+	public boolean isVote() {
+		return vote;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setVote(boolean vote) {
+		this.vote = vote;
 	}
 
-	public Idea getIdea() {
-		return idea;
-	}
-
-	public void setIdea(Idea idea) {
-		this.idea = idea;
-	}
-
-	// HashCode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idea == null) ? 0 : idea.hashCode());
-		result = prime * result + (like ? 1231 : 1237);
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (vote ? 1231 : 1237);
 		return result;
 	}
 
-	// .equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,26 +54,24 @@ public class IdeaLike {
 		if (getClass() != obj.getClass())
 			return false;
 		IdeaLike other = (IdeaLike) obj;
-		if (idea == null) {
-			if (other.idea != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!idea.equals(other.idea))
+		} else if (!id.equals(other.id))
 			return false;
-		if (like != other.like)
-			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
+		if (vote != other.vote)
 			return false;
 		return true;
 	}
 
-	// toString
 	@Override
 	public String toString() {
-		return "IdeaLike [like=" + like + ", profile=" + profile + ", idea=" + idea + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("IdeaLike [id=").append(id).append(", vote=").append(vote).append("]");
+		return builder.toString();
 	}
-
-
+	
+	
+	//Gets & Sets
+	
 }
