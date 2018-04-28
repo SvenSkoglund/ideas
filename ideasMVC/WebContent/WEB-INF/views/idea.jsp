@@ -31,6 +31,7 @@
 
 	<form action="destoryIdea.do" method="POST">
 		<input type="hidden" value="${idea }" name="idea">
+		<input type="Submit" value="Destroy Idea" />
 	</form>
 
 	<hr>
