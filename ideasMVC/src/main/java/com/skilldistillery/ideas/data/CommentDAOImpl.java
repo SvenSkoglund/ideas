@@ -76,6 +76,19 @@ public class CommentDAOImpl implements CommentDAO {
 		managed.setVote(vote);
 		return managed;
 	}
+	@Override
+	public Comment makeActive(int id) {
+		Comment mannaged = em.find(Comment.class, id);
+		managed.setActive(true);
+		return managed;
+		
+	}
+	@Override
+	public Comment makeInactive(int id) {
+		Comment mannaged = em.find(Comment.class, id);
+		managed.setActive(false);
+		return managed;
+	}
 	
 	@Override
 	public Comment showComment(int id) {
