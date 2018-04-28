@@ -29,15 +29,15 @@
 	<p>${idea.content }</p>
 	<br>
 
-	<form action="destoryIdea.do" method="POST">
+<%-- 	<form action="destoryIdea.do" method="POST">
 		<input type="hidden" value="${idea }" name="idea">
 		<input type="Submit" value="Destroy Idea" />
-	</form>
+</form>	 --%>
 
 	<hr>
 
 	<!-- Listing for comments -->
-	<c:forEach var="comment" items="${idea.comments}">
+	<c:forEach var="comment" items="${comments}">
 		<h3>
 			<a href="WEB-INF/views/profile.jsp"><img
 				src="${comment.profile.profilePic }"

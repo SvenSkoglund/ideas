@@ -62,7 +62,7 @@
 	<!-- Listing for ideas -->
 	<c:forEach var="i" items="${ideaList}">
 		<h3>
-			<a href="toIdea.do" id="ideaLink">${i.name}</a>
+			<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
 		</h3>
 		<br>
 	</c:forEach>

@@ -115,9 +115,11 @@ public class IdeaController {
 		return mv;
 	}
 	@RequestMapping(path="toIdea.do", method = RequestMethod.GET)
-	public ModelAndView goIdea() {
+	public ModelAndView goToIdea(@RequestParam(name="iid") Integer ideaId) {
 		ModelAndView mv = new  ModelAndView();
-		mv.setViewName("WEB-INF/views/create.jsp");
+		Idea idea = ideaDao.showIdea(ideaId);
+		mv.addObject("comments", idea.getComments());
+		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
 }
