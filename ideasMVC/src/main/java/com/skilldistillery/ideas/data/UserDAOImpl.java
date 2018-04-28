@@ -42,14 +42,14 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public User makeActive(int id) {
-		User mannaged = em.find(User.class, id);
+		User managed = em.find(User.class, id);
 		managed.setActive(true);
 		return managed;
 		
 	}
 	@Override
 	public User makeInactive(int id) {
-		User mannaged = em.find(User.class, id);
+		User managed = em.find(User.class, id);
 		managed.setActive(false);
 		return managed;
 	}

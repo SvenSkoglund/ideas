@@ -41,14 +41,14 @@ public class IdeaDAOImpl implements IdeaDAO {
 	}
 	@Override
 	public Idea makeActive(int id) {
-		Idea mannaged = em.find(Idea.class, id);
+		Idea managed = em.find(Idea.class, id);
 		managed.setActive(true);
 		return managed;
 		
 	}
 	@Override
 	public Idea makeInactive(int id) {
-		Idea mannaged = em.find(Idea.class, id);
+		Idea managed = em.find(Idea.class, id);
 		managed.setActive(false);
 		return managed;
 	}

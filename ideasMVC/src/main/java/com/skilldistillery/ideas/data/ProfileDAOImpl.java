@@ -37,14 +37,14 @@ public class ProfileDAOImpl implements ProfileDAO {
 	}
 	@Override
 	public Profile makeActive(int id) {
-		Profile mannaged = em.find(Profile.class, id);
+		Profile managed = em.find(Profile.class, id);
 		managed.setActive(true);
 		return managed;
 		
 	}
 	@Override
 	public Profile makeInactive(int id) {
-		Profile mannaged = em.find(Profile.class, id);
+		Profile managed = em.find(Profile.class, id);
 		managed.setActive(false);
 		return managed;
 	}
