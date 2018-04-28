@@ -1,5 +1,7 @@
 package com.skilldistillery.ideas.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -84,5 +86,34 @@ public class CommentDAOImpl implements CommentDAO {
 		em.getTransaction().commit();
 		return managed;
 	}
-
+	
+	public Comment makeActive(int id) {
+		em.getTransaction().begin();
+		Comment managed = em.find(Comment.class, id);
+		managed.setActive(true);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+		
+	}
+	
+	public Comment makeInactive(int id) {
+		em.getTransaction().begin();
+		Comment managed = em.find(Comment.class, id);
+		managed.setActive(false);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+	}
+	
+	@Override
+	public Comment showComment(int id) {
+		return em.find(Comment.class, id);
+	}
+	@Override
+	public List<Comment> showCommentsByIdea(int ideaId){
+		String sql = "select c from Comment c where idea.id = :ideaId";
+		List<Comment> commentsByIdea = em.createNativeQuery(sql, Comment.class).setParameter("ideaId", ideaId).getResultList();
+		return commentsByIdea;
+	}
 }

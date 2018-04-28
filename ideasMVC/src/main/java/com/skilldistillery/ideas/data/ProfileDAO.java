@@ -1,5 +1,8 @@
 package com.skilldistillery.ideas.data;
 
+import java.util.List;
+
+import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 
 public interface ProfileDAO {

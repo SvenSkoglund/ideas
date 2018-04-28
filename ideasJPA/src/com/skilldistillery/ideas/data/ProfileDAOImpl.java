@@ -38,18 +38,30 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return managed;
 	
 	}
-
-//	@Override
-//	public Profile create(Profile profile) {
-//		// start the transaction
-//		em.getTransaction().begin();
-//		// write the customer to the database
-//		em.persist(profile);
-//		// update the "local" Customer object
-//		em.flush();
-//		// commit the changes (actually perform the operation)
-//		em.getTransaction().commit();	
-//		return profile;
-//	}
+	
+	@Override
+	public Profile makeActive(int id) {
+		em.getTransaction().begin();
+		Profile managed = em.find(Profile.class, id);
+		managed.setActive(true);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+		
+	}
+	@Override
+	public Profile makeInactive(int id) {
+		em.getTransaction().begin();
+		Profile managed = em.find(Profile.class, id);
+		managed.setActive(false);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+	}
+	
+	@Override
+	public Profile showProfile(int id) {
+		return em.find(Profile.class, id);
+	}
 
 }

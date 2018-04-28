@@ -1,5 +1,6 @@
 package com.skilldistillery.ideas.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
@@ -51,13 +52,28 @@ class UserTestDAO {
 //
 //	}
 
+//	@Test
+//	void test_update_user() {
+//		user = em.find(User.class, 9);
+//		user.setAdmin(true);
+//		user.setEmail("luke5@theforce.com");
+//		user.setPassword("hello2");
+//		usertest.update(user);
+//		assertEquals("hello2", em.find(User.class, 9).getPassword());
+//	}
+	
+//	@Test
+//	void test_make_inactive() {
+//		usertest.makeInactive(4);
+//		assertEquals(false, em.find(User.class, 4).getActive());
+//		
+//	}
+	
+	
 	@Test
-	void test_update_user() {
-		user = em.find(User.class, 9);
-		user.setAdmin(true);
-		user.setEmail("luke5@theforce.com");
-		user.setPassword("hello2");
-		usertest.update(user);
-		assertEquals("hello2", em.find(User.class, 9).getPassword());
+	void test_make_active() {
+		usertest.makeActive(4);
+		assertEquals(true, em.find(User.class, 4).getActive());
+		
 	}
 }

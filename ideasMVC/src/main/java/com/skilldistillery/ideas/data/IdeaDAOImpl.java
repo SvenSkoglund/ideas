@@ -9,8 +9,11 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.Idea;
-import com.skilldistillery.ideasjpa.entities.Idea;
+import com.skilldistillery.ideasjpa.entities.IdeaLike;
+import com.skilldistillery.ideasjpa.entities.IdeaLikeKey;
+import com.skilldistillery.ideasjpa.entities.Profile;
 
 @Transactional
 @Component
@@ -56,7 +59,7 @@ public class IdeaDAOImpl implements IdeaDAO {
 	@Override
 	public Idea create(Idea idea) {
 		// write the customer to the database
-		List<Idea> comments = new ArrayList<>();
+		List<Comment> comments = new ArrayList<>();
 		idea.setComments(comments);
 		em.persist(idea);
 		// update the "local" Customer object
@@ -75,6 +78,38 @@ public class IdeaDAOImpl implements IdeaDAO {
 		String sql = "select i from Idea i";
 		List<Idea> ideas = em.createQuery(sql, Idea.class).getResultList();
 		return ideas;
+	}
+	@Override
+	public IdeaLike createLike(Idea idea, Profile profile, Boolean vote) {
+		em.getTransaction().begin();
+		IdeaLikeKey ilk = new IdeaLikeKey();
+		ilk.setIdea(idea);
+		ilk.setProfile(profile);
+		
+		IdeaLike il = new IdeaLike();
+		il.setId(ilk);
+		il.setVote(vote);
+		em.persist(il);
+		em.flush();
+		em.getTransaction().commit();
+		return il;
+	}
+
+	@Override
+	public IdeaLike updateLike(Idea idea, Profile profile, Boolean vote) {
+		em.getTransaction().begin();
+		IdeaLikeKey ilk = new IdeaLikeKey();
+		ilk.setIdea(idea);
+		ilk.setProfile(profile);
+		IdeaLike managed = em.find(IdeaLike.class, ilk);
+		managed.setVote(vote);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+	}
+	@Override
+	public Idea showIdea(int id ) {
+		return em.find(Idea.class, id);
 	}
 
 }

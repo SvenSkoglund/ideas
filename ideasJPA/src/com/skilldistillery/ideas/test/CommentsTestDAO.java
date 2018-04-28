@@ -1,6 +1,6 @@
 package com.skilldistillery.ideas.test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.ideas.data.CommentDAOImpl;
 import com.skilldistillery.ideasjpa.entities.Comment;
-import com.skilldistillery.ideasjpa.entities.Profile;
 
 class CommentsTestDAO {
 	private EntityManagerFactory emf;
@@ -32,8 +31,6 @@ class CommentsTestDAO {
 		em.close();
 		emf.close();
 	}
-
-	
 
 //	@Test
 //	void test_create_comment() {
@@ -74,11 +71,25 @@ class CommentsTestDAO {
 //		
 //	}
 	
+//	@Test
+//	void test_like_update() {
+//		comment = em.find(Comment.class, 2);
+//		Profile profile = em.find(Profile.class, 1);
+//		assertNotNull(commenttest.updateLike(comment, profile, false));
+//		
+//	}
+	
+//	@Test
+//	void test_make_inactive() {
+//		commenttest.makeInactive(4);
+//		assertEquals(false, em.find(Comment.class, 4).getActive());
+//		
+//	}
 	@Test
-	void test_like_update() {
-		comment = em.find(Comment.class, 2);
-		Profile profile = em.find(Profile.class, 1);
-		assertNotNull(commenttest.updateLike(comment, profile, false));
+	void test_make_active() {
+		commenttest.makeActive(4);
+		assertEquals(true, em.find(Comment.class, 4).getActive());
 		
 	}
+
 }

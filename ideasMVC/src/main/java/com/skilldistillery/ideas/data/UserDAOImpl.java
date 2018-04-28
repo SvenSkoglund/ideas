@@ -73,10 +73,6 @@ public class UserDAOImpl implements UserDAO {
 
 		return user;
 	}
-	@Override
-	public Idea showIdea(int id ) {
-		return em.find(Idea.class, id);
-	}
 
 
 }
