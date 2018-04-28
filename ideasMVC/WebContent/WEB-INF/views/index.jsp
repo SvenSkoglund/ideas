@@ -17,8 +17,8 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav">
-			<li class="nav-item"><a href="">Log In<span class="sr-only">(current)</span></a></li>
-			<li class="nav-item"><a href="">Create Account<span class="sr-only">(current)</span></a></li>
+			<li class="nav-item"><a href="toToLogin.do">Log In<span class="sr-only">(current)</span></a></li>
+			<li class="nav-item"><a href="toCreateAccount.do">Create Account<span class="sr-only">(current)</span></a></li>
 		</ul>
 	</div>
 	</nav>
@@ -62,7 +62,7 @@
 	<!-- Listing for ideas -->
 	<c:forEach var="i" items="${ideaList}">
 		<h3>
-			<a href="" id="ideaLink">${i.name}</a>
+			<a href="toIdea.do" id="ideaLink">${i.name}</a>
 		</h3>
 		<br>
 	</c:forEach>

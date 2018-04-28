@@ -96,10 +96,28 @@ public class IdeaController {
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
-	@RequestMapping(path="toPostIdea.do", method = RequestMethod.GET)
-	public ModelAndView goToPostIdea() {
-		 ModelAndView mv = new  ModelAndView();
-		 mv.setViewName("WEB-INF/views/postIdea.jsp");
-		 return mv;
+//	@RequestMapping(path="toPostIdea.do", method = RequestMethod.GET)
+//	public ModelAndView goToPostIdea() {
+//		 ModelAndView mv = new  ModelAndView();
+//		 mv.setViewName("WEB-INF/views/postIdea.jsp");
+//		 return mv;
+//	}
+//	@RequestMapping(path="toToLogin.do", method = RequestMethod.GET)
+//	public ModelAndView goToLogin() {
+//		ModelAndView mv = new  ModelAndView();
+//		mv.setViewName("WEB-INF/views/login.jsp");
+//		return mv;
+//	}
+	@RequestMapping(path="toCreateAccount.do", method = RequestMethod.GET)
+	public ModelAndView goToCreateAccount() {
+		ModelAndView mv = new  ModelAndView();
+		mv.setViewName("WEB-INF/views/create.jsp");
+		return mv;
+	}
+	@RequestMapping(path="toIdea.do", method = RequestMethod.GET)
+	public ModelAndView goIdea() {
+		ModelAndView mv = new  ModelAndView();
+		mv.setViewName("WEB-INF/views/create.jsp");
+		return mv;
 	}
 }
