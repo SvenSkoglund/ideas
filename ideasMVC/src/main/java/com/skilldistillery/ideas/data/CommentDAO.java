@@ -15,4 +15,6 @@ public interface CommentDAO {
 	public CommentLike updateLike(Comment comment, Profile profile, Boolean vote);
 	Comment showComment(int id);
 	List<Comment> showCommentsByIdea(int ideaId);
+	Comment makeInactive(int id);
+	Comment makeActive(int id);
 }

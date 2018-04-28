@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.ideasjpa.entities.User;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 import com.skilldistillery.ideasjpa.entities.User;
@@ -38,6 +39,21 @@ public class UserDAOImpl implements UserDAO {
 		managed.setEmail(user.getEmail());
 		return managed;
 	}
+	
+	@Override
+	public User makeActive(int id) {
+		User managed = em.find(User.class, id);
+		managed.setActive(true);
+		return managed;
+		
+	}
+	@Override
+	public User makeInactive(int id) {
+		User managed = em.find(User.class, id);
+		managed.setActive(false);
+		return managed;
+	}
+	
 	@Override
 	public User create(User user) {
 		// start the transaction
@@ -61,11 +77,6 @@ public class UserDAOImpl implements UserDAO {
 	public Idea showIdea(int id ) {
 		return em.find(Idea.class, id);
 	}
-	@Override
-	public List<Idea> showAllIdeas() {
-		String sql = "select i from Idea i";
-		List<Idea> ideas = em.createQuery(sql, Idea.class).getResultList();
-		return ideas;
-	}
+
 
 }

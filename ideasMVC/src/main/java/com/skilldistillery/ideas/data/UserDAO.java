@@ -12,4 +12,6 @@ public interface UserDAO {
 	public User create(User user);
 	List<Idea> showAllIdeas();
 	Idea showIdea(int id);
+	User makeActive(int id);
+	User makeInactive(int id);
 }

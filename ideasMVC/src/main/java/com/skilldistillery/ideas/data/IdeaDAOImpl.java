@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skilldistillery.ideasjpa.entities.Comment;
+import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Idea;
 
 @Transactional
@@ -39,11 +39,24 @@ public class IdeaDAOImpl implements IdeaDAO {
 		return managed;
 
 	}
+	@Override
+	public Idea makeActive(int id) {
+		Idea managed = em.find(Idea.class, id);
+		managed.setActive(true);
+		return managed;
+		
+	}
+	@Override
+	public Idea makeInactive(int id) {
+		Idea managed = em.find(Idea.class, id);
+		managed.setActive(false);
+		return managed;
+	}
 
 	@Override
 	public Idea create(Idea idea) {
 		// write the customer to the database
-		List<Comment> comments = new ArrayList<>();
+		List<Idea> comments = new ArrayList<>();
 		idea.setComments(comments);
 		em.persist(idea);
 		// update the "local" Customer object
@@ -56,6 +69,12 @@ public class IdeaDAOImpl implements IdeaDAO {
 		String sql = "select i from Idea i where profile.id = :profileId";
 		List<Idea> ideasByProfile = em.createQuery(sql, Idea.class).setParameter("profileId", profileId).getResultList();
 		return ideasByProfile;
+	}
+	@Override
+	public List<Idea> showAllIdeas() {
+		String sql = "select i from Idea i";
+		List<Idea> ideas = em.createQuery(sql, Idea.class).getResultList();
+		return ideas;
 	}
 
 }

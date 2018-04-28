@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `admin` TINYINT NOT NULL,
   `email` VARCHAR(150) NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `bio` VARCHAR(1000) NULL,
   `profile_pic` VARCHAR(300) NULL,
   `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `user_id_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_profile`
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `idea` (
   `name` VARCHAR(100) NOT NULL,
   `content` TEXT NULL,
   `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `profile_id_idx` (`profile_id` ASC),
   CONSTRAINT `fk_profile_idea`
@@ -109,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `idea_id` INT NOT NULL,
   `content` TEXT NOT NULL,
   `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `profile_id_idx` (`profile_id` ASC),
   INDEX `idea_id_idx` (`idea_id` ASC),
@@ -166,10 +170,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`) VALUES (1, 'wombatlover1997', 'wombat', 1, 'natetrainor@msn.com');
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`) VALUES (2, 'ilovepineapples', 'pineapple', 0, 'svenrskoglund@gmail.com');
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`) VALUES (3, 'iWannaHike', 'hike', 0, 'graciec@gmail.com');
-INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`) VALUES (4, 'awkward_monkey', 'pizza', 0, 'doraeharper@gmail.com');
+INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`, `active`) VALUES (1, 'wombatlover1997', 'wombat', 1, 'natetrainor@msn.com', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`, `active`) VALUES (2, 'ilovepineapples', 'pineapple', 0, 'svenrskoglund@gmail.com', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`, `active`) VALUES (3, 'iWannaHike', 'hike', 0, 'graciec@gmail.com', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `admin`, `email`, `active`) VALUES (4, 'awkward_monkey', 'pizza', 0, 'doraeharper@gmail.com', 1);
 
 COMMIT;
 
@@ -179,10 +183,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`) VALUES (1, 1, 'Something brief', NULL, DEFAULT);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`) VALUES (2, 2, 'Sven Skoglund likes pineapples', NULL, DEFAULT);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`) VALUES (3, 3, 'Let\'s go skiing!', NULL, DEFAULT);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`) VALUES (4, 4, 'Surprise me, Nate.', NULL, DEFAULT);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (1, 1, 'Something brief', NULL, DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (2, 2, 'Sven Skoglund likes pineapples', NULL, DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (3, 3, 'Let\'s go skiing!', NULL, DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (4, 4, 'Surprise me, Nate.', NULL, DEFAULT, 1);
 
 COMMIT;
 
@@ -192,10 +196,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`) VALUES (1, 1, 'Let\'s talk about kangaroos', NULL, DEFAULT);
-INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`) VALUES (2, 2, 'Pineapple should go on pizza!', 'Pineapple is the superior pizza topping. Anyone who thinks otherwise is an inferior being from the ninth circle of Hell.', DEFAULT);
-INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`) VALUES (3, 3, 'People who ski in jeans are stupid', 'People who ski in jeans should go home to Texas.', DEFAULT);
-INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`) VALUES (4, 4, 'Pineapple spaghetti, WTF?!', 'Just WTF?!', DEFAULT);
+INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`, `active`) VALUES (1, 1, 'Let\'s talk about kangaroos', NULL, DEFAULT, 1);
+INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`, `active`) VALUES (2, 2, 'Pineapple should go on pizza!', 'Pineapple is the superior pizza topping. Anyone who thinks otherwise is an inferior being from the ninth circle of Hell.', DEFAULT, 1);
+INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`, `active`) VALUES (3, 3, 'People who ski in jeans are stupid', 'People who ski in jeans should go home to Texas.', DEFAULT, 1);
+INSERT INTO `idea` (`id`, `profile_id`, `name`, `content`, `date_created`, `active`) VALUES (4, 4, 'Pineapple spaghetti, WTF?!', 'Just WTF?!', DEFAULT, 1);
 
 COMMIT;
 
@@ -218,11 +222,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (1, 2, 3, 'I agree. Jeans are telltale sign of someone who doesn\'t belong here.', DEFAULT);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (2, 3, 2, 'Pineapple pizza rocks!', DEFAULT);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (3, 4, 2, 'Go to Hawaii if you want pineapple! We don\'t care for your fruity ways!', DEFAULT);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (4, 2, 4, 'Pineapple on spaghetti sounds pretty good. I\'ll have to try it!', DEFAULT);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`) VALUES (5, 4, 4, 'Hey guys, tone down the weed, will ya?', DEFAULT);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (1, 2, 3, 'I agree. Jeans are telltale sign of someone who doesn\'t belong here.', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (2, 3, 2, 'Pineapple pizza rocks!', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (3, 4, 2, 'Go to Hawaii if you want pineapple! We don\'t care for your fruity ways!', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (4, 2, 4, 'Pineapple on spaghetti sounds pretty good. I\'ll have to try it!', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (5, 4, 4, 'Hey guys, tone down the weed, will ya?', DEFAULT, 1);
 
 COMMIT;
 

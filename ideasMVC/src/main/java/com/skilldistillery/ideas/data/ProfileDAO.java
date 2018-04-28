@@ -8,4 +8,6 @@ public interface ProfileDAO {
 	public Profile update(Profile profile);
 //	public Profile create(Profile profile);
 	Profile showProfile(int id);
+	Profile makeActive(int id);
+	Profile makeInactive(int id);
 }

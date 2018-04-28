@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.ideasjpa.entities.Profile;
+import com.skilldistillery.ideasjpa.entities.Profile;
 
 @Transactional
 @Component
@@ -34,6 +35,20 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return managed;
 	
 	}
+	@Override
+	public Profile makeActive(int id) {
+		Profile managed = em.find(Profile.class, id);
+		managed.setActive(true);
+		return managed;
+		
+	}
+	@Override
+	public Profile makeInactive(int id) {
+		Profile managed = em.find(Profile.class, id);
+		managed.setActive(false);
+		return managed;
+	}
+	
 	@Override
 	public Profile showProfile(int id) {
 		return em.find(Profile.class, id);
