@@ -47,6 +47,25 @@ public class IdeaDAOImpl implements IdeaDAO {
 	}
 
 	@Override
+	public Idea makeActive(int id) {
+		em.getTransaction().begin();
+		Idea managed = em.find(Idea.class, id);
+		managed.setActive(true);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+		
+	}
+	@Override
+	public Idea makeInactive(int id) {
+		em.getTransaction().begin();
+		Idea managed = em.find(Idea.class, id);
+		managed.setActive(false);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+	}
+	@Override
 	public Idea create(Idea idea) {
 		// start the transaction
 		em.getTransaction().begin();

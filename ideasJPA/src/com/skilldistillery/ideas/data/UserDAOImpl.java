@@ -37,6 +37,27 @@ public class UserDAOImpl implements UserDAO {
 		em.getTransaction().commit();
 		return managed;
 	}
+	
+	@Override
+	public User makeActive(int id) {
+		em.getTransaction().begin();
+		User managed = em.find(User.class, id);
+		managed.setActive(true);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+		
+	}
+	@Override
+	public User makeInactive(int id) {
+		em.getTransaction().begin();
+		User managed = em.find(User.class, id);
+		managed.setActive(false);
+		em.flush();
+		em.getTransaction().commit();
+		return managed;
+	}
+	
 	@Override
 	public User create(User user) {
 		// start the transaction

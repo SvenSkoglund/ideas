@@ -1,8 +1,6 @@
 package com.skilldistillery.ideas.test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,8 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.ideas.data.IdeaDAOImpl;
 import com.skilldistillery.ideasjpa.entities.Idea;
-import com.skilldistillery.ideasjpa.entities.Idea;
-import com.skilldistillery.ideasjpa.entities.Profile;
 
 class IdeaTestDAO {
 	private EntityManagerFactory emf;
@@ -77,10 +73,26 @@ class IdeaTestDAO {
 //		
 //	}
 	
+//	@Test
+//	void test_like_update() {
+//		idea = em.find(Idea.class, 2);
+//		Profile profile = em.find(Profile.class, 1);
+//		assertNotNull(ideatest.updateLike(idea, profile, false));
+//	}
+	
+//	@Test
+//	void test_make_inactive() {
+//		ideatest.makeInactive(4);
+//		assertEquals(false, em.find(Idea.class, 4).getActive());
+//		
+//	}
+	
+	
 	@Test
-	void test_like_update() {
-		idea = em.find(Idea.class, 2);
-		Profile profile = em.find(Profile.class, 1);
-		assertNotNull(ideatest.updateLike(idea, profile, false));
+	void test_make_active() {
+		ideatest.makeActive(4);
+		assertEquals(true, em.find(Idea.class, 4).getActive());
+		
 	}
+
 }

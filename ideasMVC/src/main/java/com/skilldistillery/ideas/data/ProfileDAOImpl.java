@@ -54,5 +54,6 @@ public class ProfileDAOImpl implements ProfileDAO {
 		return em.find(Profile.class, id);
 	}
 
-
+	
+	
 }

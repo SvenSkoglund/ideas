@@ -12,4 +12,6 @@ public interface IdeaDAO {
 	IdeaLike createLike(Idea idea, Profile profile, Boolean vote);
 	IdeaLike updateLike(Idea idea, Profile profile, Boolean vote);
 	Idea showIdea(int id);
+	Idea makeActive(int id);
+	Idea makeInactive(int id);
 }

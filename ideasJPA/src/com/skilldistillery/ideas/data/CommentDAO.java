@@ -1,5 +1,7 @@
 package com.skilldistillery.ideas.data;
 
+import java.util.List;
+
 import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.CommentLike;
 import com.skilldistillery.ideasjpa.entities.Profile;
@@ -11,4 +13,6 @@ public interface CommentDAO {
 	public Comment create(Comment comment);
 	public CommentLike createLike(Comment comment, Profile profile, Boolean vote);
 	public CommentLike updateLike(Comment comment, Profile profile, Boolean vote);
+	Comment showComment(int id);
+	List<Comment> showCommentsByIdea(int ideaId);
 }

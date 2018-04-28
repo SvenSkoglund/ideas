@@ -37,6 +37,8 @@ public class Profile {
 
 	@Column(name = "created_date")
 	private Date createdDate;
+	
+	private Boolean active;
 
 	// @OneToMany(mappedBy = "profile")
 	// private List<Idea> ideas;
@@ -56,6 +58,58 @@ public class Profile {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((active == null) ? 0 : active.hashCode());
+		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
+		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		if (active == null) {
+			if (other.active != null)
+				return false;
+		} else if (!active.equals(other.active))
+			return false;
+		if (bio == null) {
+			if (other.bio != null)
+				return false;
+		} else if (!bio.equals(other.bio))
+			return false;
+		if (createdDate == null) {
+			if (other.createdDate != null)
+				return false;
+		} else if (!createdDate.equals(other.createdDate))
+			return false;
+		if (id != other.id)
+			return false;
+		if (profilePic == null) {
+			if (other.profilePic != null)
+				return false;
+		} else if (!profilePic.equals(other.profilePic))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
 	}
 
 	public String getBio() {
@@ -122,13 +176,18 @@ public class Profile {
 
 	// HashCode
 	
-	// toString
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Profile [id=").append(id).append(", bio=").append(bio)
-				.append(", profilePic=").append(profilePic).append(", createdDate=").append(createdDate).append("]");
-		return builder.toString();
+		return "Profile [id=" + id + ", user=" + user + ", bio=" + bio + ", profilePic=" + profilePic + ", createdDate="
+				+ createdDate + ", active=" + active + "]";
 	}
-	
+
 }

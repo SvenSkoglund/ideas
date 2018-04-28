@@ -38,6 +38,8 @@ public class Comment {
 	@Column(name="date_created")
 	private Date dateCreated;
 	
+	private Boolean active;
+	
 //	@OneToMany(mappedBy="comment")
 //	private List<CommentLike> likes;
 
@@ -45,6 +47,7 @@ public class Comment {
 	public Profile getProfile() {
 		return profile;
 	}
+
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
@@ -78,6 +81,13 @@ public class Comment {
 		return id;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+	
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 //	public List<CommentLike> getLikes() {
 //		return likes;
 //	}
@@ -86,11 +96,11 @@ public class Comment {
 //		this.likes = likes;
 //	}
 
-	//HashCode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((active == null) ? 0 : active.hashCode());
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
 		result = prime * result + id;
@@ -99,7 +109,6 @@ public class Comment {
 		return result;
 	}
 
-	// .equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -109,6 +118,11 @@ public class Comment {
 		if (getClass() != obj.getClass())
 			return false;
 		Comment other = (Comment) obj;
+		if (active == null) {
+			if (other.active != null)
+				return false;
+		} else if (!active.equals(other.active))
+			return false;
 		if (content == null) {
 			if (other.content != null)
 				return false;
@@ -134,17 +148,11 @@ public class Comment {
 		return true;
 	}
 
-	// toString
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Comment [id=").append(id).append(", profile=").append(profile).append(", idea=").append(idea)
-				.append(", content=").append(content).append(", dateCreated=").append(dateCreated).append("]");
-		return builder.toString();
+		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea + ", content=" + content
+				+ ", dateCreated=" + dateCreated + ", active=" + active + "]";
 	}
-
-
-	
-	
 	
 }

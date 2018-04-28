@@ -1,5 +1,6 @@
 package com.skilldistillery.ideas.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.ideas.data.ProfileDAOImpl;
 import com.skilldistillery.ideas.data.UserDAOImpl;
+import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 import com.skilldistillery.ideasjpa.entities.User;
 
@@ -34,13 +36,28 @@ class ProfileTestDAO {
 		emf.close();
 	}
 
+//	@Test
+//	void test_update_user() {
+//		profile = em.find(Profile.class, 5);
+//		profile.setBio("my bio");
+//		profile.setProfilePic("were");
+//		profiletest.update(profile);
+//		assertEquals("my bio", em.find(Profile.class, 5).getBio());
+//		assertEquals("were", em.find(Profile.class, 5).getProfilePic());
+//	}
+	
+//	@Test
+//	void test_make_inactive() {
+//		profiletest.makeInactive(4);
+//		assertEquals(false, em.find(Profile.class, 4).getActive());
+//		
+//	}
+	
+	
 	@Test
-	void test_update_user() {
-		profile = em.find(Profile.class, 5);
-		profile.setBio("my bio");
-		profile.setProfilePic("were");
-		profiletest.update(profile);
-		assertEquals("my bio", em.find(Profile.class, 5).getBio());
-		assertEquals("were", em.find(Profile.class, 5).getProfilePic());
+	void test_make_active() {
+		profiletest.makeActive(4);
+		assertEquals(true, em.find(Profile.class, 4).getActive());
+		
 	}
 }
