@@ -29,6 +29,8 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Profile profile;
 	
+	private Boolean active;
+	
 	
 	// Gets & Sets 
 	public String getUsername() {
@@ -76,21 +78,29 @@ public class User {
 		this.profile = profile;
 	}
 
-	// Hashcode
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((active == null) ? 0 : active.hashCode());
 		result = prime * result + (admin ? 1231 : 1237);
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
 	
-	// .equals
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -100,6 +110,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (active == null) {
+			if (other.active != null)
+				return false;
+		} else if (!active.equals(other.active))
+			return false;
 		if (admin != other.admin)
 			return false;
 		if (email == null) {
@@ -114,6 +129,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (profile == null) {
+			if (other.profile != null)
+				return false;
+		} else if (!profile.equals(other.profile))
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -122,14 +142,10 @@ public class User {
 		return true;
 	}
 
-	// toString
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", admin=" + admin + ", email="
-				+ email + "]";
+				+ email + ", active=" + active + "]";
 	}
-	
-	
-	
 	
 }
