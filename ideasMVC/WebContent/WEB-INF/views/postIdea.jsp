@@ -27,7 +27,8 @@
 
 		
 		<input class="" type="Text" value="idea goes here" name="content" />
-		<input class="" type="hidden" value="" name="profile" />
+		
+		<input class="" type="hidden" value="${profile }" name="profile" />
 	
 
 	
