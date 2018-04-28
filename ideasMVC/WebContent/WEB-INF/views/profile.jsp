@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${profile.username } Profile</title>
+<title>${profile.user.username } Profile</title>
 </head>
 <body>
 
@@ -17,9 +17,9 @@
 	</nav>
 	
 	<!-- Big headline telling you whose profile you're looking at -->
-	<h1>${profile.username }</h1><br>
+	<h1>${profile.user.username }</h1><br>
 	
-	<img alt="Profile picture of ${profile.username }" src="${profile.profilePic }"><br>
+	<img alt="Profile picture of ${profile.user.username }" src="${profile.profilePic }"><br>
 
 	<h5>Member since: ${profile.createdDate }</h5><br>
 	<p>${profile.bio }</p>
@@ -27,23 +27,23 @@
 	<hr>
 	
 	<!-- Reputation probably special object in Controller -->
-	<h5>Reputation: ${profile.reputation }</h5><br>
-	
+<%-- 	<h5>Reputation: ${profile.reputation }</h5><br>
+ --%>	
 	<!-- ideaCount probably special object in Controller -->
-	<h5>Total Ideas: ${profile.ideas }</h5><br>
+	<h5>Total Ideas: ${size }</h5><br>
 	
 	
 	<!-- Listing for user's ideas -->
-	<c:forEach var="i" items="${profile.ideas }">
+	<c:forEach var="i" items="${ideas }">
 		<h3>
-			<a href="" id="ideaLink">${i.name}</a>
+			<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
 		</h3><br>
 			<form action="destoryIdea.do" method="POST">
 				<input type="hidden" value="${i }" name="idea">
 			</form>
 		<br>
 	</c:forEach>
-	
+	 
 	
 	<!-- Account Settings form -->
 	<form action="settings.do" method="POST">

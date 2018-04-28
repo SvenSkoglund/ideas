@@ -152,7 +152,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea + ", content=" + content
+		return "Comment [id=" + id + ", profile=" + profile + ", idea=" + idea.getId() + ", content=" + content
 				+ ", dateCreated=" + dateCreated + ", active=" + active + "]";
 	}
 	

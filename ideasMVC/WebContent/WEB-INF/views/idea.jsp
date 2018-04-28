@@ -21,25 +21,25 @@
 
 	<h1>${message }</h1>
 
-	<a href="WEB-INF/views/profile.jsp"><img
+	<a href="toProfile.do?pid=${idea.profile.id }"><img
 		src="${idea.profile.profilePic }"
 		alt="Image of ${idea.profile.user.username }" /></a>
-	<br />
+	<br>
 	<h1>${idea.name }</h1>
 	<p>${idea.content }</p>
 	<br>
 
-<%-- 	<form action="destoryIdea.do" method="POST">
+<form action="destoryIdea.do" method="POST">
 		<input type="hidden" value="${idea }" name="idea">
 		<input type="Submit" value="Destroy Idea" />
-</form>	 --%>
+</form>	
 
 	<hr>
 
 	<!-- Listing for comments -->
 	<c:forEach var="comment" items="${comments}">
 		<h3>
-			<a href="WEB-INF/views/profile.jsp"><img
+			<a href="toProfile.do?pid=${comment.profile.id }"><img
 				src="${comment.profile.profilePic }"
 				alt="Image of ${comment.profile.user.username }" /></a><br />
 

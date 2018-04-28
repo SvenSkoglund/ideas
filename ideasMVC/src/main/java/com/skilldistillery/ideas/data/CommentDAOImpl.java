@@ -98,7 +98,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public List<Comment> showCommentsByIdea(int ideaId){
 		String sql = "select c from Comment c where idea.id = :ideaId";
-		List<Comment> commentsByIdea = em.createNativeQuery(sql, Comment.class).setParameter("ideaId", ideaId).getResultList();
+		List<Comment> commentsByIdea = em.createQuery(sql, Comment.class).setParameter("ideaId", ideaId).getResultList();
 		return commentsByIdea;
 	}
 

@@ -14,7 +14,9 @@ import com.skilldistillery.ideas.data.CommentDAO;
 import com.skilldistillery.ideas.data.IdeaDAO;
 import com.skilldistillery.ideas.data.ProfileDAO;
 import com.skilldistillery.ideas.data.UserDAO;
+import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.Idea;
+import com.skilldistillery.ideasjpa.entities.Profile;
 
 @Controller
 public class IdeaController {
@@ -96,18 +98,18 @@ public class IdeaController {
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
-//	@RequestMapping(path="toPostIdea.do", method = RequestMethod.GET)
-//	public ModelAndView goToPostIdea() {
-//		 ModelAndView mv = new  ModelAndView();
-//		 mv.setViewName("WEB-INF/views/postIdea.jsp");
-//		 return mv;
-//	}
-//	@RequestMapping(path="toToLogin.do", method = RequestMethod.GET)
-//	public ModelAndView goToLogin() {
-//		ModelAndView mv = new  ModelAndView();
-//		mv.setViewName("WEB-INF/views/login.jsp");
-//		return mv;
-//	}
+	@RequestMapping(path="toPostIdea.do", method = RequestMethod.GET)
+	public ModelAndView goToPostIdea() {
+		 ModelAndView mv = new  ModelAndView();
+		 mv.setViewName("WEB-INF/views/postIdea.jsp");
+		 return mv;
+	}
+	@RequestMapping(path="toToLogin.do", method = RequestMethod.GET)
+	public ModelAndView goToLogin() {
+		ModelAndView mv = new  ModelAndView();
+		mv.setViewName("WEB-INF/views/login.jsp");
+		return mv;
+	}
 	@RequestMapping(path="toCreateAccount.do", method = RequestMethod.GET)
 	public ModelAndView goToCreateAccount() {
 		ModelAndView mv = new  ModelAndView();
@@ -118,8 +120,23 @@ public class IdeaController {
 	public ModelAndView goToIdea(@RequestParam(name="iid") Integer ideaId) {
 		ModelAndView mv = new  ModelAndView();
 		Idea idea = ideaDao.showIdea(ideaId);
-		mv.addObject("comments", idea.getComments());
+		mv.addObject("idea", idea);
+		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
+		mv.addObject("comments", comments);
 		mv.setViewName("WEB-INF/views/idea.jsp");
+		return mv;
+	}
+	@RequestMapping(path="toProfile.do", method = RequestMethod.GET)
+	public ModelAndView goToProfile(@RequestParam(name="pid") Integer profileId) {
+		ModelAndView mv = new  ModelAndView();
+		Profile profile = profileDao.showProfile(profileId);
+		mv.addObject("profile", profile);
+		List <Idea> profileIdeas = ideaDao.showIdeasByProfile(profileId);
+		mv.addObject("ideas", profileIdeas);
+		int size = profileIdeas.size();
+		mv.addObject("size", size);
+		
+		mv.setViewName("WEB-INF/views/profile.jsp");
 		return mv;
 	}
 }
