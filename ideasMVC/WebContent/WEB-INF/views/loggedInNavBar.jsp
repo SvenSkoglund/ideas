@@ -43,19 +43,12 @@
 <body>
 	<div class="container-fluid">
 		<div class="row navbarcolor">
-			<div class="col-sm-4 ideastext">
-				<a href="index.do">
-					<h1>ideas.</h1>
-				</a>
+			<div class="col-sm-4 ideastext"><a href="index.do"><h1 class="linkcolor">ideas.</h1></a>
 			</div>
 			<div class="col-sm-5 navtext"></div>
-			<div class="col-sm-1 navtext">
-				<a href="logout.do">
-					<h1>Log Out</h1>
-				</a>
+			<div class="col-sm-1 navtext"><a href="logout.do"><h3 class="linkcolor">Log Out</h3></a>
 			</div>
-			<div class="col-sm-2 navtext">
-				<img alt="Picture of ${loggedInUser.username }" src="${loggedInUser.profile.profilePic }">
+			<div class="col-sm-2 navtext"><img alt="Picture of ${loggedInUser.username }" src="${loggedInUser.profile.profilePic }">
 			</div>
 		</div>
 	</div>

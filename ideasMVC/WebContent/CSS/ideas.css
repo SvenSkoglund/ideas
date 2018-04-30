@@ -7,22 +7,32 @@ body {
 .navtext {
 	font-family: 'Crimson Text', serif;
 	font-size: 2em;
+	color: white;
 	align-items: center;
 	vertical-align: middle;
 	padding: .1em;
 	padding-bottom: .5em;
-	decoration: none;
+	text-decoration: none;
+	
 }
 
 .ideastext {
 	font-family: 'Crimson Text', serif;
 	font-size: 2em;
 	font-weight: bolder;
+	color: white;
 	align-items: center;
 	vertical-align: middle;
 	padding: .1em;
 	padding-left: 4em;
 	padding-bottom: .5em;
+	text-decoration: none;
+	
+}
+
+.linkcolor {
+	color: white;
+	text-decoration: none;
 }
 
 .navbarcolor {
