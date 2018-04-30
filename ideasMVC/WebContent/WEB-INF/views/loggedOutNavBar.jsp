@@ -3,7 +3,7 @@
 <!--class full means-->
 
 <head>
-<title>ideas.</title>
+<title>loggedOutNavBar</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,58 +39,24 @@
 	href="https://fonts.googleapis.com/css?family=Crimson+Text|Raleway"
 	rel="stylesheet">
 </head>
-
 <body>
-
-	<!-- Leading navigation bar, need to figure out logic for user -->
-	<%@ include file="loggedOutNavBar.jsp"%>
-
-	<!-- Header for website -->
-	<h1>ideas.</h1>
-
-	<hr>
-	
-	<h1>${message }</h1>
-	<!-- Search bar for ideas -->
-	<form action="search.do" method="GET">
-		<input type="text" name="ideaKeyword" /> <input type="submit"
-			value="Search for Idea" />
-	</form>
-	<br>
-
-	<!-- Sort by, don't know if this was stretch goal or not -->
-	<form action="date.do" method="GET">
-		<input type="submit" value="Sort by Date" />
-	</form>
-
-	<form action="like.do" method="GET">
-		<input type="submit" value="Sort by Likes" />
-	</form>
-
-	<form action="controversy.do" method="GET">
-		<input type="submit" value="Sort by Controversy" />
-	</form>
-
-	<form action="username.do" method="GET">
-		<input type="submit" value="Sort by Username" />
-	</form>
-
-	<hr>
-
-	<!-- Create your own idea form -->
-	<form action="toPostIdea.do" method="GET">
-		<input type="hidden" value="${profile }" name="profile" /> <input
-			type="Submit" value="Create your own idea!" />
-	</form>
-
-	<!-- Listing for ideas -->
-	<c:forEach var="i" items="${ideaList}">
-		<h3>
-			<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
-		</h3>
-		<br>
-	</c:forEach>
-
-
+	<div class="container-fluid">
+		<div class="row navbarcolor">
+			<div class="col-sm-4 ideastext">
+				<h1>ideas.</h1>
+			</div>
+			<div class="col-sm-5 navtext"></div>
+			<div class="col-sm-1 navtext">
+				<a href="toToLogin.do">
+					<h1>Log In</h1>
+				</a>
+			</div>
+			<div class="col-sm-2 navtext">
+				<a href="toCreateAccount.do">
+					<h1>Create Account</h1>
+				</a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
