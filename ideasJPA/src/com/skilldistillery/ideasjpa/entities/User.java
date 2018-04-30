@@ -17,14 +17,14 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String username;
 	
 	private String password;
 	
 	private boolean admin;
 	
-	private String email;
+	String email;
 	
 	@OneToOne(mappedBy="user")
 	private Profile profile;

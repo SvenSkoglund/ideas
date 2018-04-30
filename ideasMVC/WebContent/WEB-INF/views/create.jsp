@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,16 +18,16 @@
 	<!-- Create Account form -->
 	<form action="createUser.do" method="GET">
 		<label for="username">Username</label><br>
-		<input type="text" name="username" /><br>
+		<input type="text" name="username" min="6" max="35" required/><br>
 		
 		<label for="password">Password</label><br>
 		<input type="text" name="password" /><br>
 		
 		<label for="email">Email</label><br>
-		<input type="text" name="email" /><br>
+		<input type="email" name="email" required/><br>
 		
 		<label for="confirmPassword">Confirm Password</label><br>
-		<input type="text" name="confirmPassword" /><br>
+		<input type="text" name="confirmPassword" min="6" max="35" required /><br>
 		
 		<!-- If we are directing the new user to settings.jsp, we need  -->
 		<!-- to make sure we create a Profile object in the controller  -->

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,16 +16,16 @@
 	<form action="update.do" method="POST">
 		<!-- Fields to update/change -->
 		<label for="username">Username</label><br>
-		<input type="text" value="${profile.user.username }" name="username" /><br>
+		<input type="text" value="${profile.user.username }" name="username" min="6" max="35"/><br>
 		
 		<label for="password">Password</label><br>
-		<input type="text" value="${profile.user.password }" name="password" /><br>
+		<input type="text" value="${profile.user.password }" name="password" min="6" max="35"/><br>
 		
 		<label for="email">Email</label><br>
-		<input type="text" value="${profile.user.email }" name="email" /><br>
+		<input type="email" value="${profile.user.email }" name="email" /><br>
 		
 		<label for="profilePic">Profile Picture URL</label><br>
-		<input type="text" value="${profile.profilePic }" name="profilePic" /><br>
+		<input type="url" value="${profile.profilePic }" name="profilePic" /><br>
 		
 		<label for="bio">Bio</label><br>
 		<input type="text" value="${profile.bio }" name="bio" /><br>
