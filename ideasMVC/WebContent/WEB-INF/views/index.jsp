@@ -46,8 +46,14 @@
 <body>
 
 	<!-- Leading navigation bar, need to figure out logic for user -->
-	
-	<%@ include file="loggedOutNavBar.jsp"%>
+	<c:choose>
+		<c:when test="${empty loggedInUser}">
+			<%@ include file="loggedOutNavBar.jsp"%>
+	    </c:when>
+		<c:otherwise>
+	        Currently logged in as ${loggedInUser.username }
+		</c:otherwise>
+	</c:choose>
 
 	<div class="container-fluid">
 
@@ -72,8 +78,7 @@
 				<option value="like">Sort by Likes</option>
 				<option value="controversy">Sort by Controversy</option>
 				<option value="username">Sort by Username</option>
-			</select>
-			<input type="submit" value="Submit" />
+			</select> <input type="submit" value="Submit" />
 		</form>
 
 		<hr>
