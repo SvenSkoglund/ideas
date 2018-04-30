@@ -16,6 +16,7 @@
 	</button>
 	</nav>
 	
+	<h1>${message }</h1>
 	<!-- Big headline telling you whose profile you're looking at -->
 	<h1>${profile.user.username }</h1><br>
 	
@@ -24,6 +25,15 @@
 	<h5>Member since: ${profile.createdDate }</h5><br>
 	<p>${profile.bio }</p>
 	
+	<hr>
+	<!-- Deactivate Profile form -->
+	<form action="deactivateProfile.do" method="GET">
+		<input type="submit" value="Deactive Profile" />
+		<input type="hidden" name="pid" value="${profile.id }">
+		<!-- This should be replaced by a session profile -->
+		<input type="hidden" name="profileLoggedInId" value="${profile.id}">
+		
+	</form>
 	<hr>
 	
 	<!-- Reputation probably special object in Controller -->

@@ -18,6 +18,7 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav">
 			<li class="nav-item"><a href="toToLogin.do">Log In<span class="sr-only">(current)</span></a></li>
+			<li class="nav-item"><a href="logout.do">Log Out<span class="sr-only">(current)</span></a></li>
 			<li class="nav-item"><a href="toCreateAccount.do">Create Account<span class="sr-only">(current)</span></a></li>
 		</ul>
 	</div>
@@ -27,7 +28,7 @@
 	<h1>ideas.</h1>
 
 	<hr>
-	
+	<h1>${message }</h1>
 	<!-- Search bar for ideas -->
 	<form action="search.do" method="GET">
 		<input type="text" name="ideaKeyword" />
