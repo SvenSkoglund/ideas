@@ -16,7 +16,7 @@
 	<form action="update.do" method="POST">
 		<!-- Fields to update/change -->
 		<label for="username">Username</label><br>
-		<input type="text" value="${profile.user.username }" name="username" min="6" max="35"/><br>
+		<input type="text" value="${profile.user.username }" name="username" min="6" max="35" message="Must be at least 6 characters"/><br>
 		
 		<label for="password">Password</label><br>
 		<input type="text" value="${profile.user.password }" name="password" min="6" max="35"/><br>
