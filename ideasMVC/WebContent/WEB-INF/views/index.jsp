@@ -29,8 +29,8 @@
 
 <!-- CUSTOM CSS INCLUDE-->
 
-<link rel="stylesheet" type="text/css" href="CSS/ideas.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="CSS/ideas.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
 
 <!--Check for CDN if false load local dist-->
 
@@ -44,6 +44,8 @@
 
 	<!-- Leading navigation bar, need to figure out logic for user -->
 	<%@ include file="loggedOutNavBar.jsp"%>
+
+	<div class="container-fluid">
 
 	<!-- Header for website -->
 	<h1>ideas.</h1>
@@ -83,14 +85,22 @@
 			type="Submit" value="Create your own idea!" />
 	</form>
 
+          <div class="row">
+            <div class="col-sm-2"></div>
+                <div class="col-sm-1 ideaicons">Lorem</div>
+                <div class="col-sm-1 ideaicons">Lorem</div>
+                <div class="col-sm-6 idearow">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+          </div>
+
 	<!-- Listing for ideas -->
 	<c:forEach var="i" items="${ideaList}">
-		<h3>
-			<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
+		<h3 id="ideastext">
+			<a href="toIdea.do?iid=${i.id }">${i.name}</a>
 		</h3>
 		<br>
 	</c:forEach>
 
-
+	</div>
+	
 </body>
 </html>
