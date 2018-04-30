@@ -15,7 +15,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	</nav>
-	
+	<h1>${message }</h1>
 	<!-- Login form -->
 	<form action="login.do" method="POST">
 		<label for="username">Username</label>

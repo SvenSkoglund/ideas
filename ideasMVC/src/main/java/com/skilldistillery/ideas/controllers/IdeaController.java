@@ -17,6 +17,7 @@ import com.skilldistillery.ideas.data.UserDAO;
 import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
+import com.skilldistillery.ideasjpa.entities.User;
 
 @Controller
 public class IdeaController {
@@ -34,8 +35,8 @@ public class IdeaController {
 	@RequestMapping(path = "index.do", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
-		 List<Idea> ideaList = ideaDao.showAllIdeas();
-		 mv.addObject("ideaList", ideaList);
+		List<Idea> ideaList = ideaDao.showAllIdeas();
+		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
 		return mv;
@@ -55,24 +56,24 @@ public class IdeaController {
 		return mv;
 	}
 
-//	@RequestMapping(path = "update.do", method = RequestMethod.POST)
-//	public ModelAndView updateIdea(@RequestParam(name = "idea") Idea idea) {
-//		ModelAndView mv = new ModelAndView();
-//		Idea oldIdea = em.find(Idea.class, idea.getId());
-//		Idea newIdea = ideaDao.update(idea);
-//
-//		if (oldIdea.equals(newIdea)) {
-//			mv.addObject("message", "Idea not updated!");
-//			mv.addObject("idea", newIdea);
-//			mv.setViewName("WEB-INF/views/idea.jsp");
-//		} else {
-//			mv.addObject("message", "Idea Updated!");
-//			mv.addObject("idea", newIdea);
-//			mv.setViewName("WEB-INF/views/idea.jsp");
-//		}
-//
-//		return mv;
-//	}
+	// @RequestMapping(path = "update.do", method = RequestMethod.POST)
+	// public ModelAndView updateIdea(@RequestParam(name = "idea") Idea idea) {
+	// ModelAndView mv = new ModelAndView();
+	// Idea oldIdea = em.find(Idea.class, idea.getId());
+	// Idea newIdea = ideaDao.update(idea);
+	//
+	// if (oldIdea.equals(newIdea)) {
+	// mv.addObject("message", "Idea not updated!");
+	// mv.addObject("idea", newIdea);
+	// mv.setViewName("WEB-INF/views/idea.jsp");
+	// } else {
+	// mv.addObject("message", "Idea Updated!");
+	// mv.addObject("idea", newIdea);
+	// mv.setViewName("WEB-INF/views/idea.jsp");
+	// }
+	//
+	// return mv;
+	// }
 
 	@RequestMapping(path = "postIdea.do", method = RequestMethod.POST)
 	public ModelAndView createIdea(@RequestParam(name = "idea") Idea idea, RedirectAttributes redir) {
@@ -92,33 +93,37 @@ public class IdeaController {
 		return mv;
 	}
 
-	@RequestMapping(path="redirectIdea.do", method = RequestMethod.GET)
+	@RequestMapping(path = "redirectIdea.do", method = RequestMethod.GET)
 	public ModelAndView createdIdea() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
-	@RequestMapping(path="toPostIdea.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "toPostIdea.do", method = RequestMethod.GET)
 	public ModelAndView goToPostIdea() {
-		 ModelAndView mv = new  ModelAndView();
-		 mv.setViewName("WEB-INF/views/postIdea.jsp");
-		 return mv;
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/views/postIdea.jsp");
+		return mv;
 	}
-	@RequestMapping(path="toToLogin.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "toToLogin.do", method = RequestMethod.GET)
 	public ModelAndView goToLogin() {
-		ModelAndView mv = new  ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/login.jsp");
 		return mv;
 	}
-	@RequestMapping(path="toCreateAccount.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "toCreateAccount.do", method = RequestMethod.GET)
 	public ModelAndView goToCreateAccount() {
-		ModelAndView mv = new  ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/create.jsp");
 		return mv;
 	}
-	@RequestMapping(path="toIdea.do", method = RequestMethod.GET)
-	public ModelAndView goToIdea(@RequestParam(name="iid") Integer ideaId) {
-		ModelAndView mv = new  ModelAndView();
+
+	@RequestMapping(path = "toIdea.do", method = RequestMethod.GET)
+	public ModelAndView goToIdea(@RequestParam(name = "iid") Integer ideaId) {
+		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(ideaId);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
@@ -126,17 +131,35 @@ public class IdeaController {
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
-	@RequestMapping(path="toProfile.do", method = RequestMethod.GET)
-	public ModelAndView goToProfile(@RequestParam(name="pid") Integer profileId) {
-		ModelAndView mv = new  ModelAndView();
+
+	@RequestMapping(path = "toProfile.do", method = RequestMethod.GET)
+	public ModelAndView goToProfile(@RequestParam(name = "pid") Integer profileId) {
+		ModelAndView mv = new ModelAndView();
 		Profile profile = profileDao.showProfile(profileId);
 		mv.addObject("profile", profile);
-		List <Idea> profileIdeas = ideaDao.showIdeasByProfile(profileId);
+		List<Idea> profileIdeas = ideaDao.showIdeasByProfile(profileId);
 		mv.addObject("ideas", profileIdeas);
 		int size = profileIdeas.size();
 		mv.addObject("size", size);
-		
+
 		mv.setViewName("WEB-INF/views/profile.jsp");
 		return mv;
+	}
+
+	@RequestMapping(path = "login.do", method = RequestMethod.POST)
+	public ModelAndView login(String username, String password) {
+		ModelAndView mv = new ModelAndView();
+		User user = userDao.findUserByUsernameAndPassword(username, password);
+		if (user == null) {
+			mv.addObject("message", "Account not found");
+			mv.setViewName("WEB-INF/views/login.jsp");
+			return mv;
+		} else {
+			List<Idea> ideaList = ideaDao.showAllIdeas();
+			mv.addObject("ideaList", ideaList);
+			mv.addObject("user", user);
+			mv.setViewName("WEB-INF/views/index.jsp");
+			return mv;
+		}
 	}
 }

@@ -12,4 +12,5 @@ public interface UserDAO {
 	public User create(User user);
 	User makeActive(int id);
 	User makeInactive(int id);
+	User findUserByUsernameAndPassword(String username, String password);
 }
