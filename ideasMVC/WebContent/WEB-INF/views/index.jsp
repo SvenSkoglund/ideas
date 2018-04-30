@@ -51,6 +51,7 @@
 			<%@ include file="loggedOutNavBar.jsp"%>
 	    </c:when>
 		<c:otherwise>
+			<%@ include file="loggedInNavBar.jsp"%>
 	        Currently logged in as ${loggedInUser.username }
 		</c:otherwise>
 	</c:choose>
