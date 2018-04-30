@@ -49,11 +49,17 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		List<Idea> ideaList = ideaDao.showAllIdeas();
 		switch (sortChoice) {
-		case "date":
+		case "newest":
 			ideaDao.sortIdeasByDateNewFirst(ideaList);
+			break;
+		case "oldest":
+			ideaDao.sortIdeasByDateOldFirst(ideaList);
 			break;
 		case "like":
 			ideaDao.sortByLikes(ideaList);
+			break;
+		case "dislike":
+			ideaDao.sortByDisikes(ideaList);
 			break;
 		case "controversy":
 			ideaDao.sortByContreversy(ideaList);
@@ -61,8 +67,8 @@ public class IdeaController {
 		case "username":
 			ideaDao.sortByUsername(ideaList);
 			break;
-		
 		}
+		
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
@@ -82,25 +88,6 @@ public class IdeaController {
 		}
 		return mv;
 	}
-
-	// @RequestMapping(path = "update.do", method = RequestMethod.POST)
-	// public ModelAndView updateIdea(@RequestParam(name = "idea") Idea idea) {
-	// ModelAndView mv = new ModelAndView();
-	// Idea oldIdea = em.find(Idea.class, idea.getId());
-	// Idea newIdea = ideaDao.update(idea);
-	//
-	// if (oldIdea.equals(newIdea)) {
-	// mv.addObject("message", "Idea not updated!");
-	// mv.addObject("idea", newIdea);
-	// mv.setViewName("WEB-INF/views/idea.jsp");
-	// } else {
-	// mv.addObject("message", "Idea Updated!");
-	// mv.addObject("idea", newIdea);
-	// mv.setViewName("WEB-INF/views/idea.jsp");
-	// }
-	//
-	// return mv;
-	// }
 
 	@RequestMapping(path = "postIdea.do", method = RequestMethod.POST)
 	public ModelAndView createIdea(@RequestParam(name = "idea") Idea idea, RedirectAttributes redir,

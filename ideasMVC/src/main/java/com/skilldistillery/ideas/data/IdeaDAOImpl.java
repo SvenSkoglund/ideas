@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.ideas.data.comparators.SortIdeaByContreversy;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByDateNewFirst;
+import com.skilldistillery.ideas.data.comparators.SortIdeaByDateOldFirst;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByDislikes;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByLikes;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByUsername;
@@ -134,7 +135,7 @@ public class IdeaDAOImpl implements IdeaDAO {
 
 	@Override
 	public List<Idea> sortIdeasByDateOldFirst(List<Idea> ideas) {
-		SortIdeaByDateNewFirst oldFirst = new SortIdeaByDateNewFirst();
+		SortIdeaByDateOldFirst oldFirst = new SortIdeaByDateOldFirst();
 		ideas.sort(oldFirst);
 		return ideas;
 
@@ -150,18 +151,22 @@ public class IdeaDAOImpl implements IdeaDAO {
 			likeCount = likes.size();
 		} else {
 			likeCount = 0;
-
 		}
-		System.out.println("***************" + likeCount);
 		return likeCount;
 	}
 
 	@Override
 	public int getDislikes(Idea idea) {
 		int ideaId = idea.getId();
+		int likeCount;
 		String sql = "select il from IdeaLike il where il.id.idea.id = :ideaId and il.vote = false";
-		int dislikeCount = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList().size();
-		return dislikeCount;
+		List<IdeaLike> dislikes = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList();
+		if (!dislikes.isEmpty()) {
+			likeCount = dislikes.size();
+		} else {
+			likeCount = 0;
+		}
+		return likeCount;
 	}
 
 	@Override

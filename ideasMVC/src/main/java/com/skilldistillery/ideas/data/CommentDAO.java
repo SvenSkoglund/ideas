@@ -17,4 +17,11 @@ public interface CommentDAO {
 	List<Comment> showCommentsByIdea(int ideaId);
 	Comment makeInactive(int id);
 	Comment makeActive(int id);
+	List<Comment> sortCommentsByDateNewFirst(List<Comment> comments);
+	List<Comment> sortCommentsByDateOldFirst(List<Comment> comments);
+	int getLikes(Comment comment);
+	int getDislikes(Comment comment);
+	List<Comment> sortByLikes(List<Comment> comments);
+	List<Comment> sortByDisikes(List<Comment> comments);
+	List<Comment> sortByContreversy(List<Comment> comments);
 }

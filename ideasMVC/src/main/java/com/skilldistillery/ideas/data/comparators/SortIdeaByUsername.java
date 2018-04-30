@@ -9,7 +9,7 @@ public class SortIdeaByUsername implements Comparator<Idea> {
 
 	@Override
 	public int compare(Idea o1, Idea o2) {
-		return o1.getProfile().getUser().getUsername().compareTo(o1.getProfile().getUser().getUsername());
+		return o1.getProfile().getUser().getUsername().compareTo(o2.getProfile().getUser().getUsername());
 	}
 
 }

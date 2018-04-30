@@ -49,7 +49,7 @@
 	<c:choose>
 		<c:when test="${empty loggedInUser}">
 			<%@ include file="loggedOutNavBar.jsp"%>
-	    </c:when>
+		</c:when>
 		<c:otherwise>
 			<%@ include file="loggedInNavBar.jsp"%>
 	        Currently logged in as ${loggedInUser.username }
@@ -58,10 +58,6 @@
 
 	<div class="container-fluid">
 
-		<!-- Header for website -->
-		<h1 class="ideastext">ideas.</h1>
-
-		<hr>
 
 		<h1>${logoutMessage }</h1>
 		<h1>${message }</h1>
@@ -75,8 +71,10 @@
 		<!-- Sort by, don't know if this was stretch goal or not -->
 		<form action="sorting.do" method="GET">
 			<select name="sortChoice">
-				<option value="date">Sort by Date</option>
-				<option value="like">Sort by Likes</option>
+				<option value="newest">Newest First</option>
+				<option value="oldest">Oldest First</option>
+				<option value="like">Most Likes</option>
+				<option value="dislike">Most Dislikes</option>
 				<option value="controversy">Sort by Controversy</option>
 				<option value="username">Sort by Username</option>
 			</select> <input type="submit" value="Submit" />

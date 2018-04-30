@@ -17,7 +17,7 @@ public class SortIdeaByLikes implements Comparator<Idea> {
 	
 	@Override
 	public int compare(Idea o1, Idea o2) {
-		return dao.getLikes(o1) - dao.getLikes(o2);
+		return dao.getLikes(o2) - dao.getLikes(o1);
 	}
 
 }
