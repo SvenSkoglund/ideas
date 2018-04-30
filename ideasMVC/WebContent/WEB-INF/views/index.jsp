@@ -74,7 +74,7 @@
 
 		<!-- Sort by, don't know if this was stretch goal or not -->
 		<form action="sorting.do" method="GET">
-			<select>
+			<select name="sortChoice">
 				<option value="date">Sort by Date</option>
 				<option value="like">Sort by Likes</option>
 				<option value="controversy">Sort by Controversy</option>

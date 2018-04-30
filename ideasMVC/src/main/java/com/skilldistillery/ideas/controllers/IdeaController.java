@@ -44,6 +44,17 @@ public class IdeaController {
 		return mv;
 	}
 
+	@RequestMapping(path = "sorting.do")
+	public ModelAndView sortIdeasIndex() {
+		ModelAndView mv = new ModelAndView();
+		List<Idea> ideaList = ideaDao.showAllIdeas();
+		switch 
+		ideaList = ideaDao.sor
+		mv.addObject("ideaList", ideaList);
+		mv.setViewName("WEB-INF/views/index.jsp");
+
+		return mv;
+	}
 	@RequestMapping(path = "destoryIdea.do", method = RequestMethod.POST)
 	public ModelAndView deleteIdea(@RequestParam(name = "idea") Idea idea) {
 		ModelAndView mv = new ModelAndView();
