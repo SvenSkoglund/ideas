@@ -18,4 +18,12 @@ public interface IdeaDAO {
 	Idea showIdea(int id);
 	IdeaLike createLike(Idea idea, Profile profile, Boolean vote);
 	IdeaLike updateLike(Idea idea, Profile profile, Boolean vote);
+	List<Idea> sortIdeasByDateNewFirst(List<Idea> ideas);
+	List<Idea> sortIdeasByDateOldFirst(List<Idea> ideas);
+	int getLikes(Idea idea);
+	int getDislikes(Idea idea);
+	List<Idea> sortByLikes(List<Idea> ideas);
+	List<Idea> sortByDisikes(List<Idea> ideas);
+	List<Idea> sortByUsername(List<Idea> ideas);
+	List<Idea> sortByContreversy(List<Idea> ideas);
 }
