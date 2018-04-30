@@ -175,8 +175,9 @@ public class IdeaController {
 		mv.setViewName("index.do");
 		return mv;
 	}
+	
 	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
-	public ModelAndView logout(String username, String email, String password, String confirmPassword, HttpSession session) {
+	public ModelAndView creatingUser(String username, String email, String password, String confirmPassword, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		if(!password.equals(confirmPassword)) {
 			mv.addObject("passwordMessage", "Passwwords did not match");
@@ -193,16 +194,44 @@ public class IdeaController {
 			userDao.create(user);
 			profileDao.makeActive(user.getProfile().getId());
 			session.setAttribute("loggedInUser", user);
-			Profile profile = user.getProfile();
-			mv.addObject("profile", profile);
-			mv.setViewName("WEB-INF/views/settings.jsp");
+			mv.setViewName("redirect:toSettings.do");
 		}
 		else {
 			mv.addObject("createUserMessage", "This email or username already exists");
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
 		}
+		mv.setViewName("redirect:toSettings.do");
+		return mv;
+	}
+	
+	@RequestMapping(path="toSettings.do", method = RequestMethod.GET)
+	public ModelAndView directToSettings(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User userToUpdateProfile = (User) session.getAttribute("loggedInUser");
+		Profile profileToUpdate = userToUpdateProfile.getProfile();
+		mv.addObject("profile", profileToUpdate);
 		mv.setViewName("WEB-INF/views/settings.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path="update.do", method = RequestMethod.POST)
+	public ModelAndView updateSettings(@RequestParam(name="username") String newUsername, @RequestParam(name="password") String newPassword, @RequestParam(name="email") String newEmail, @RequestParam(name="profilePic") String newProfilePic, @RequestParam(name="bio") String newBio, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		User userUpdatingProfile = (User) session.getAttribute("loggedInUser");
+		userUpdatingProfile.setUsername(newUsername);
+		userUpdatingProfile.setPassword(newPassword);
+		userUpdatingProfile.setEmail(newEmail);
+		userDao.update(userUpdatingProfile);
+		
+		Profile profileToUpdate = userUpdatingProfile.getProfile();
+		profileToUpdate.setProfilePic(newProfilePic);
+		profileToUpdate.setBio(newBio);
+		profileDao.update(profileToUpdate);
+		
+		
+		mv.setViewName("redirect:index.do");
 		return mv;
 	}
 
@@ -228,6 +257,7 @@ public class IdeaController {
 		mv.setViewName("toProfile.do");
 		return mv;
 	}
+	
 	@RequestMapping(path = "deactivateIdea.do", method = RequestMethod.GET)
 	public ModelAndView deactivateIdea(@RequestParam(name = "pid") Integer profileId, @RequestParam(name = "iid") Integer ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -250,6 +280,7 @@ public class IdeaController {
 		mv.setViewName("toIdea.do");
 		return mv;
 	}
+	
 	@RequestMapping(path = "deactivateComment.do", method = RequestMethod.GET)
 	public ModelAndView deactivateComment(@RequestParam(name = "cid") Integer commentId, @RequestParam(name = "iid") Integer ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();

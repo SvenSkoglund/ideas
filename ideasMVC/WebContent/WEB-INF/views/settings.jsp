@@ -16,22 +16,22 @@
 	<form action="update.do" method="POST">
 		<!-- Fields to update/change -->
 		<label for="username">Username</label><br>
-		<input type="text" value="${profile.user.username } name="username" /><br>
+		<input type="text" value="${profile.user.username }" name="username" /><br>
 		
 		<label for="password">Password</label><br>
-		<input type="text" value="${profile.user.password } name="password" /><br>
+		<input type="text" value="${profile.user.password }" name="password" /><br>
 		
 		<label for="email">Email</label><br>
-		<input type="text" value="${profile.user.email } name="email" /><br>
+		<input type="text" value="${profile.user.email }" name="email" /><br>
 		
 		<label for="profilePic">Profile Picture URL</label><br>
-		<input type="text" value="${profile.profilePic } name="profilePic" /><br>
+		<input type="text" value="${profile.profilePic }" name="profilePic" /><br>
 		
 		<label for="bio">Bio</label><br>
-		<input type="text" value="${profile.bio } name="bio" /><br>
+		<input type="text" value="${profile.bio }" name="bio" /><br>
 		
 		<!-- Hidden Values that User should not Change -->
-		<input type="hidden" name="pid" value="${profile.id }">
+		<%-- <input type="hidden" name="pid" value="${profile.id }">
 		
 		<input type="hidden" name="pid" value="${profile.ideas }">
 		
@@ -41,7 +41,7 @@
 		
 		<input type="hidden" name="pid" value="${profile.reputation }">
 		
-		<input type="hidden" name="pid" value="${profile.postCount }">
+		<input type="hidden" name="pid" value="${profile.postCount }"> --%>
 		
 		<!-- Submit -->
 		<input type="submit" value="Update Account" />
