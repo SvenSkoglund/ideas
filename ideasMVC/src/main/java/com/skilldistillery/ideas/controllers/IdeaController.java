@@ -202,7 +202,7 @@ public class IdeaController {
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
 		}
-		mv.setViewName("index.do");
+		mv.setViewName("WEB-INF/views/settings.jsp");
 		return mv;
 	}
 
