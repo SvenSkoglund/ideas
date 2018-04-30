@@ -175,6 +175,32 @@ public class IdeaController {
 		mv.setViewName("index.do");
 		return mv;
 	}
+	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
+	public ModelAndView logout(String username, String email, String password, String confirmPassword, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		if(!password.equals(confirmPassword)) {
+			mv.addObject("message", "Passwwords did not match");
+			mv.setViewName("createUser.do");
+			return mv;
+		}else {
+			User user = new User();
+			user.setUsername(username);
+			user.setEmail(email);
+			user.setPassword(password);
+			user.setActive(true);
+			user.setAdmin(false);
+			userDao.create(user);
+			profileDao.makeActive(user.getProfile().getId());
+			session.setAttribute("loggedInUser", user);
+			Profile profile = user.getProfile();
+			mv.addObject("profile", profile);
+			mv.setViewName("WEB-INF/views/settings.jsp");
+		}
+		mv.addObject("message", "Logged out succesfully");
+		session.removeAttribute("loggedInUser");
+		mv.setViewName("index.do");
+		return mv;
+	}
 
 	@RequestMapping(path = "deactivateProfile.do", method = RequestMethod.GET)
 	public ModelAndView deactivateProfile(@RequestParam(name = "pid") Integer profileId, HttpSession session) {

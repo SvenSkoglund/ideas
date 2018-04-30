@@ -64,6 +64,7 @@ public class UserDAOImpl implements UserDAO {
 		em.persist(user);
 		em.flush();
 		profile.setUser(em.find(User.class, user.getId()));
+		profile.setActive(true);
 		em.persist(profile);
 		user.setProfile(profile);
 

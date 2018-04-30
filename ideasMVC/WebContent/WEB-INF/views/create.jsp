@@ -17,7 +17,7 @@
 	</nav>
 	
 	<!-- Create Account form -->
-	<form action="create.do" method="POST">
+	<form action="createUser.do" method="GET">
 		<label for="username">Username</label><br>
 		<input type="text" name="username" /><br>
 		
