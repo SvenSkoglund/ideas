@@ -34,7 +34,7 @@
 			name="iid" value="${idea.id }">
 		<!-- This should be replaced by a session profile -->
 		<input type="hidden" name="pid" value="${idea.profile.id}">
-
+	</form>
 		<hr>
 
 		<!-- Listing for comments -->

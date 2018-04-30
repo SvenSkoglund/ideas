@@ -205,14 +205,15 @@ public class IdeaController {
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 		if (loggedInUser != null) {
 		Profile profileLoggedIn = loggedInUser.getProfile();
-
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
 				mv.addObject("message", "Idea De-Activated");
 				ideaDao.makeInactive(ideaId);
 			} else {
+				System.out.println("in deactivate idea.do");
 				mv.addObject("message", "You do not have permission to deactivate this Idea");
 			}
 		}else {
+			System.out.println("in deactivate idea.do");
 			mv.addObject("message", "You do not have permission to deactivate this Idea");
 		}
 		mv.addObject("iid", ideaId);
@@ -227,6 +228,7 @@ public class IdeaController {
 		if (loggedInUser != null) {
 		Profile profileLoggedIn = loggedInUser.getProfile();
 
+		System.out.println("in deactivate comment.do");
 			if (profileLoggedIn.getId() == comment.getProfile().getId() || profileLoggedIn.getUser().isAdmin()) {
 				session.setAttribute("message", "Comment De-Activated");
 				commentDao.makeInactive(commentId);
