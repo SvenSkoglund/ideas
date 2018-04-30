@@ -54,16 +54,8 @@
 					<h1>Log Out</h1>
 				</a>
 			</div>
-			<div class="col-sm-5 navtext"></div>
-			<div class="col-sm-1 navtext">
-				<a href="toToLogin.do">
-					<h1>Log In</h1>
-				</a>
-			</div>
 			<div class="col-sm-2 navtext">
-				<a href="toCreateAccount.do">
-					<h1>Create Account</h1>
-				</a>
+				<img alt="Picture of ${loggedInUser.username }" src="${loggedInUser.profile.profilePic }">
 			</div>
 		</div>
 	</div>
