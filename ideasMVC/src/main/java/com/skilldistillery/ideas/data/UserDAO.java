@@ -13,4 +13,6 @@ public interface UserDAO {
 	User makeActive(int id);
 	User makeInactive(int id);
 	User findUserByUsernameAndPassword(String username, String password);
+	Boolean checkForExistingUsername(String username);
+	Boolean checkForExistingEmail(String email);
 }

@@ -170,7 +170,7 @@ public class IdeaController {
 	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("message", "Logged out succesfully");
+		mv.addObject("logoutMessage", "Logged out succesfully");
 		session.removeAttribute("loggedInUser");
 		mv.setViewName("index.do");
 		return mv;
@@ -179,10 +179,11 @@ public class IdeaController {
 	public ModelAndView logout(String username, String email, String password, String confirmPassword, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		if(!password.equals(confirmPassword)) {
-			mv.addObject("message", "Passwwords did not match");
-			mv.setViewName("createUser.do");
+			mv.addObject("passwordMessage", "Passwwords did not match");
+			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
-		}else {
+		}
+		if (!userDao.checkForExistingEmail(email) && !userDao.checkForExistingUsername(username)) {
 			User user = new User();
 			user.setUsername(username);
 			user.setEmail(email);
@@ -196,8 +197,11 @@ public class IdeaController {
 			mv.addObject("profile", profile);
 			mv.setViewName("WEB-INF/views/settings.jsp");
 		}
-		mv.addObject("message", "Logged out succesfully");
-		session.removeAttribute("loggedInUser");
+		else {
+			mv.addObject("createUserMessage", "This email or username already exists");
+			mv.setViewName("WEB-INF/views/create.jsp");
+			return mv;
+		}
 		mv.setViewName("index.do");
 		return mv;
 	}

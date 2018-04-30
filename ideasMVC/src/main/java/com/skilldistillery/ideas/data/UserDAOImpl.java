@@ -90,5 +90,25 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return user;
 	}
+	@Override
+	public Boolean checkForExistingUsername(String username) {
+		String sql = "select u from User u where u.username = :username";
+		List<User> matchingUsers = em.createQuery(sql, User.class).setParameter("username", username).getResultList();
+		if (matchingUsers.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	@Override
+	public Boolean checkForExistingEmail(String email) {
+		String sql = "select u from User u where u.email = :email";
+		List<User> matchingUsers = em.createQuery(sql, User.class).setParameter("email", email).getResultList();
+		if (matchingUsers.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
