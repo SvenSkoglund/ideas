@@ -198,4 +198,47 @@ public class IdeaController {
 		mv.setViewName("toProfile.do");
 		return mv;
 	}
+	@RequestMapping(path = "deactivateIdea.do", method = RequestMethod.GET)
+	public ModelAndView deactivateIdea(@RequestParam(name = "pid") Integer profileId, @RequestParam(name = "iid") Integer ideaId, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Profile profile = profileDao.showProfile(profileId);
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+		if (loggedInUser != null) {
+		Profile profileLoggedIn = loggedInUser.getProfile();
+
+			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
+				mv.addObject("message", "Idea De-Activated");
+				ideaDao.makeInactive(ideaId);
+			} else {
+				mv.addObject("message", "You do not have permission to deactivate this Idea");
+			}
+		}else {
+			mv.addObject("message", "You do not have permission to deactivate this Idea");
+		}
+		mv.addObject("iid", ideaId);
+		mv.setViewName("toIdea.do");
+		return mv;
+	}
+	@RequestMapping(path = "deactivateComment.do", method = RequestMethod.GET)
+	public ModelAndView deactivateComment(@RequestParam(name = "cid") Integer commentId, @RequestParam(name = "iid") Integer ideaId, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Comment comment = commentDao.showComment(commentId);
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+		if (loggedInUser != null) {
+		Profile profileLoggedIn = loggedInUser.getProfile();
+
+			if (profileLoggedIn.getId() == comment.getProfile().getId() || profileLoggedIn.getUser().isAdmin()) {
+				session.setAttribute("message", "Comment De-Activated");
+				commentDao.makeInactive(commentId);
+			} else {
+				session.setAttribute("message", "You do not have permission to deactivate this comment");
+			}
+		}else {
+			session.setAttribute("message", "You do not have permission to deactivate this comment");
+		}
+		mv.addObject("iid", ideaId);
+		mv.addObject("cid", comment.getId());
+		mv.setViewName("toIdea.do");
+		return mv;
+	}
 }

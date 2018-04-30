@@ -29,33 +29,40 @@
 	<p>${idea.content }</p>
 	<br>
 
-<form action="destoryIdea.do" method="POST">
-		<input type="hidden" value="${idea }" name="idea">
-		<input type="Submit" value="Destroy Idea" />
-</form>	
+	<form action="deactivateIdea.do" method="GET">
+		<input type="submit" value="Deactive Idea" /> <input type="hidden"
+			name="iid" value="${idea.id }">
+		<!-- This should be replaced by a session profile -->
+		<input type="hidden" name="pid" value="${idea.profile.id}">
 
-	<hr>
+		<hr>
 
-	<!-- Listing for comments -->
-	<c:forEach var="comment" items="${comments}">
-		<h3>
-			<a href="toProfile.do?pid=${comment.profile.id }"><img
-				src="${comment.profile.profilePic }"
-				alt="Image of ${comment.profile.user.username }" /></a><br />
+		<!-- Listing for comments -->
+		<c:forEach var="comment" items="${comments}">
+			<h3>
+				<a href="toProfile.do?pid=${comment.profile.id }"><img
+					src="${comment.profile.profilePic }"
+					alt="Image of ${comment.profile.user.username }" /></a><br />
 
-		</h3>
+			</h3>
 
-		<p>${comment.content }</p>
-		<p>${comment.dateCreated }</p>
-		<br>
-	</c:forEach>
+			<p>${comment.content }</p>
+			<p>${comment.dateCreated }</p>
+			<br>
+			<form action="deactivateComment.do" method="GET">
+				<input type="submit" value="Deactive Comment" /> <input
+					type="hidden" name="iid" value="${idea.id }">
+				<!-- This should be replaced by a session profile -->
+				<input type="hidden" name="cid" value="${comment.id}">
 
-	<form action="comment.do" method="POST">
-		<input type="Text" placeholder="Comment" name="content" /><br /> <input
-			type="hidden" value="${profile }" name="profile" /> <input
-			type="hidden" value="${idea }" name="idea" /> <input type="Submit"
-			value="Post Comment" />
-	</form>
+			</form>
+		</c:forEach>
 
+		<form action="comment.do" method="POST">
+			<input type="Text" placeholder="Comment" name="content" /><br /> <input
+				type="hidden" value="${profile }" name="profile" /> <input
+				type="hidden" value="${idea }" name="idea" /> <input type="Submit"
+				value="Post Comment" />
+		</form>
 </body>
 </html>
