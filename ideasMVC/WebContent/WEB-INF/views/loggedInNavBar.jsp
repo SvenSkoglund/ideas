@@ -3,7 +3,7 @@
 <!--class full means-->
 
 <head>
-<title>loggedOutNavBar</title>
+<title>loggedInNavBar</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +46,12 @@
 			<div class="col-sm-4 ideastext">
 				<a href="index.do">
 					<h1>ideas.</h1>
+				</a>
+			</div>
+			<div class="col-sm-5 navtext"></div>
+			<div class="col-sm-1 navtext">
+				<a href="logout.do">
+					<h1>Log Out</h1>
 				</a>
 			</div>
 			<div class="col-sm-5 navtext"></div>
