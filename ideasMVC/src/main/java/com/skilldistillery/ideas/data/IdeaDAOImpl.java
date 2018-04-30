@@ -9,6 +9,11 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.ideas.data.comparators.SortIdeaByContreversy;
+import com.skilldistillery.ideas.data.comparators.SortIdeaByDateNewFirst;
+import com.skilldistillery.ideas.data.comparators.SortIdeaByDislikes;
+import com.skilldistillery.ideas.data.comparators.SortIdeaByLikes;
+import com.skilldistillery.ideas.data.comparators.SortIdeaByUsername;
 import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.IdeaLike;
@@ -21,7 +26,7 @@ public class IdeaDAOImpl implements IdeaDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public boolean destroy(Idea idea) {
 		Idea ideaToDelete = em.find(Idea.class, idea.getId());
@@ -42,13 +47,15 @@ public class IdeaDAOImpl implements IdeaDAO {
 		return managed;
 
 	}
+
 	@Override
 	public Idea makeActive(int id) {
 		Idea managed = em.find(Idea.class, id);
 		managed.setActive(true);
 		return managed;
-		
+
 	}
+
 	@Override
 	public Idea makeInactive(int id) {
 		Idea managed = em.find(Idea.class, id);
@@ -67,25 +74,29 @@ public class IdeaDAOImpl implements IdeaDAO {
 		// commit the changes (actually perform the operation)
 		return idea;
 	}
+
 	@Override
-	public List<Idea> showIdeasByProfile(int profileId){
+	public List<Idea> showIdeasByProfile(int profileId) {
 		String sql = "select i from Idea i where profile.id = :profileId";
-		List<Idea> ideasByProfile = em.createQuery(sql, Idea.class).setParameter("profileId", profileId).getResultList();
+		List<Idea> ideasByProfile = em.createQuery(sql, Idea.class).setParameter("profileId", profileId)
+				.getResultList();
 		return ideasByProfile;
 	}
+
 	@Override
 	public List<Idea> showAllIdeas() {
 		String sql = "select i from Idea i";
 		List<Idea> ideas = em.createQuery(sql, Idea.class).getResultList();
 		return ideas;
 	}
+
 	@Override
 	public IdeaLike createLike(Idea idea, Profile profile, Boolean vote) {
 		em.getTransaction().begin();
 		IdeaLikeKey ilk = new IdeaLikeKey();
 		ilk.setIdea(idea);
 		ilk.setProfile(profile);
-		
+
 		IdeaLike il = new IdeaLike();
 		il.setId(ilk);
 		il.setVote(vote);
@@ -107,9 +118,68 @@ public class IdeaDAOImpl implements IdeaDAO {
 		em.getTransaction().commit();
 		return managed;
 	}
+
 	@Override
-	public Idea showIdea(int id ) {
+	public Idea showIdea(int id) {
 		return em.find(Idea.class, id);
+	}
+
+	@Override
+	public List<Idea> sortIdeasByDateNewFirst(List<Idea> ideas) {
+		SortIdeaByDateNewFirst newFirst = new SortIdeaByDateNewFirst();
+		ideas.sort(newFirst);
+		return ideas;
+
+	}
+
+	@Override
+	public List<Idea> sortIdeasByDateOldFirst(List<Idea> ideas) {
+		SortIdeaByDateNewFirst oldFirst = new SortIdeaByDateNewFirst();
+		ideas.sort(oldFirst);
+		return ideas;
+
+	}
+
+	@Override
+	public int getLikes(Idea idea) {
+		int ideaId = idea.getId();
+		String sql = "select il from IdeaLike il where il.ideaId = :ideaId and vote = true";
+		int likeCount = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList().size();
+		return likeCount;
+	}
+
+	@Override
+	public int getDislikes(Idea idea) {
+		int ideaId = idea.getId();
+		String sql = "select il from IdeaLike il where il.ideaId = :ideaId and vote = false";
+		int dislikeCount = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList().size();
+		return dislikeCount;
+	}
+
+	@Override
+	public List<Idea> sortByLikes(List<Idea> ideas) {
+		SortIdeaByLikes mostLikes = new SortIdeaByLikes();
+		ideas.sort(mostLikes);
+		return ideas;
+	}
+
+	@Override
+	public List<Idea> sortByDisikes(List<Idea> ideas) {
+		SortIdeaByDislikes mostDislikes = new SortIdeaByDislikes();
+		ideas.sort(mostDislikes);
+		return ideas;
+	}
+	@Override
+	public List<Idea> sortByUsername(List<Idea> ideas) {
+		SortIdeaByUsername byUsername = new SortIdeaByUsername();
+		ideas.sort(byUsername);
+		return ideas;
+	}
+	@Override
+	public List<Idea> sortByContreversy(List<Idea> ideas) {
+		SortIdeaByContreversy byContreversy = new SortIdeaByContreversy();
+		ideas.sort(byContreversy);
+		return ideas;
 	}
 
 }
