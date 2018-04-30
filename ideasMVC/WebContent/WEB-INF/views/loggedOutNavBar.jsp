@@ -30,7 +30,8 @@
 <!-- CUSTOM CSS INCLUDE-->
 
 <link rel="stylesheet" type="text/css" href="CSS/ideas.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <!--Check for CDN if false load local dist-->
 
@@ -43,7 +44,15 @@
 	<div class="container-fluid">
 		<div class="row navbarcolor">
 			<div class="col-sm-4 ideastext">
-				<h1>ideas.</h1>
+				<a href="index.do">
+					<h1>ideas.</h1>
+				</a>
+			</div>
+			<div class="col-sm-5 navtext"></div>
+			<div class="col-sm-1 navtext">
+				<a href="logout.do">
+					<h1>Log Out</h1>
+				</a>
 			</div>
 			<div class="col-sm-5 navtext"></div>
 			<div class="col-sm-1 navtext">

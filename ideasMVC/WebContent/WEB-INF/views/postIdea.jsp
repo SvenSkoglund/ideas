@@ -10,12 +10,8 @@
 </head>
 <body>
 
-	<!-- Leading navigation bar to return home -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a class="navbar-brand" href="index.do">ideas.</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	</nav>
+	<!-- Leading navigation bar, need to figure out logic for user -->
+	<%@ include file="loggedOutNavBar.jsp"%>
 	
 	
 	<!-- I know that this page has to have a form or sorts to fill out and submit/post but I feel a little over my head and need walk through it with some help -->
