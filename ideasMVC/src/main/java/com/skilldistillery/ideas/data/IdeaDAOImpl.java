@@ -143,41 +143,51 @@ public class IdeaDAOImpl implements IdeaDAO {
 	@Override
 	public int getLikes(Idea idea) {
 		int ideaId = idea.getId();
-		String sql = "select il from IdeaLike il where il.ideaId = :ideaId and vote = true";
-		int likeCount = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList().size();
+		int likeCount;
+		String sql = "select il from IdeaLike il where il.id.idea.id = :ideaId and il.vote = true";
+		List<IdeaLike> likes = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList();
+		if (!likes.isEmpty()) {
+			likeCount = likes.size();
+		} else {
+			likeCount = 0;
+
+		}
+		System.out.println("***************" + likeCount);
 		return likeCount;
 	}
 
 	@Override
 	public int getDislikes(Idea idea) {
 		int ideaId = idea.getId();
-		String sql = "select il from IdeaLike il where il.ideaId = :ideaId and vote = false";
+		String sql = "select il from IdeaLike il where il.id.idea.id = :ideaId and il.vote = false";
 		int dislikeCount = em.createQuery(sql, IdeaLike.class).setParameter("ideaId", ideaId).getResultList().size();
 		return dislikeCount;
 	}
 
 	@Override
 	public List<Idea> sortByLikes(List<Idea> ideas) {
-		SortIdeaByLikes mostLikes = new SortIdeaByLikes();
+		SortIdeaByLikes mostLikes = new SortIdeaByLikes(this);
 		ideas.sort(mostLikes);
 		return ideas;
 	}
 
 	@Override
 	public List<Idea> sortByDisikes(List<Idea> ideas) {
-		SortIdeaByDislikes mostDislikes = new SortIdeaByDislikes();
+		SortIdeaByDislikes mostDislikes = new SortIdeaByDislikes(this);
 		ideas.sort(mostDislikes);
 		return ideas;
 	}
+
 	@Override
 	public List<Idea> sortByUsername(List<Idea> ideas) {
 		SortIdeaByUsername byUsername = new SortIdeaByUsername();
 		ideas.sort(byUsername);
 		return ideas;
 	}
+
 	@Override
 	public List<Idea> sortByContreversy(List<Idea> ideas) {
-		SortIdeaByContreversy byContreversy = new SortIdeaByContreversy();
+		SortIdeaByContreversy byContreversy = new SortIdeaByContreversy(this);
 		ideas.sort(byContreversy);
 		return ideas;
 	}

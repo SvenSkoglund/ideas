@@ -45,16 +45,30 @@ public class IdeaController {
 	}
 
 	@RequestMapping(path = "sorting.do")
-	public ModelAndView sortIdeasIndex() {
+	public ModelAndView sortIdeasIndex(String sortChoice) {
 		ModelAndView mv = new ModelAndView();
 		List<Idea> ideaList = ideaDao.showAllIdeas();
-		switch 
-		ideaList = ideaDao.sor
+		switch (sortChoice) {
+		case "date":
+			ideaDao.sortIdeasByDateNewFirst(ideaList);
+			break;
+		case "like":
+			ideaDao.sortByLikes(ideaList);
+			break;
+		case "controversy":
+			ideaDao.sortByContreversy(ideaList);
+			break;
+		case "username":
+			ideaDao.sortByUsername(ideaList);
+			break;
+		
+		}
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
 		return mv;
 	}
+
 	@RequestMapping(path = "destoryIdea.do", method = RequestMethod.POST)
 	public ModelAndView deleteIdea(@RequestParam(name = "idea") Idea idea) {
 		ModelAndView mv = new ModelAndView();
@@ -186,11 +200,12 @@ public class IdeaController {
 		mv.setViewName("index.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
-	public ModelAndView creatingUser(String username, String email, String password, String confirmPassword, HttpSession session) {
+	public ModelAndView creatingUser(String username, String email, String password, String confirmPassword,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		if(!password.equals(confirmPassword)) {
+		if (!password.equals(confirmPassword)) {
 			mv.addObject("passwordMessage", "Passwwords did not match");
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
@@ -206,8 +221,7 @@ public class IdeaController {
 			profileDao.makeActive(user.getProfile().getId());
 			session.setAttribute("loggedInUser", user);
 			mv.setViewName("redirect:toSettings.do");
-		}
-		else {
+		} else {
 			mv.addObject("createUserMessage", "This email or username already exists");
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
@@ -215,8 +229,8 @@ public class IdeaController {
 		mv.setViewName("redirect:toSettings.do");
 		return mv;
 	}
-	
-	@RequestMapping(path="toSettings.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "toSettings.do", method = RequestMethod.GET)
 	public ModelAndView directToSettings(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User userToUpdateProfile = (User) session.getAttribute("loggedInUser");
@@ -225,23 +239,25 @@ public class IdeaController {
 		mv.setViewName("WEB-INF/views/settings.jsp");
 		return mv;
 	}
-	
-	@RequestMapping(path="update.do", method = RequestMethod.POST)
-	public ModelAndView updateSettings(@RequestParam(name="username") String newUsername, @RequestParam(name="password") String newPassword, @RequestParam(name="email") String newEmail, @RequestParam(name="profilePic") String newProfilePic, @RequestParam(name="bio") String newBio, HttpSession session) {
+
+	@RequestMapping(path = "update.do", method = RequestMethod.POST)
+	public ModelAndView updateSettings(@RequestParam(name = "username") String newUsername,
+			@RequestParam(name = "password") String newPassword, @RequestParam(name = "email") String newEmail,
+			@RequestParam(name = "profilePic") String newProfilePic, @RequestParam(name = "bio") String newBio,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		User userUpdatingProfile = (User) session.getAttribute("loggedInUser");
 		userUpdatingProfile.setUsername(newUsername);
 		userUpdatingProfile.setPassword(newPassword);
 		userUpdatingProfile.setEmail(newEmail);
 		userDao.update(userUpdatingProfile);
-		
+
 		Profile profileToUpdate = userUpdatingProfile.getProfile();
 		profileToUpdate.setProfilePic(newProfilePic);
 		profileToUpdate.setBio(newBio);
 		profileDao.update(profileToUpdate);
-		
-		
+
 		mv.setViewName("redirect:index.do");
 		return mv;
 	}
@@ -252,7 +268,7 @@ public class IdeaController {
 		Profile profile = profileDao.showProfile(profileId);
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 		if (loggedInUser != null) {
-		Profile profileLoggedIn = loggedInUser.getProfile();
+			Profile profileLoggedIn = loggedInUser.getProfile();
 
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
 				mv.addObject("message", "Profile De-Activated");
@@ -260,7 +276,7 @@ public class IdeaController {
 			} else {
 				mv.addObject("message", "You do not have permission to deactivate this profile");
 			}
-		}else {
+		} else {
 			mv.addObject("message", "You do not have permission to deactivate this profile");
 		}
 
@@ -268,14 +284,15 @@ public class IdeaController {
 		mv.setViewName("toProfile.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "deactivateIdea.do", method = RequestMethod.GET)
-	public ModelAndView deactivateIdea(@RequestParam(name = "pid") Integer profileId, @RequestParam(name = "iid") Integer ideaId, HttpSession session) {
+	public ModelAndView deactivateIdea(@RequestParam(name = "pid") Integer profileId,
+			@RequestParam(name = "iid") Integer ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Profile profile = profileDao.showProfile(profileId);
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 		if (loggedInUser != null) {
-		Profile profileLoggedIn = loggedInUser.getProfile();
+			Profile profileLoggedIn = loggedInUser.getProfile();
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
 				mv.addObject("message", "Idea De-Activated");
 				ideaDao.makeInactive(ideaId);
@@ -283,7 +300,7 @@ public class IdeaController {
 				System.out.println("in deactivate idea.do");
 				mv.addObject("message", "You do not have permission to deactivate this Idea");
 			}
-		}else {
+		} else {
 			System.out.println("in deactivate idea.do");
 			mv.addObject("message", "You do not have permission to deactivate this Idea");
 		}
@@ -291,23 +308,24 @@ public class IdeaController {
 		mv.setViewName("toIdea.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "deactivateComment.do", method = RequestMethod.GET)
-	public ModelAndView deactivateComment(@RequestParam(name = "cid") Integer commentId, @RequestParam(name = "iid") Integer ideaId, HttpSession session) {
+	public ModelAndView deactivateComment(@RequestParam(name = "cid") Integer commentId,
+			@RequestParam(name = "iid") Integer ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Comment comment = commentDao.showComment(commentId);
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 		if (loggedInUser != null) {
-		Profile profileLoggedIn = loggedInUser.getProfile();
+			Profile profileLoggedIn = loggedInUser.getProfile();
 
-		System.out.println("in deactivate comment.do");
+			System.out.println("in deactivate comment.do");
 			if (profileLoggedIn.getId() == comment.getProfile().getId() || profileLoggedIn.getUser().isAdmin()) {
 				session.setAttribute("message", "Comment De-Activated");
 				commentDao.makeInactive(commentId);
 			} else {
 				session.setAttribute("message", "You do not have permission to deactivate this comment");
 			}
-		}else {
+		} else {
 			session.setAttribute("message", "You do not have permission to deactivate this comment");
 		}
 		mv.addObject("iid", ideaId);
