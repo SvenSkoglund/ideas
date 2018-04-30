@@ -209,10 +209,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (2, 4, 1);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (1, 1, 1);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (2, 1, 1);
 INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (3, 1, 1);
-INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (1, 1, NULL);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (4, 1, 0);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (1, 2, 0);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (2, 2, 0);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (3, 2, 0);
 INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (4, 2, 0);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (1, 3, 1);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (2, 3, 0);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (3, 3, 1);
+INSERT INTO `idea_like` (`profile_id`, `idea_id`, `vote`) VALUES (4, 3, 0);
 
 COMMIT;
 
@@ -236,9 +244,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 2, NULL);
-INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 3, NULL);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (1, 1, 1);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (2, 1, 1);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 1, 1);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (4, 1, 1);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (1, 2, 0);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (2, 2, 0);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 2, 0);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (4, 2, 0);
 INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (1, 3, 1);
-INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (4, 4, 0);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (2, 3, 0);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (3, 3, 1);
+INSERT INTO `comment_like` (`profile_id`, `comment_id`, `vote`) VALUES (4, 3, 0);
 
 COMMIT;
