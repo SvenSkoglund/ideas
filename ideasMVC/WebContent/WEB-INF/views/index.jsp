@@ -88,19 +88,15 @@
 			type="Submit" value="Create your own idea!" />
 	</form>
 
+
+	<!-- Listing for ideas -->
+	<c:forEach var="i" items="${ideaList}">
           <div class="row">
             <div class="col-sm-2"></div>
                 <div class="col-sm-1 ideaicons">Lorem</div>
                 <div class="col-sm-1 ideaicons">Lorem</div>
-                <div class="col-sm-6 idearow">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                <div class="col-sm-6 idearow"><a href="toIdea.do?iid=${i.id }">${i.name}</a></div>
           </div>
-
-	<!-- Listing for ideas -->
-	<c:forEach var="i" items="${ideaList}">
-		<h3 id="ideastext">
-			<a href="toIdea.do?iid=${i.id }">${i.name}</a>
-		</h3>
-		<br>
 	</c:forEach>
 
 	</div>
