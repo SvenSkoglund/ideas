@@ -18,16 +18,16 @@
 	<!-- Create Account form -->
 	<form action="createUser.do" method="GET">
 		<label for="username">Username</label><br>
-		<input type="text" name="username" min="6" max="35" required/><br>
-		
-		<label for="password">Password</label><br>
-		<input type="text" name="password" /><br>
+		<input type="text" name="username" min="6" max="35" required message="Enter name betweeen 6-35 characters"/><br>
 		
 		<label for="email">Email</label><br>
 		<input type="email" name="email" required/><br>
 		
+		<label for="password">Password</label><br>
+		<input type="password" name="password" /><br>
+		
 		<label for="confirmPassword">Confirm Password</label><br>
-		<input type="text" name="confirmPassword" min="6" max="35" required /><br>
+		<input type="password" name="confirmPassword" min="6" max="35" required /><br>
 		
 		<!-- If we are directing the new user to settings.jsp, we need  -->
 		<!-- to make sure we create a Profile object in the controller  -->

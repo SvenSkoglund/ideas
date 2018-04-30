@@ -7,6 +7,13 @@ import com.skilldistillery.ideasjpa.entities.Idea;
 
 public class SortIdeaByDislikes implements Comparator<Idea> {
 
+	private IdeaDAOImpl dao;
+
+	public SortIdeaByDislikes(IdeaDAOImpl dao) {
+		this.dao = dao;
+
+	}
+
 	@Override
 	public int compare(Idea o1, Idea o2) {
 		IdeaDAOImpl dao = new IdeaDAOImpl();
