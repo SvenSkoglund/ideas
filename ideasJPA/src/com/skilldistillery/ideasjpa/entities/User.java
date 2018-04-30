@@ -5,34 +5,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
-public class User {	
-	//Constructor
-	public User () {
-		
+public class User {
+	// Constructor
+	public User() {
+
 	}
-	
+
 	// Fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Size(min = 6, max = 45)
 	private String username;
-	
+
+	@Size(min = 6, max = 45)
 	private String password;
-	
+
 	private boolean admin;
-	
-	String email;
-	
-	@OneToOne(mappedBy="user")
+
+	private String email;
+
+	@OneToOne(mappedBy = "user")
 	private Profile profile;
-	
+
 	private Boolean active;
-	
-	
-	// Gets & Sets 
+
+	// Gets & Sets
 	public String getUsername() {
 		return username;
 	}
@@ -69,7 +73,6 @@ public class User {
 		return id;
 	}
 
-	
 	public Profile getProfile() {
 		return profile;
 	}
@@ -100,7 +103,6 @@ public class User {
 		return result;
 	}
 
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -147,5 +149,5 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", admin=" + admin + ", email="
 				+ email + ", active=" + active + "]";
 	}
-	
+
 }
