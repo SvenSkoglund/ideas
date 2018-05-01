@@ -64,13 +64,14 @@
 			<p>${comment.content }</p>
 			<p>${comment.dateCreated }</p>
 			<br>
-			<form action="deactivateComment.do" method="GET">
-				<input type="submit" value="Deactivate Comment" /> <input
-					type="hidden" name="iid" value="${idea.id }">
-				<!-- This should be replaced by a session profile -->
-				<input type="hidden" name="cid" value="${comment.id}">
-
-			</form>
+			<c:if test="${loggedInUser == comment.profile.user || loggedInUser.profile.user.admin}">
+				<form action="deactivateComment.do" method="GET">
+					<input type="submit" value="Deactivate Comment" /> <input
+						type="hidden" name="iid" value="${idea.id }">
+					<!-- This should be replaced by a session profile -->
+					<input type="hidden" name="cid" value="${comment.id}">
+				</form>
+			</c:if>
 		</c:forEach>
 
 		<form action="comment.do" method="POST">
