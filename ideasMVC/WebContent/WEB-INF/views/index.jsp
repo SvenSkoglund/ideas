@@ -45,7 +45,7 @@
 
 <body>
 
-	<!-- Leading navigation bar, need to figure out logic for user -->
+	<!-- Leading navigation bar -->
 		<c:choose>
 			<c:when test="${empty loggedInUser}">
 				<%@ include file="loggedOutNavBar.jsp"%>
@@ -101,7 +101,7 @@
 			<div class="row">
 			
 				<div class="col-sm-2"></div>
-				<div class="col-sm-1 ideaicons">${i.profile.profilePic}</div>
+				<div class="col-sm-1 ideaicons"><img alt="Picture of ${i.profile.user.username}" src="${i.profile.profilePic}"></div>
 				<div class="col-sm-1 ideaicons">Lorem</div>
 				<div class="col-sm-6 idearow">
 					<a href="toIdea.do?iid=${i.id }">${i.name}</a>
