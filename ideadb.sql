@@ -41,8 +41,8 @@ DROP TABLE IF EXISTS `profile` ;
 CREATE TABLE IF NOT EXISTS `profile` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `bio` VARCHAR(1000) NULL,
-  `profile_pic` VARCHAR(300) NULL,
+  `bio` VARCHAR(1000) BINARY NULL,
+  `profile_pic` VARCHAR(300) NOT NULL DEFAULT 'https://www.mybenshop.com/wp-content/uploads/2017/09/Rodin-the-Thinker-Sculpture-Medium-Figurine-Sandstone-Color-500x500.jpg',
   `created_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),

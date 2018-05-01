@@ -65,6 +65,7 @@ public class UserDAOImpl implements UserDAO {
 		em.flush();
 		profile.setUser(em.find(User.class, user.getId()));
 		profile.setActive(true);
+		profile.setProfilePic("https://www.mybenshop.com/wp-content/uploads/2017/09/Rodin-the-Thinker-Sculpture-Medium-Figurine-Sandstone-Color-500x500.jpg");
 		em.persist(profile);
 		user.setProfile(profile);
 

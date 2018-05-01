@@ -47,6 +47,7 @@
 			</div>
 			<div class="col-sm-5 navtext"></div>
 			<div class="col-sm-1 navtext"><a href="toPostIdea.do"><h4 class="linkcolor">Create New Idea</h4></a>
+			<a href="logout.do"><h4 class="linkcolor">Log Out</h4></a>
 			</div>
 			<div class="col-sm-2 navtext"><img alt="Picture of ${loggedInUser.username }" src="${loggedInUser.profile.profilePic }" class="imgsizeNav">
 			</div>

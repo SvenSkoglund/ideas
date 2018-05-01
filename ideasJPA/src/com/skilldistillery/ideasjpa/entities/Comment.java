@@ -2,7 +2,7 @@ package com.skilldistillery.ideasjpa.entities;
 
 //sql date does not need @Temporal annotation
 import java.sql.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +38,7 @@ public class Comment {
 	private String content;
 	
 	@Column(name="date_created")
-	private Date dateCreated;
+	private LocalDateTime dateCreated;
 	
 	private Boolean active;
 	
@@ -75,11 +75,11 @@ public class Comment {
 		this.content = content;
 	}
 
-	public Date getDateCreated() {
+	public LocalDateTime getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
