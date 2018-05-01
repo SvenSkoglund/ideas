@@ -62,7 +62,7 @@
 		<h1>${logoutMessage }</h1>
 		<h1>${message }</h1>
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 				<!-- Sort by, don't know if this was stretch goal or not -->
 					<form action="sorting.do" method="GET">
 						<select name="sortChoice">
@@ -72,26 +72,28 @@
 							<option value="dislike">Most Dislikes</option>
 							<option value="controversy">Sort by Controversy</option>
 							<option value="username">Sort by Username</option>
-						</select> <input type="submit" value="Submit" />
+						</select> 
+						<br>
+						<input type="submit" value="Submit" />
 					</form>
 				</div>
 				
 				<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN --%>
 				<%-- TEMPORARY INSTALL TO CHECK toPostIdea.do LOGIC --%>
-				<div class = "col-sm-4">
+				<div class = "col-sm-5">
 					<!-- Create your own idea form -->
 					<form action="toPostIdea.do" method="GET">
-						<input type="hidden" value="${profile }" name="profile" /> <input
-							type="Submit" value="Create your own idea!" />
+						<input type="hidden" value="${profile }" name="profile" />
+						<input type="Submit" value="Create your own idea!" />
 					</form>
 				</div>
 				
 				
-				<div class="col-sm-6">
+				<div class="col-sm-3">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
-					<input type="text" name="ideaKeyword" /> <input type="submit"
-						value="Search for Idea" />
+					<input type="text" name="ideaKeyword" /> 
+					 <br><input type="submit" value="Search for Idea" />
 				</form>
 				</div>
 				
