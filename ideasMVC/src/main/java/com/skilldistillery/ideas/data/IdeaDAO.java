@@ -27,4 +27,5 @@ public interface IdeaDAO {
 	List<Idea> sortByContreversy(List<Idea> ideas);
 	List<Idea> sortIdeasByDateOldFirst(List<Idea> ideas);
 	Idea create(Idea idea, Profile profile);
+	public Idea assignLikes(Idea idea);
 }
