@@ -201,11 +201,82 @@ public class IdeaController {
 		return mv;
 	}
 
+	@RequestMapping(path = "likeComment.do", method = RequestMethod.GET)
+	public ModelAndView likeComment(int cid, int iid, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Comment comment = commentDao.showComment(cid);
+		Idea idea = ideaDao.showIdea(iid);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			mv.addObject("message", "Must be logged in to vote");
+			idea = ideaDao.assignLikes(idea);
+			mv.addObject("idea", idea);
+			List<Comment> comments = commentDao.showCommentsByIdea(iid);
+			mv.addObject("comments", comments);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+			return mv;
+
+		}
+		Profile profile = user.getProfile();
+		try {
+			commentDao.createLike(comment, profile, true);
+		} catch (Exception e) {
+			commentDao.updateLike(comment, profile, true);
+		}
+		comment = commentDao.assignLikes(comment);
+		idea = ideaDao.assignLikes(idea);
+		mv.addObject("idea", idea);
+		List<Comment> comments = commentDao.showCommentsByIdea(iid);
+		for (Comment c: comments) {
+			c = commentDao.assignLikes(c);
+		}
+		mv.addObject("comments", comments);
+		mv.setViewName("WEB-INF/views/idea.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "dislikeComment.do", method = RequestMethod.GET)
+	public ModelAndView dislikeComment(int cid, int iid, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Comment comment = commentDao.showComment(cid);
+		Idea idea = ideaDao.showIdea(iid);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			mv.addObject("message", "Must be logged in to vote");
+			idea = ideaDao.assignLikes(idea);
+			mv.addObject("idea", idea);
+			List<Comment> comments = commentDao.showCommentsByIdea(iid);
+			mv.addObject("comments", comments);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+			return mv;
+
+		}
+		Profile profile = user.getProfile();
+		try {
+			commentDao.createLike(comment, profile, false);
+		} catch (Exception e) {
+			commentDao.updateLike(comment, profile, false);
+		}
+		comment = commentDao.assignLikes(comment);
+		idea = ideaDao.assignLikes(idea);
+		mv.addObject("idea", idea);
+		List<Comment> comments = commentDao.showCommentsByIdea(iid);
+		for (Comment c: comments) {
+			c = commentDao.assignLikes(c);
+		}
+		mv.addObject("comments", comments);
+		mv.setViewName("WEB-INF/views/idea.jsp");
+		return mv;
+	}
+	
 	@RequestMapping(path = "likeIdeaFromIdea.do", method = RequestMethod.GET)
 	public ModelAndView likeIdeaFromIdea(int iid, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(iid);
 		List<Comment> comments = commentDao.showCommentsByIdea(iid);
+		for (Comment c: comments) {
+			c = commentDao.assignLikes(c);
+		}
 		mv.addObject("comments", comments);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
@@ -233,6 +304,9 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(iid);
 		List<Comment> comments = commentDao.showCommentsByIdea(iid);
+		for (Comment c: comments) {
+			c = commentDao.assignLikes(c);
+		}
 		mv.addObject("comments", comments);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
@@ -297,6 +371,9 @@ public class IdeaController {
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
+		for (Comment comment: comments) {
+			comment = commentDao.assignLikes(comment);
+		}
 		mv.addObject("comments", comments);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;

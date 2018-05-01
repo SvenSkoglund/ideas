@@ -25,4 +25,5 @@ public interface CommentDAO {
 	List<Comment> sortByDisikes(List<Comment> comments);
 	List<Comment> sortByContreversy(List<Comment> comments);
 	Comment create(Comment comment, Profile profile, Idea idea);
+	public Comment assignLikes(Comment comment);
 }
