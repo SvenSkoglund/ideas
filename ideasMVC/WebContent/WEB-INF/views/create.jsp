@@ -64,8 +64,8 @@
 	
 	
 	<!-- Sign In form -->
-	<form action="login.do" method="GET">
-		<input type="submit" value="Sign In" />
+	<form action="toToLogin.do" method="GET">
+		<input type="submit" value="Return to Log In" />
 	</form>
 
 </body>

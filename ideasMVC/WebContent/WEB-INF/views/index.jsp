@@ -76,14 +76,15 @@
 					</form>
 				</div>
 				
-				<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN
+				<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN --%>
+				<%-- TEMPORARY INSTALL TO CHECK toPostIdea.do LOGIC --%>
 				<div class = "col-sm-4">
 					<!-- Create your own idea form -->
 					<form action="toPostIdea.do" method="GET">
 						<input type="hidden" value="${profile }" name="profile" /> <input
 							type="Submit" value="Create your own idea!" />
 					</form>
-				</div> --%>
+				</div>
 				
 				
 				<div class="col-sm-6">

@@ -25,8 +25,8 @@
 	</form>
 	
 	<!-- Create Account form -->
-	<form action="" method="GET">
-		<input type="submit" value="Create Account" />
+	<form action="toCreateAccount.do" method="GET">
+		<input type="submit" value="Return to Create Account" />
 	</form>
 
 </body>
