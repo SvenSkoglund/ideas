@@ -103,6 +103,16 @@ body {
     margin-bottom: 0 auto;
   }
 
+ .imgsizeNav {
+	    width: 25%;
+	    height: 25%;
+	    border-radius: 50%;
+	    display: block;
+	    margin-left: 0 auto;
+	    margin-right: 0 auto;
+	    margin-top: 0 auto;
+	    margin-bottom: 0 auto;
+	  }
 
 /*larger than 415px*/
 @media (min-width: 415px) {
@@ -203,7 +213,28 @@ body {
         margin-top: 0 auto;
         margin-bottom: 0 auto;
       }
-
+      
+		.imgsize3 {
+	    width: 10%;
+	    height: 10%;
+	    border-radius: 50%;
+	    display: block;
+	    margin-left: 0 auto;
+	    margin-right: 0 auto;
+	    margin-top: 0 auto;
+	    margin-bottom: 0 auto;
+	  }
+	  
+	  .imgsizeNav {
+	    width: 25%;
+	    height: 25%;
+	    border-radius: 50%;
+	    display: block;
+	    margin-left: 0 auto;
+	    margin-right: 0 auto;
+	    margin-top: 0 auto;
+	    margin-bottom: 0 auto;
+	  }
 
 
     }
