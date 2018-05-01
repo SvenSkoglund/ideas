@@ -53,9 +53,9 @@ public class IdeaController {
 	}
 
 	@RequestMapping(path = "sorting.do")
-	public ModelAndView sortIdeasIndex(String sortChoice) {
+	public ModelAndView sortIdeasIndex(String sortChoice, @RequestParam(name="ideaList") ArrayList<Idea> ideaList) {
 		ModelAndView mv = new ModelAndView();
-		List<Idea> ideaList = ideaDao.showAllIdeas();
+		System.out.println(ideaList);
 		switch (sortChoice) {
 		case "newest":
 			ideaDao.sortIdeasByDateNewFirst(ideaList);
@@ -586,6 +586,23 @@ public class IdeaController {
 		mv.addObject("iid", ideaId);
 		mv.addObject("cid", comment.getId());
 		mv.setViewName("toIdea.do");
+		return mv;
+	}
+	@RequestMapping(path = "search.do", method = RequestMethod.GET)
+	public ModelAndView search(String ideaKeyword, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		List<Idea>foundIdeas = ideaDao.searchIdea(ideaKeyword);
+		System.out.println(foundIdeas);
+		if (foundIdeas == null) {
+			mv.addObject("message", "Search found no results");
+			mv.setViewName("index.do");
+			return mv;
+		}
+		for (Idea idea : foundIdeas) {
+			idea = ideaDao.assignLikes(idea);
+		}
+		mv.addObject("ideaList", foundIdeas);
+		mv.setViewName("WEB-INF/views/index.jsp");
 		return mv;
 	}
 }
