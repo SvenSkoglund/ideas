@@ -37,6 +37,8 @@ dependencies {
     testCompile group: 'org.springframework', name: 'spring-test', version:"$springVersion"
     compile group: 'org.springframework', name: 'spring-orm', version:"$springVersion"
     compile group: 'org.springframework', name: 'spring-tx', version: "$springVersion"
+    compile group: 'org.hibernate', name: 'hibernate-validator', version:'5.2.1.Final'
+    
 
 }
 

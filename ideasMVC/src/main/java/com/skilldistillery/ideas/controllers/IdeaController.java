@@ -3,9 +3,11 @@ package com.skilldistillery.ideas.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,7 @@ import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 import com.skilldistillery.ideasjpa.entities.User;
+import com.skilldistillery.ideasjpa.entities.UserDTO;
 
 @Controller
 public class IdeaController {
@@ -161,8 +164,10 @@ public class IdeaController {
 
 	@RequestMapping(path = "toCreateAccount.do", method = RequestMethod.GET)
 	public ModelAndView goToCreateAccount(HttpSession session) {
+		UserDTO userDTO = new UserDTO();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/create.jsp");
+		mv.addObject("userDTO", userDTO);
 		return mv;
 	}
 
@@ -218,20 +223,27 @@ public class IdeaController {
 		return mv;
 	}
 
-	@RequestMapping(path = "createUser.do", method = RequestMethod.GET)
-	public ModelAndView creatingUser(String username, String email, String password, String confirmPassword,
-			HttpSession session) {
+	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
+	public ModelAndView creatingUser(@Valid UserDTO userDTO, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		if (!password.equals(confirmPassword)) {
+
+		if (errors.getErrorCount() != 0) {
+
+			mv.setViewName("WEB-INF/views/create.jsp");
+			return mv;
+		}
+
+		if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
 			mv.addObject("passwordMessage", "Passwwords did not match");
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
 		}
-		if (!userDao.checkForExistingEmail(email) && !userDao.checkForExistingUsername(username)) {
+		if (!userDao.checkForExistingEmail(userDTO.getEmail())
+				&& !userDao.checkForExistingUsername(userDTO.getUsername())) {
 			User user = new User();
-			user.setUsername(username);
-			user.setEmail(email);
-			user.setPassword(password);
+			user.setUsername(userDTO.getUsername());
+			user.setEmail(userDTO.getEmail());
+			user.setPassword(userDTO.getPassword());
 			user.setActive(true);
 			user.setAdmin(false);
 			userDao.create(user);
