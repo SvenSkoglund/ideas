@@ -104,11 +104,6 @@ public class Profile {
 				return false;
 		} else if (!profilePic.equals(other.profilePic))
 			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
-			return false;
 		return true;
 	}
 

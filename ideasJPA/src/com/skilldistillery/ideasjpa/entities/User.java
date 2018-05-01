@@ -131,11 +131,6 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (profile == null) {
-			if (other.profile != null)
-				return false;
-		} else if (!profile.equals(other.profile))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;

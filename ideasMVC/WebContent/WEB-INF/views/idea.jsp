@@ -29,13 +29,16 @@
 	<h1>${idea.name }</h1>
 	<p>${idea.content }</p>
 	<br>
-
-	<form action="deactivateIdea.do" method="GET">
-		<input type="submit" value="Deactive Idea" /> <input type="hidden"
-			name="iid" value="${idea.id }">
-		<!-- This should be replaced by a session profile -->
-		<input type="hidden" name="pid" value="${idea.profile.id}">
-	</form>
+	
+	<c:if test="${loggedInUser == idea.profile.user || loggedInUser.profile.user.admin}">
+		<form action="deactivateIdea.do" method="GET">
+			<input type="submit" value="Deactivate Idea" /> <input type="hidden"
+				name="iid" value="${idea.id }">
+			<!-- This should be replaced by a session profile -->
+			<input type="hidden" name="pid" value="${idea.profile.id}">
+		</form>
+	</c:if>
+		
 		<hr>
 				<!-- Sort by, don't know if this was stretch goal or not -->
 		<form action="sortComments.do" method="GET">
@@ -62,7 +65,7 @@
 			<p>${comment.dateCreated }</p>
 			<br>
 			<form action="deactivateComment.do" method="GET">
-				<input type="submit" value="Deactive Comment" /> <input
+				<input type="submit" value="Deactivate Comment" /> <input
 					type="hidden" name="iid" value="${idea.id }">
 				<!-- This should be replaced by a session profile -->
 				<input type="hidden" name="cid" value="${comment.id}">
