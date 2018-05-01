@@ -9,8 +9,16 @@
 </head>
 <body>
 
-	<!-- Leading navigation bar, need to figure out logic for user -->
-	<%@ include file="loggedOutNavBar.jsp"%>
+	<!-- Leading navigation bar -->
+		<c:choose>
+			<c:when test="${empty loggedInUser}">
+				<%@ include file="loggedOutNavBar.jsp"%>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="loggedInNavBar.jsp"%>
+		        Currently logged in as ${loggedInUser.username }
+			</c:otherwise>
+		</c:choose>
 	
 	<!-- Update Account Settings form -->
 	<form action="update.do" method="POST">

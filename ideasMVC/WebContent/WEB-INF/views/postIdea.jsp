@@ -10,8 +10,16 @@
 </head>
 <body>
 
-	<!-- Leading navigation bar, need to figure out logic for user -->
-	<%@ include file="loggedOutNavBar.jsp"%>
+	<!-- Leading navigation bar -->
+		<c:choose>
+			<c:when test="${empty loggedInUser}">
+				<%@ include file="loggedOutNavBar.jsp"%>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="loggedInNavBar.jsp"%>
+		        Currently logged in as ${loggedInUser.username }
+			</c:otherwise>
+		</c:choose>
 	
 	
 	<!-- I know that this page has to have a form or sorts to fill out and submit/post but I feel a little over my head and need walk through it with some help -->
