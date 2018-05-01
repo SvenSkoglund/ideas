@@ -86,7 +86,7 @@ public class IdeaDAOImpl implements IdeaDAO {
 
 	@Override
 	public List<Idea> showAllIdeas() {
-		String sql = "select i from Idea i";
+		String sql = "select i from Idea i WHERE i.active = 1";
 		List<Idea> ideas = em.createQuery(sql, Idea.class).getResultList();
 		return ideas;
 	}
