@@ -168,7 +168,7 @@ public class IdeaController {
 			mv.addObject("message", "Must be logged in to vote");
 			List<Idea> ideaList = ideaDao.showAllIdeas();
 			mv.addObject("ideaList", ideaList);
-			mv.setViewName("WEB-INF/views/index.jsp");
+			mv.setViewName("index.do");
 			return mv;
 
 		}

@@ -105,7 +105,7 @@
           	<div id="one-true" class="group">
           	<div class="row">
 				<div class="col-xs-3 col-md-1 ideaicons col"><img alt="Picture of ${i.profile.user.username}" src="${i.profile.profilePic}" class="imgsize2"></div>
-				<div class="col-xs-3 col-md-1 ideaicons col">	<br><a href="likeIdea.do?iid=${i.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a><a href="dislikeIdea.do?iid=${i.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${i.likes } - ${i.dislikes }</div>
+				<div class="col-xs-3 col-md-1 ideaicons col">	<br><a href="likeIdea.do?iid=${i.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a href="dislikeIdea.do?iid=${i.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${i.likes } - ${i.dislikes }</div>
 				<div class="col-xs-6 col-md-10 idearow col"><a href="toIdea.do?iid=${i.id }">${i.name}</a></div>
 			</div>
 			</div>
