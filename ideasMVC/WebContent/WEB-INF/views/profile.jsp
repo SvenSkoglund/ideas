@@ -31,13 +31,15 @@
 	
 	<hr>
 	<!-- Deactivate Profile form -->
-	<form action="deactivateProfile.do" method="GET">
-		<input type="submit" value="Deactive Profile" />
-		<input type="hidden" name="pid" value="${profile.id }">
-		<!-- This should be replaced by a session profile -->
-		<input type="hidden" name="profileLoggedInId" value="${profile.id}">
-		
-	</form>
+	<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin}">
+		<form action="deactivateProfile.do" method="GET">
+			<input type="submit" value="Deactivate Profile" />
+			<input type="hidden" name="pid" value="${profile.id }">
+			<!-- This should be replaced by a session profile -->
+			<input type="hidden" name="profileLoggedInId" value="${profile.id}">
+		</form>
+	</c:if>
+	
 	<hr>
 	
 	<!-- Reputation probably special object in Controller -->
@@ -60,10 +62,12 @@
 	 
 	
 	<!-- Account Settings form -->
-	<form action="settings.do" method="POST">
-		<input type="submit" value="Account Settings" />
-		<input type="hidden" name="pid" value="${profile.id }">
-	</form>
+	<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin}">
+		<form action="settings.do" method="POST">
+			<input type="submit" value="Account Settings" />
+			<input type="hidden" name="pid" value="${profile.id }">
+		</form>
+	</c:if>
 	
 </body>
 </html>
