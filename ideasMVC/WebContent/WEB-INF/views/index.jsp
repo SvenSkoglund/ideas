@@ -105,7 +105,7 @@
           	<div id="one-true" class="group">
           	<div class="row">
 				<div class="col-xs-3 col-md-1 ideaicons col"><img alt="Picture of ${i.profile.user.username}" src="${i.profile.profilePic}" class="imgsize2"></div>
-				<div class="col-xs-3 col-md-1 ideaicons col">LIKE ICON</div>
+				<div class="col-xs-3 col-md-1 ideaicons col"><a href="likeIdea.do?iid=${i.id }">Like</a><a href="dislikeIdea.do?iid=${i.id }">Dislike</a></div>
 				<div class="col-xs-6 col-md-10 idearow col"><a href="toIdea.do?iid=${i.id }">${i.name}</a></div>
 			</div>
 			</div>

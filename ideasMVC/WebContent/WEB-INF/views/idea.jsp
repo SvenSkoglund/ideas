@@ -60,7 +60,7 @@
 	<br>
 	<h1 class="textformat">${idea.name }</h1>
 	<p>${idea.content }</p>
-	<br>
+	<br><a href="likeIdea.do?iid=${i.id }">Like</a><a href="dislikeIdea.do?iid=${i.id }">Dislike</a>
 	
 	<c:if test="${loggedInUser == idea.profile.user || loggedInUser.profile.user.admin}">
 		<form action="deactivateIdea.do" method="GET">
@@ -92,7 +92,7 @@
 					alt="Image of ${comment.profile.user.username }" class="imgsize3"/></a><br />
 
 			</h3>
-
+<a href="likeComment.do?cid=${comment.id }">Like</a><a href="dislikeComment.do?cid=${comment.id }">Dislike</a>
 			<p>${comment.content }</p>
 			<p>${comment.dateCreated }</p>
 			<br>
