@@ -63,9 +63,8 @@
 	
 	<!-- Account Settings form -->
 	<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin}">
-		<form action="settings.do" method="POST">
+		<form action="toSettings.do" method="GET">
 			<input type="submit" value="Account Settings" />
-			<input type="hidden" name="pid" value="${profile.id }">
 		</form>
 	</c:if>
 	
