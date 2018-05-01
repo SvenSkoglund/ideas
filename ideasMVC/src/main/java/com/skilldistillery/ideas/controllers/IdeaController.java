@@ -123,18 +123,23 @@ public class IdeaController {
 	}
 
 	@RequestMapping(path = "postIdea.do", method = RequestMethod.POST)
-	public ModelAndView createIdea(@RequestParam(name = "idea") Idea idea, RedirectAttributes redir,
+	public ModelAndView createIdea(String name, String content, int profileId, RedirectAttributes redir,
 			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		Idea createdIdea = ideaDao.create(idea);
+		Idea createdIdea = new Idea();
+		createdIdea.setName(name);
+		createdIdea.setContent(content);
+		createdIdea.setActive(true);
+		Profile profile = profileDao.showProfile(profileId);
+		ideaDao.create(createdIdea, profile);
 
 		if (createdIdea.getId() == 0) {
 			mv.addObject("message", "Idea not created!");
 
 			mv.setViewName("WEB-INF/views/idea.jsp");
 		} else {
-			redir.addAttribute("idea", createdIdea);
 			redir.addFlashAttribute("message", "Idea Created!");
+			redir.addFlashAttribute("idea", createdIdea);
 			mv.setViewName("redirect:redirectIdea.do");
 		}
 
@@ -142,8 +147,9 @@ public class IdeaController {
 	}
 
 	@RequestMapping(path = "redirectIdea.do", method = RequestMethod.GET)
-	public ModelAndView createdIdea(HttpSession session) {
+	public ModelAndView createdIdea(Idea idea, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("idea", idea);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}

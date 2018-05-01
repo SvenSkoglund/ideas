@@ -65,10 +65,11 @@ public class IdeaDAOImpl implements IdeaDAO {
 	}
 
 	@Override
-	public Idea create(Idea idea) {
+	public Idea create(Idea idea, Profile profile) {
 		// write the customer to the database
 		List<Comment> comments = new ArrayList<>();
 		idea.setComments(comments);
+		idea.setProfile(profile);
 		em.persist(idea);
 		// update the "local" Customer object
 		em.flush();

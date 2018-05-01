@@ -10,7 +10,6 @@ public interface IdeaDAO {
 
 	public boolean destroy(Idea idea);
 	public Idea update(Idea idea);
-	public Idea create(Idea idea);
 	public List<Idea> showIdeasByProfile(int profileId);
 	public Idea makeActive(int id);
 	public Idea makeInactive(int id);
@@ -26,4 +25,5 @@ public interface IdeaDAO {
 	List<Idea> sortByUsername(List<Idea> ideas);
 	List<Idea> sortByContreversy(List<Idea> ideas);
 	List<Idea> sortIdeasByDateOldFirst(List<Idea> ideas);
+	Idea create(Idea idea, Profile profile);
 }
