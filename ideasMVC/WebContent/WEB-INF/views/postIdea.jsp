@@ -68,11 +68,8 @@
 		<input class="" type="Text" placeholder="idea" name="content" />
 		
 		<input class="" type="hidden" value="${loggedInUser.profile.id }" name="profileId" />
-	
 
 	
-	<!-- I feel like the idea should get posted before people can start commenting. do we need another jsp? -->
-
 		<input type="Submit" value="Post Idea" />
 	</form>
 </div>
