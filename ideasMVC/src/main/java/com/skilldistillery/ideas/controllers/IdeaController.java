@@ -1,5 +1,6 @@
 package com.skilldistillery.ideas.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.skilldistillery.ideas.data.CommentDAO;
 import com.skilldistillery.ideas.data.IdeaDAO;
 import com.skilldistillery.ideas.data.ProfileDAO;
@@ -37,10 +39,16 @@ public class IdeaController {
 	private UserDAO userDao;
 
 	// Home page
-	@RequestMapping(path = "index.do", method = RequestMethod.GET)
+	@RequestMapping(path = "index.do")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		List<Idea> ideaList = ideaDao.showAllIdeas();
+		for (Idea idea : ideaList) {
+			Integer likes = ideaDao.getLikes(idea);
+			idea.setLikes(likes);
+			Integer dislikes = ideaDao.getDislikes(idea);
+			idea.setDislikes(dislikes);
+		}
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
@@ -71,7 +79,12 @@ public class IdeaController {
 			ideaDao.sortByUsername(ideaList);
 			break;
 		}
-
+		for (Idea idea : ideaList) {
+			Integer likes = ideaDao.getLikes(idea);
+			idea.setLikes(likes);
+			Integer dislikes = ideaDao.getDislikes(idea);
+			idea.setDislikes(dislikes);
+		}
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
@@ -146,6 +159,118 @@ public class IdeaController {
 		return mv;
 	}
 
+	@RequestMapping(path = "likeIdea.do", method = RequestMethod.GET)
+	public ModelAndView likeIdea(int iid, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Idea idea = ideaDao.showIdea(iid);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			mv.addObject("message", "Must be logged in to vote");
+			List<Idea> ideaList = ideaDao.showAllIdeas();
+			mv.addObject("ideaList", ideaList);
+			mv.setViewName("WEB-INF/views/index.jsp");
+			return mv;
+
+		}
+		Profile profile = user.getProfile();
+		try {
+			ideaDao.createLike(idea, profile, true);
+		} catch (Exception e) {
+			ideaDao.updateLike(idea, profile, true);
+		}
+		mv.setViewName("index.do");
+		return mv;
+	}
+
+	@RequestMapping(path = "dislikeIdea.do", method = RequestMethod.GET)
+	public ModelAndView dislikeIdea(int iid, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Idea idea = ideaDao.showIdea(iid);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			mv.addObject("message", "Must be logged in to vote");
+			List<Idea> ideaList = ideaDao.showAllIdeas();
+			mv.addObject("ideaList", ideaList);
+			mv.setViewName("WEB-INF/views/index.jsp");
+			return mv;
+
+		}
+		Profile profile = user.getProfile();
+		try {
+			ideaDao.createLike(idea, profile, false);
+		} catch (Exception e) {
+			ideaDao.updateLike(idea, profile, false);
+		}
+		mv.setViewName("index.do");
+		return mv;
+	}
+
+	@RequestMapping(path = "likeIdeaFromIdea.do", method = RequestMethod.GET)
+	public ModelAndView likeIdeaFromIdea(int iid, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Idea idea = ideaDao.showIdea(iid);
+		List<Comment> comments = commentDao.showCommentsByIdea(iid);
+		mv.addObject("comments", comments);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			mv.addObject("message", "Must be logged in to vote");
+			Integer likes = ideaDao.getLikes(idea);
+			idea.setLikes(likes);
+			Integer dislikes = ideaDao.getDislikes(idea);
+			idea.setDislikes(dislikes);
+			mv.addObject("idea", idea);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+			return mv;
+
+		}
+		Profile profile = user.getProfile();
+		try {
+			ideaDao.createLike(idea, profile, true);
+		} catch (Exception e) {
+			ideaDao.updateLike(idea, profile, true);
+		}
+		Integer likes = ideaDao.getLikes(idea);
+		idea.setLikes(likes);
+		Integer dislikes = ideaDao.getDislikes(idea);
+		idea.setDislikes(dislikes);
+		mv.addObject("idea", idea);
+		mv.setViewName("WEB-INF/views/idea.jsp");
+		return mv;
+	}
+
+	@RequestMapping(path = "dislikeIdeaFromIdea.do", method = RequestMethod.GET)
+	public ModelAndView dislikeIdeaFromIdea(int iid, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		Idea idea = ideaDao.showIdea(iid);
+		List<Comment> comments = commentDao.showCommentsByIdea(iid);
+		mv.addObject("comments", comments);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			mv.addObject("message", "Must be logged in to vote");
+			Integer likes = ideaDao.getLikes(idea);
+			idea.setLikes(likes);
+			Integer dislikes = ideaDao.getDislikes(idea);
+			idea.setDislikes(dislikes);
+			mv.addObject("idea", idea);
+			mv.setViewName("WEB-INF/views/idea.jsp");
+			return mv;
+
+		}
+		Profile profile = user.getProfile();
+		try {
+			ideaDao.createLike(idea, profile, false);
+		} catch (Exception e) {
+			ideaDao.updateLike(idea, profile, false);
+		}
+		Integer likes = ideaDao.getLikes(idea);
+		idea.setLikes(likes);
+		Integer dislikes = ideaDao.getDislikes(idea);
+		idea.setDislikes(dislikes);
+		mv.addObject("idea", idea);
+		mv.setViewName("WEB-INF/views/idea.jsp");
+		return mv;
+	}
+
 	@RequestMapping(path = "redirectIdea.do", method = RequestMethod.GET)
 	public ModelAndView createdIdea(Idea idea, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -181,6 +306,10 @@ public class IdeaController {
 	public ModelAndView goToIdea(@RequestParam(name = "iid") Integer ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(ideaId);
+		Integer likes = ideaDao.getLikes(idea);
+		idea.setLikes(likes);
+		Integer dislikes = ideaDao.getDislikes(idea);
+		idea.setDislikes(dislikes);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
 		mv.addObject("comments", comments);
@@ -215,14 +344,15 @@ public class IdeaController {
 			mv.addObject("ideaList", ideaList);
 			session.setAttribute("loggedInUser", user);
 			mv.addObject("user", user);
-			mv.setViewName("WEB-INF/views/index.jsp");
+			mv.setViewName("index.do");
 			return mv;
 		}
 	}
+
 	@RequestMapping(path = "postComment.do", method = RequestMethod.POST)
 	public ModelAndView postComment(String content, int ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User user= (User) session.getAttribute("loggedInUser");
+		User user = (User) session.getAttribute("loggedInUser");
 		Profile profile = user.getProfile();
 		Idea idea = ideaDao.showIdea(ideaId);
 		Comment comment = new Comment();

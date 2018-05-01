@@ -2,6 +2,7 @@ package com.skilldistillery.ideas.data;
 
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.IdeaLike;
 import com.skilldistillery.ideasjpa.entities.Profile;
@@ -15,7 +16,7 @@ public interface IdeaDAO {
 	public Idea makeInactive(int id);
 	public List<Idea> showAllIdeas();
 	Idea showIdea(int id);
-	IdeaLike createLike(Idea idea, Profile profile, Boolean vote);
+	IdeaLike createLike(Idea idea, Profile profile, Boolean vote) throws MySQLIntegrityConstraintViolationException;
 	IdeaLike updateLike(Idea idea, Profile profile, Boolean vote);
 	List<Idea> sortIdeasByDateNewFirst(List<Idea> ideas);
 	int getLikes(Idea idea);
