@@ -82,11 +82,11 @@
 	  
 	  <br />
 	  <form:label path="password">Password:</form:label>
-	  <form:input path="password" />
+	  <form:input type="password" path="password" />
 	  <form:errors path="password" />
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <form:label path="confirmPassword"> Confirm Password:</form:label>
-	  <form:input path="confirmPassword" />
+	  <form:input type="password" path="confirmPassword" />
 	  <form:errors path="confirmPassword" />
    
  		<br /><br />
