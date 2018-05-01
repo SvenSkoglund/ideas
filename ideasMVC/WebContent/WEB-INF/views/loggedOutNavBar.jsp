@@ -42,6 +42,7 @@
 </head>
 <body>
 	<div class="container-fluid">
+	<header class="main-header">
 		<div class="row navbarcolor">
 			<div class="col-sm-4 ideastext"><a href="index.do"><h1 class="linkcolor">ideas.</h1></a>
 			</div>
@@ -51,6 +52,7 @@
 			<div class="col-sm-2 navtext"><a href="toCreateAccount.do"><h3 class="linkcolor">Create Account</h3></a>
 			</div>
 		</div>
+		</header>
 	</div>
 </body>
 </html>

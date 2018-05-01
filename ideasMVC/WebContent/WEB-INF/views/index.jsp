@@ -58,7 +58,7 @@
 
 	<div class="container-fluid">
 
-	
+		
 		<h1>${logoutMessage }</h1>
 		<h1>${message }</h1>
 			<div class="row">

@@ -42,6 +42,7 @@
 </head>
 <body>
 	<div class="container-fluid">
+		<header class="main-header">
 		<div class="row navbarcolor">
 			<div class="col-sm-4 ideastext"><a href="index.do"><h1 class="linkcolor">ideas.</h1></a>
 			</div>
@@ -50,8 +51,11 @@
 			<a href="logout.do"><h4 class="linkcolor">Log Out</h4></a>
 			</div>
 			<div class="col-sm-2 navtext"><img alt="Picture of ${loggedInUser.username }" src="${loggedInUser.profile.profilePic }" class="imgsizeNav">
+			<!-- <a href="logout.do">Logout</a> -->
 			</div>
+			
 		</div>
+		</header>
 	</div>
 </body>
 </html>
