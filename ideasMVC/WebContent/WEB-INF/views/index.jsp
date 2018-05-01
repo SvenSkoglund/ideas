@@ -46,54 +46,62 @@
 <body>
 
 	<!-- Leading navigation bar, need to figure out logic for user -->
-	<c:choose>
-		<c:when test="${empty loggedInUser}">
-			<%@ include file="loggedOutNavBar.jsp"%>
-		</c:when>
-		<c:otherwise>
-			<%@ include file="loggedInNavBar.jsp"%>
-	        Currently logged in as ${loggedInUser.username }
-		</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${empty loggedInUser}">
+				<%@ include file="loggedOutNavBar.jsp"%>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="loggedInNavBar.jsp"%>
+		        Currently logged in as ${loggedInUser.username }
+			</c:otherwise>
+		</c:choose>
 
 	<div class="container-fluid">
 
-
+	
 		<h1>${logoutMessage }</h1>
 		<h1>${message }</h1>
-		<!-- Search bar for ideas -->
-		<form action="search.do" method="GET">
-			<input type="text" name="ideaKeyword" /> <input type="submit"
-				value="Search for Idea" />
-		</form>
-		<br>
-
-		<!-- Sort by, don't know if this was stretch goal or not -->
-		<form action="sorting.do" method="GET">
-			<select name="sortChoice">
-				<option value="newest">Newest First</option>
-				<option value="oldest">Oldest First</option>
-				<option value="like">Most Likes</option>
-				<option value="dislike">Most Dislikes</option>
-				<option value="controversy">Sort by Controversy</option>
-				<option value="username">Sort by Username</option>
-			</select> <input type="submit" value="Submit" />
-		</form>
-
-		<hr>
-
-		<!-- Create your own idea form -->
-		<form action="toPostIdea.do" method="GET">
-			<input type="hidden" value="${profile }" name="profile" /> <input
-				type="Submit" value="Create your own idea!" />
-		</form>
-
-
+			<div class="row">
+				<div class="col-sm-6">
+				<!-- Sort by, don't know if this was stretch goal or not -->
+					<form action="sorting.do" method="GET">
+						<select name="sortChoice">
+							<option value="newest">Newest First</option>
+							<option value="oldest">Oldest First</option>
+							<option value="like">Most Likes</option>
+							<option value="dislike">Most Dislikes</option>
+							<option value="controversy">Sort by Controversy</option>
+							<option value="username">Sort by Username</option>
+						</select> <input type="submit" value="Submit" />
+					</form>
+				</div>
+				
+				<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN
+				<div class = "col-sm-4">
+					<!-- Create your own idea form -->
+					<form action="toPostIdea.do" method="GET">
+						<input type="hidden" value="${profile }" name="profile" /> <input
+							type="Submit" value="Create your own idea!" />
+					</form>
+				</div> --%>
+				
+				
+				<div class="col-sm-6">
+				<!-- Search bar for ideas -->
+				<form action="search.do" method="GET">
+					<input type="text" name="ideaKeyword" /> <input type="submit"
+						value="Search for Idea" />
+				</form>
+				</div>
+				
+			</div>
+	
 		<!-- Listing for ideas -->
 		<c:forEach var="i" items="${ideaList}">
 			<div class="row">
+			
 				<div class="col-sm-2"></div>
-				<div class="col-sm-1 ideaicons">Lorem</div>
+				<div class="col-sm-1 ideaicons">${i.profile.profilePic}</div>
 				<div class="col-sm-1 ideaicons">Lorem</div>
 				<div class="col-sm-6 idearow">
 					<a href="toIdea.do?iid=${i.id }">${i.name}</a>
