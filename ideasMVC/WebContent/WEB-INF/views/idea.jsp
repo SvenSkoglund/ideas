@@ -49,17 +49,17 @@
 			</c:when>
 			<c:otherwise>
 				<%@ include file="loggedInNavBar.jsp"%>
-		        Currently logged in as ${loggedInUser.username }
+		        
 			</c:otherwise>
 		</c:choose>
 
 	<div class="container-fluid">
-	<h1>${message }</h1>
+	<h1 class="textformat">${message }</h1>
 
 	<a href="toProfile.do?pid=${idea.profile.id }"><img src="${idea.profile.profilePic }" alt="Image of ${idea.profile.user.username }" class="imgsize3" /></a>
 	<br>
 	<h1 class="textformat">${idea.name }</h1>
-	<p>${idea.content }</p>
+	<p class="textformat">${idea.content }</p>
 	<br><a href="likeIdeaFromIdea.do?iid=${idea.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a href="dislikeIdeaFromIdea.do?iid=${idea.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${idea.likes } - ${idea.dislikes }
 	
 	<c:if test="${loggedInUser == idea.profile.user || loggedInUser.profile.user.admin}">

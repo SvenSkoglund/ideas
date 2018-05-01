@@ -52,15 +52,15 @@
 			</c:when>
 			<c:otherwise>
 				<%@ include file="loggedInNavBar.jsp"%>
-		        Currently logged in as ${loggedInUser.username }
+		        
 			</c:otherwise>
 		</c:choose>
 
 	<div class="container-fluid">
 
 		
-		<h1>${logoutMessage }</h1>
-		<h1>${message }</h1>
+		<h3 class="textformat">${logoutMessage }</h3>
+		<h3 class="textformat">${message }</h3>
 			<div class="row">
 				<div class="col-sm-9">
 				<!-- Sort by, don't know if this was stretch goal or not -->

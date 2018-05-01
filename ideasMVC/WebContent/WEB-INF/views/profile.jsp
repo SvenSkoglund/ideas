@@ -50,19 +50,19 @@
 			</c:when>
 			<c:otherwise>
 				<%@ include file="loggedInNavBar.jsp"%>
-		        Currently logged in as ${loggedInUser.username }
+		        
 			</c:otherwise>
 		</c:choose>
 	<div class="container-fluid">
-		<h1>${message }</h1>
+		<h1 class="textformat">${message }</h1>
 		
 		<!-- Big headline telling you whose profile you're looking at -->
-		<h1>${profile.user.username }</h1><br>
+		<h1 class="textformat">${profile.user.username }</h1><br>
 		
 		<img alt="Profile picture of ${profile.user.username }" src="${profile.profilePic }" class="imgsize3"><br>
 	
-		<h5>Member since: ${profile.createdDate }</h5><br>
-		<p>${profile.bio }</p>
+		<h5 class="textformat">Member since: ${profile.createdDate }</h5><br>
+		<p class="textformat">${profile.bio }</p>
 		
 		<hr>
 		
