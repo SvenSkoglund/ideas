@@ -127,9 +127,12 @@ body {
         font-family: 'Crimson Text', serif;
         color: #fcfeff;
       }
-
-
-
+	
+	.textformat{
+		font-family: 'Raleway', sans-serif;
+		}
+		
+	
       .bodytext {
       font-family: 'Raleway', sans-serif;
       align-items: center;
