@@ -59,7 +59,7 @@
 		<!-- Big headline telling you whose profile you're looking at -->
 		<h1>${profile.user.username }</h1><br>
 		
-		<img alt="Profile picture of ${profile.user.username }" src="${profile.profilePic }" class="imgsize2"><br>
+		<img alt="Profile picture of ${profile.user.username }" src="${profile.profilePic }" class="imgsize3"><br>
 	
 		<h5>Member since: ${profile.createdDate }</h5><br>
 		<p>${profile.bio }</p>

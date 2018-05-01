@@ -56,11 +56,9 @@
 	<div class="container-fluid">
 	<h1>${message }</h1>
 
-	<a href="toProfile.do?pid=${idea.profile.id }"><img
-		src="${idea.profile.profilePic }"
-		alt="Image of ${idea.profile.user.username }" class="imgsize2" /></a>
+	<a href="toProfile.do?pid=${idea.profile.id }"><img src="${idea.profile.profilePic }" alt="Image of ${idea.profile.user.username }" class="imgsize3" /></a>
 	<br>
-	<h1>${idea.name }</h1>
+	<h1 class="textformat">${idea.name }</h1>
 	<p>${idea.content }</p>
 	<br>
 	
@@ -91,7 +89,7 @@
 			<h3>
 				<a href="toProfile.do?pid=${comment.profile.id }"><img
 					src="${comment.profile.profilePic }"
-					alt="Image of ${comment.profile.user.username }" /></a><br />
+					alt="Image of ${comment.profile.user.username }" class="imgsize3"/></a><br />
 
 			</h3>
 

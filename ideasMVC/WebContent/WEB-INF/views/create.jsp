@@ -46,8 +46,8 @@
 	<!-- Leading navigation bar, need to figure out logic for user -->
 	<%@ include file="loggedOutNavBar.jsp"%>
 	<div class="container-fluid">
-	<h1>${passwordMessage }</h1>
-	<h1>${createUserMessage }</h1>
+	<h1 class="textformat">${passwordMessage }</h1>
+	<h1 class="textformat">${createUserMessage }</h1>
 	
 	<!-- Create Account form -->
 <!--  	<form action="createUser.do" method="GET">  -->
