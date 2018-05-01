@@ -88,29 +88,32 @@ public class IdeaController {
 	@RequestMapping(path = "sortComments.do")
 	public ModelAndView sortComments(String sortChoice, int ideaId) {
 		ModelAndView mv = new ModelAndView();
-		List<Comment> commentList = commentDao.showCommentsByIdea(ideaId);
+		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
 		switch (sortChoice) {
 		case "newest":
-			commentDao.sortCommentsByDateNewFirst(commentList);
+			commentDao.sortCommentsByDateNewFirst(comments);
 			break;
 		case "oldest":
-			commentDao.sortCommentsByDateOldFirst(commentList);
+			commentDao.sortCommentsByDateOldFirst(comments);
 			break;
 		case "like":
-			commentDao.sortByLikes(commentList);
+			commentDao.sortByLikes(comments);
 			break;
 		case "dislike":
-			commentDao.sortByDisikes(commentList);
+			commentDao.sortByDisikes(comments);
 			break;
 		case "controversy":
-			commentDao.sortByContreversy(commentList);
+			commentDao.sortByContreversy(comments);
 			break;
 
 		}
 		Idea idea = ideaDao.showIdea(ideaId);
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
-		mv.addObject("comments", commentList);
+		for (Comment c: comments) {
+			c = commentDao.assignLikes(c);
+		}
+		mv.addObject("comments", comments);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 
 		return mv;
@@ -187,7 +190,7 @@ public class IdeaController {
 			mv.addObject("message", "Must be logged in to vote");
 			List<Idea> ideaList = ideaDao.showAllIdeas();
 			mv.addObject("ideaList", ideaList);
-			mv.setViewName("WEB-INF/views/index.jsp");
+			mv.setViewName("index.do");
 			return mv;
 
 		}
@@ -230,6 +233,7 @@ public class IdeaController {
 		for (Comment c: comments) {
 			c = commentDao.assignLikes(c);
 		}
+		
 		mv.addObject("comments", comments);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
@@ -246,6 +250,9 @@ public class IdeaController {
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			List<Comment> comments = commentDao.showCommentsByIdea(iid);
+			for (Comment c: comments) {
+				c = commentDao.assignLikes(c);
+			}
 			mv.addObject("comments", comments);
 			mv.setViewName("WEB-INF/views/idea.jsp");
 			return mv;
