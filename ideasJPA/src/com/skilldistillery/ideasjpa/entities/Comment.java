@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Comment {
@@ -40,8 +42,12 @@ public class Comment {
 	
 	private Boolean active;
 	
-//	@OneToMany(mappedBy="comment")
-//	private List<CommentLike> likes;
+	@Transient
+	private Integer likes;
+	
+	@Transient
+	private Integer dislikes;
+
 
 	//Gets & Sets
 	public Profile getProfile() {
@@ -88,13 +94,24 @@ public class Comment {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
-//	public List<CommentLike> getLikes() {
-//		return likes;
-//	}
-//
-//	public void setLikes(List<CommentLike> likes) {
-//		this.likes = likes;
-//	}
+	public Integer getLikes() {
+		return likes;
+	}
+
+
+	public void setLikes(Integer likes) {
+		this.likes = likes;
+	}
+
+
+	public Integer getDislikes() {
+		return dislikes;
+	}
+
+
+	public void setDislikes(Integer dislikes) {
+		this.dislikes = dislikes;
+	}
 
 	@Override
 	public int hashCode() {
@@ -105,7 +122,6 @@ public class Comment {
 		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((idea == null) ? 0 : idea.hashCode());
-		result = prime * result + ((profile == null) ? 0 : profile.hashCode());
 		return result;
 	}
 

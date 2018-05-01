@@ -177,4 +177,11 @@ public class CommentDAOImpl implements CommentDAO {
 		comments.sort(byContreversy);
 		return comments;
 	}
+
+	@Override
+	public Comment assignLikes(Comment comment) {
+		comment.setLikes(getLikes(comment));
+		comment.setDislikes(getDislikes(comment));
+		return comment;
+	}
 }

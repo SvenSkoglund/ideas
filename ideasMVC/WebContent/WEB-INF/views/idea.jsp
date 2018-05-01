@@ -92,7 +92,8 @@
 					alt="Image of ${comment.profile.user.username }" class="imgsize3"/></a><br />
 
 			</h3>
-<a href="likeComment.do?cid=${comment.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a><a href="dislikeComment.do?cid=${comment.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+<a href="likeComment.do?cid=${comment.id }&iid=${idea.id}"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a><a href="dislikeComment.do?cid=${comment.id }&iid=${idea.id}"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${comment.likes } - ${comment.dislikes }
+	
 			<p>${comment.content }</p>
 			<p>${comment.dateCreated }</p>
 			<br>
