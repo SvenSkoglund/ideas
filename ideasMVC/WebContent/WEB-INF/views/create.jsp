@@ -43,63 +43,43 @@
 </head>
 <body>
 
-	<!-- Leading navigation bar, need to figure out logic for user -->
-	<%@ include file="loggedOutNavBar.jsp"%>
-	<div class="container-fluid">
-	<h1 class="textformat">${passwordMessage }</h1>
-	<h1 class="textformat">${createUserMessage }</h1>
 	
-	<!-- Create Account form -->
-<!--  	<form action="createUser.do" method="GET">  -->
-	<%-- 	<label for="username">Username</label><br>
-		<input type="text" name="username" min="6" max="35" required message="Enter name betweeen 6-35 characters"/><br>
-		
-		<label for="email">Email</label><br>
-		<input type="email" name="email" required/><br>
-		
-		<label for="password">Password</label><br>
-		<input type="password" name="password" /><br>
-		
-		<label for="confirmPassword">Confirm Password</label><br>
-		<input type="password" name="confirmPassword" min="6" max="35" required /><br>
-		
-		<!-- If we are directing the new user to settings.jsp, we need  -->
-		<!-- to make sure we create a Profile object in the controller  -->
-		<!-- first and associate it with that User object. Otherwise,   -->
-		<!-- you'll get a NullPointerException in settings.jsp. Whoever -->
-		<!-- will be in charge of Controller should touch base with me  -->
-		<input type="submit" value="Create Account" />
-	</form> --%>
 	
-	<form:form action="createUser.do" method="POST" modelAttribute="userDTO">
-	  <form:label path="username">Username:</form:label>
-	  <form:input path="username" />
-	  <form:errors path="username" />
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <form:label path="email">Email:</form:label>
-	  <form:input path="email" />
-	  <form:errors path="email" />
-	  
-	  <br />
-	  <form:label path="password">Password:</form:label>
-	  <form:input type="password" path="password" />
-	  <form:errors path="password" />
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <form:label path="confirmPassword"> Confirm Password:</form:label>
-	  <form:input type="password" path="confirmPassword" />
-	  <form:errors path="confirmPassword" />
-   
- 		<br /><br />
-  	  <input type="submit" value="Create Account" />
-	</form:form>
-	<br />
+			<!-- Leading navigation bar, need to figure out logic for user -->
+			<%@ include file="loggedOutNavBar.jsp"%>
+			<h1 class="textformat">${passwordMessage }</h1>
+			<h1 class="textformat">${createUserMessage }</h1>
+			
+			<form:form action="createUser.do" method="POST" modelAttribute="userDTO">
+			  <form:label path="username">Username:</form:label>
+			  <form:input path="username" />
+			  <form:errors path="username" />
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <form:label path="email">Email:</form:label>
+			  <form:input path="email" />
+			  <form:errors path="email" />
+			  
+			  <br />
+			  <form:label path="password">Password:</form:label>
+			  <form:input type="password" path="password" />
+			  <form:errors path="password" />
+		   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <form:label path="confirmPassword"> Confirm Password:</form:label>
+			  <form:input type="password" path="confirmPassword" />
+			  <form:errors path="confirmPassword" />
+		   
+		 		<br /><br />
+		  	  <input type="submit" value="Create Account" />
+			</form:form>
+			<br />
+			
+			
+			<!-- Sign In form -->
+			<form action="toToLogin.do" method="GET">
+				<input type="submit" value="Return to Log In" />
+			</form>
 	
 	
 	
-	<!-- Sign In form -->
-	<form action="toToLogin.do" method="GET">
-		<input type="submit" value="Return to Log In" />
-	</form>
-	</div>
 </body>
 </html>
