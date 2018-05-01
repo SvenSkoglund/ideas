@@ -33,7 +33,7 @@
 		
 		<input class="" type="Text" placeholder="idea" name="content" />
 		
-		<input class="" type="hidden" value="${profile }" name="profile" />
+		<input class="" type="hidden" value="${loggedInUser.profile.id }" name="profileId" />
 	
 
 	
