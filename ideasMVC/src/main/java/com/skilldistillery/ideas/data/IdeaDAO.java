@@ -28,4 +28,5 @@ public interface IdeaDAO {
 	List<Idea> sortIdeasByDateOldFirst(List<Idea> ideas);
 	Idea create(Idea idea, Profile profile);
 	public Idea assignLikes(Idea idea);
+	public List<Idea> searchIdea(String ideaKeyword);
 }

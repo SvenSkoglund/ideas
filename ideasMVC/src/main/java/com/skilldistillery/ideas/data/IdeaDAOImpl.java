@@ -202,4 +202,12 @@ public class IdeaDAOImpl implements IdeaDAO {
 		return idea;
 	}
 
+	@Override
+	public List<Idea> searchIdea(String ideaKeyword) {
+		String sql = "select i from Idea i where i.name like CONCAT('%',:ideaKeyword,'%') or i.content like CONCAT('%',:ideaKeyword,'%') ";
+		List <Idea> foundIdeas = em.createQuery(sql, Idea.class).setParameter("ideaKeyword", ideaKeyword).getResultList();
+		
+		return foundIdeas;
+	}
+
 }
