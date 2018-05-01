@@ -44,10 +44,7 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		List<Idea> ideaList = ideaDao.showAllIdeas();
 		for (Idea idea : ideaList) {
-			Integer likes = ideaDao.getLikes(idea);
-			idea.setLikes(likes);
-			Integer dislikes = ideaDao.getDislikes(idea);
-			idea.setDislikes(dislikes);
+			idea = ideaDao.assignLikes(idea);
 		}
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
@@ -80,10 +77,7 @@ public class IdeaController {
 			break;
 		}
 		for (Idea idea : ideaList) {
-			Integer likes = ideaDao.getLikes(idea);
-			idea.setLikes(likes);
-			Integer dislikes = ideaDao.getDislikes(idea);
-			idea.setDislikes(dislikes);
+			idea = ideaDao.assignLikes(idea);
 		}
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
@@ -114,6 +108,7 @@ public class IdeaController {
 
 		}
 		Idea idea = ideaDao.showIdea(ideaId);
+		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		mv.addObject("comments", commentList);
 		mv.setViewName("WEB-INF/views/idea.jsp");
@@ -129,6 +124,7 @@ public class IdeaController {
 			mv.setViewName("redirect:index.do");
 		} else {
 			mv.addObject("message", "Idea not deleted!");
+			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
 		}
@@ -214,10 +210,7 @@ public class IdeaController {
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
 			mv.addObject("message", "Must be logged in to vote");
-			Integer likes = ideaDao.getLikes(idea);
-			idea.setLikes(likes);
-			Integer dislikes = ideaDao.getDislikes(idea);
-			idea.setDislikes(dislikes);
+			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
 			return mv;
@@ -229,10 +222,7 @@ public class IdeaController {
 		} catch (Exception e) {
 			ideaDao.updateLike(idea, profile, true);
 		}
-		Integer likes = ideaDao.getLikes(idea);
-		idea.setLikes(likes);
-		Integer dislikes = ideaDao.getDislikes(idea);
-		idea.setDislikes(dislikes);
+		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
@@ -262,10 +252,7 @@ public class IdeaController {
 		} catch (Exception e) {
 			ideaDao.updateLike(idea, profile, false);
 		}
-		Integer likes = ideaDao.getLikes(idea);
-		idea.setLikes(likes);
-		Integer dislikes = ideaDao.getDislikes(idea);
-		idea.setDislikes(dislikes);
+		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
@@ -274,6 +261,7 @@ public class IdeaController {
 	@RequestMapping(path = "redirectIdea.do", method = RequestMethod.GET)
 	public ModelAndView createdIdea(Idea idea, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
@@ -306,10 +294,7 @@ public class IdeaController {
 	public ModelAndView goToIdea(@RequestParam(name = "iid") Integer ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(ideaId);
-		Integer likes = ideaDao.getLikes(idea);
-		idea.setLikes(likes);
-		Integer dislikes = ideaDao.getDislikes(idea);
-		idea.setDislikes(dislikes);
+		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
 		mv.addObject("comments", comments);
@@ -323,6 +308,9 @@ public class IdeaController {
 		Profile profile = profileDao.showProfile(profileId);
 		mv.addObject("profile", profile);
 		List<Idea> profileIdeas = ideaDao.showIdeasByProfile(profileId);
+		for (Idea idea : profileIdeas) {
+			idea = ideaDao.assignLikes(idea);
+		}
 		mv.addObject("ideas", profileIdeas);
 		int size = profileIdeas.size();
 		mv.addObject("size", size);
@@ -340,8 +328,6 @@ public class IdeaController {
 			mv.setViewName("WEB-INF/views/login.jsp");
 			return mv;
 		} else {
-			List<Idea> ideaList = ideaDao.showAllIdeas();
-			mv.addObject("ideaList", ideaList);
 			session.setAttribute("loggedInUser", user);
 			mv.addObject("user", user);
 			mv.setViewName("index.do");
@@ -360,6 +346,7 @@ public class IdeaController {
 		commentDao.create(comment, profile, idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
 		mv.addObject("comments", comments);
+		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;

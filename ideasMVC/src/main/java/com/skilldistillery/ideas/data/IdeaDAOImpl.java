@@ -195,4 +195,11 @@ public class IdeaDAOImpl implements IdeaDAO {
 		return ideas;
 	}
 
+	@Override
+	public Idea assignLikes(Idea idea) {
+		idea.setLikes(getLikes(idea));
+		idea.setDislikes(getDislikes(idea));
+		return idea;
+	}
+
 }
