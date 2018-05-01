@@ -83,12 +83,12 @@
 						 --%>	
 						<!-- ideaCount probably special object in Controller -->
 							
-		<h5>Total Ideas: ${size }</h5><br>
+		<h5 class="textformat">Total Ideas: ${size }</h5><br>
 		
 		
 		<!-- Listing for user's ideas -->
 		<c:forEach var="i" items="${ideas }">
-			<h3>
+			<h3 class="textformat">
 				<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
 			</h3><br>
 				<form action="destoryIdea.do" method="POST">
