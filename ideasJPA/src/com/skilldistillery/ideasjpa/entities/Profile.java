@@ -2,7 +2,7 @@ package com.skilldistillery.ideasjpa.entities;
 
 //sql date does not need @Temporal annotation
 import java.sql.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -33,10 +32,10 @@ public class Profile {
 	private String bio;
 
 	@Column(name = "profile_pic")
-	private String profilePic;
+	private String profilePic = "https://www.mybenshop.com/wp-content/uploads/2017/09/Rodin-the-Thinker-Sculpture-Medium-Figurine-Sandstone-Color-500x500.jpg";
 
 	@Column(name = "created_date")
-	private Date createdDate;
+	private LocalDateTime createdDate;
 	
 	private Boolean active;
 
@@ -123,11 +122,11 @@ public class Profile {
 		this.profilePic = profilePic;
 	}
 
-	public Date getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 

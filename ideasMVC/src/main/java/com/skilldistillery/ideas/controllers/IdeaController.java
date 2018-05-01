@@ -422,6 +422,10 @@ public class IdeaController {
 
 		Profile profileToUpdate = userUpdatingProfile.getProfile();
 		profileToUpdate.setProfilePic(newProfilePic);
+		if (profileToUpdate.getProfilePic().equals("") || profileToUpdate.getProfilePic() == "" || profileToUpdate.getProfilePic() == null) {
+			profileToUpdate.setProfilePic(
+					"https://www.mybenshop.com/wp-content/uploads/2017/09/Rodin-the-Thinker-Sculpture-Medium-Figurine-Sandstone-Color-500x500.jpg");
+		}
 		profileToUpdate.setBio(newBio);
 		profileDao.update(profileToUpdate);
 
