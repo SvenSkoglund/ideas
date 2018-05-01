@@ -108,10 +108,10 @@
 			</c:if>
 		</c:forEach>
 
-		<form action="comment.do" method="POST">
+		<form action="postComment.do" method="POST">
 			<input type="Text" placeholder="Comment" name="content" /><br /> <input
-				type="hidden" value="${profile }" name="profile" /> <input
-				type="hidden" value="${idea }" name="idea" /> <input type="Submit"
+				type="hidden" value="${loggedInUser.profile }" name="profile" /> <input
+				type="hidden" value="${idea.id }" name="ideaId" /> <input type="Submit"
 				value="Post Comment" />
 		</form>
 		

@@ -219,6 +219,21 @@ public class IdeaController {
 			return mv;
 		}
 	}
+	@RequestMapping(path = "postComment.do", method = RequestMethod.POST)
+	public ModelAndView postComment(String content, int ideaId, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		User user= (User) session.getAttribute("loggedInUser");
+		Profile profile = user.getProfile();
+		Idea idea = ideaDao.showIdea(ideaId);
+		Comment comment = new Comment();
+		comment.setContent(content);
+		commentDao.create(comment, profile, idea);
+		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
+		mv.addObject("comments", comments);
+		mv.addObject("idea", idea);
+		mv.setViewName("WEB-INF/views/idea.jsp");
+		return mv;
+	}
 
 	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(HttpSession session) {

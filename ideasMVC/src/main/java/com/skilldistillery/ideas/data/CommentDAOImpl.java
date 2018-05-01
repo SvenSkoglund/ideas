@@ -16,7 +16,7 @@ import com.skilldistillery.ideas.data.comparators.SortCommentByLikes;
 import com.skilldistillery.ideasjpa.entities.Comment;
 import com.skilldistillery.ideasjpa.entities.CommentLike;
 import com.skilldistillery.ideasjpa.entities.CommentLikeKey;
-import com.skilldistillery.ideasjpa.entities.IdeaLike;
+import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 
 @Transactional
@@ -50,13 +50,13 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public Comment create(Comment comment) {
+	public Comment create(Comment comment, Profile profile, Idea idea) {
 		// start the transaction
-		// write the customer to the database
+		comment.setProfile(profile);
+		comment.setIdea(idea);
+		comment.setActive(true);
 		em.persist(comment);
-		// update the "local" Customer object
 		em.flush();
-		// commit the changes (actually perform the operation)
 		return comment;
 	}
 
