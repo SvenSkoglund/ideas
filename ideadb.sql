@@ -183,10 +183,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `ideadb`;
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (1, 1, 'Something brief', NULL, DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (2, 2, 'Sven Skoglund likes pineapples', NULL, DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (3, 3, 'Let\'s go skiing!', NULL, DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (4, 4, 'Surprise me, Nate.', NULL, DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (1, 1, 'Something brief', 'https://i.imgur.com/S5n7pxl.jpg', DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (2, 2, 'Sven Skoglund likes pineapples', 'https://i.imgur.com/oMcBTCQ.jpg', DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (3, 3, 'Let\'s go skiing!', 'https://i.imgur.com/g9ntKaa.jpg', DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (4, 4, 'Surprise me, Nate.', 'https://i.imgur.com/bfU70Gl.png', DEFAULT, 1);
 
 COMMIT;
 
