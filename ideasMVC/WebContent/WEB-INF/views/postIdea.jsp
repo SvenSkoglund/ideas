@@ -43,7 +43,6 @@
 	rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid">
 	<!-- Leading navigation bar -->
 		<c:choose>
 			<c:when test="${empty loggedInUser}">
@@ -55,6 +54,7 @@
 			</c:otherwise>
 		</c:choose>
 	
+<div class="container-fluid">
 	
 	<!-- I know that this page has to have a form or sorts to fill out and submit/post but I feel a little over my head and need walk through it with some help -->
 <!-- Posting Idea form -->

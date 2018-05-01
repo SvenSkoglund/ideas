@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByContreversy;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByDateNewFirst;
 import com.skilldistillery.ideas.data.comparators.SortIdeaByDateOldFirst;
@@ -93,8 +94,7 @@ public class IdeaDAOImpl implements IdeaDAO {
 	}
 
 	@Override
-	public IdeaLike createLike(Idea idea, Profile profile, Boolean vote) {
-		em.getTransaction().begin();
+	public IdeaLike createLike(Idea idea, Profile profile, Boolean vote) throws MySQLIntegrityConstraintViolationException {
 		IdeaLikeKey ilk = new IdeaLikeKey();
 		ilk.setIdea(idea);
 		ilk.setProfile(profile);
@@ -104,20 +104,17 @@ public class IdeaDAOImpl implements IdeaDAO {
 		il.setVote(vote);
 		em.persist(il);
 		em.flush();
-		em.getTransaction().commit();
 		return il;
 	}
 
 	@Override
 	public IdeaLike updateLike(Idea idea, Profile profile, Boolean vote) {
-		em.getTransaction().begin();
 		IdeaLikeKey ilk = new IdeaLikeKey();
 		ilk.setIdea(idea);
 		ilk.setProfile(profile);
 		IdeaLike managed = em.find(IdeaLike.class, ilk);
 		managed.setVote(vote);
 		em.flush();
-		em.getTransaction().commit();
 		return managed;
 	}
 

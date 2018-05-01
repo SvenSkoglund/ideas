@@ -60,7 +60,7 @@
 	<br>
 	<h1 class="textformat">${idea.name }</h1>
 	<p>${idea.content }</p>
-	<br><a href="likeIdea.do?iid=${i.id }">Like</a><a href="dislikeIdea.do?iid=${i.id }">Dislike</a>
+	<br><a href="likeIdeaFromIdea.do?iid=${idea.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a href="dislikeIdeaFromIdea.do?iid=${idea.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${idea.likes } - ${idea.dislikes }
 	
 	<c:if test="${loggedInUser == idea.profile.user || loggedInUser.profile.user.admin}">
 		<form action="deactivateIdea.do" method="GET">
@@ -92,7 +92,7 @@
 					alt="Image of ${comment.profile.user.username }" class="imgsize3"/></a><br />
 
 			</h3>
-<a href="likeComment.do?cid=${comment.id }">Like</a><a href="dislikeComment.do?cid=${comment.id }">Dislike</a>
+<a href="likeComment.do?cid=${comment.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a><a href="dislikeComment.do?cid=${comment.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
 			<p>${comment.content }</p>
 			<p>${comment.dateCreated }</p>
 			<br>

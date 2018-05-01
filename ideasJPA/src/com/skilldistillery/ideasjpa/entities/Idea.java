@@ -13,8 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Fetch;
+import javax.persistence.Transient;
 
 @Entity
 public class Idea {
@@ -44,9 +43,12 @@ public class Idea {
 	private List<Comment> comments;
 	
 	private Boolean active;
+
+	@Transient
+	private Integer likes;
 	
-//	@OneToMany(mappedBy="idea")
-//	private List<IdeaLike> likes;
+	@Transient
+	private Integer dislikes;
 
 	
 	// Gets & Sets
@@ -56,6 +58,22 @@ public class Idea {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getDislikes() {
+		return dislikes;
+	}
+
+	public void setDislikes(Integer dislikes) {
+		this.dislikes = dislikes;
+	}
+
+	public Integer getLikes() {
+		return likes;
+	}
+
+	public void setLikes(Integer likes) {
+		this.likes = likes;
 	}
 
 	public String getContent() {
