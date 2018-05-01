@@ -133,7 +133,7 @@ public class CommentDAOImpl implements CommentDAO {
 		int commentId = comment.getId();
 		int likeCount;
 		String sql = "select cl from CommentLike cl where cl.id.comment.id = :commentId and cl.vote = true";
-		List<IdeaLike> likes = em.createQuery(sql, IdeaLike.class).setParameter("commentId", commentId).getResultList();
+		List<CommentLike> likes = em.createQuery(sql, CommentLike.class).setParameter("commentId", commentId).getResultList();
 		if (!likes.isEmpty()) {
 			likeCount = likes.size();
 		} else {
@@ -147,7 +147,7 @@ public class CommentDAOImpl implements CommentDAO {
 		int commentId = comment.getId();
 		int dislikeCount;
 		String sql = "select cl from CommentLike cl where cl.id.comment.id = :commentId and cl.vote = false";
-		List<IdeaLike> dislikes = em.createQuery(sql, IdeaLike.class).setParameter("commentId", commentId)
+		List<CommentLike> dislikes = em.createQuery(sql, CommentLike.class).setParameter("commentId", commentId)
 				.getResultList();
 		if (!dislikes.isEmpty()) {
 			dislikeCount = dislikes.size();
