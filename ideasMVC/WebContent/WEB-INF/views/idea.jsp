@@ -29,6 +29,17 @@
 		<input type="hidden" name="pid" value="${idea.profile.id}">
 	</form>
 		<hr>
+				<!-- Sort by, don't know if this was stretch goal or not -->
+		<form action="sortComments.do" method="GET">
+			<select name="sortChoice">
+				<option value="newest">Newest First</option>
+				<option value="oldest">Oldest First</option>
+				<option value="like">Most Likes</option>
+				<option value="dislike">Most Dislikes</option>
+				<option value="controversy">Sort by Controversy</option>
+			</select>
+			<input type="hidden" value ="${idea.id }" name="ideaId" /> <input type="submit" value="Submit" />
+		</form>
 
 		<!-- Listing for comments -->
 		<c:forEach var="comment" items="${comments}">

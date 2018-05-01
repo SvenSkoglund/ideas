@@ -68,9 +68,39 @@ public class IdeaController {
 			ideaDao.sortByUsername(ideaList);
 			break;
 		}
-		
+
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
+
+		return mv;
+	}
+
+	@RequestMapping(path = "sortComments.do")
+	public ModelAndView sortComments(String sortChoice, int ideaId) {
+		ModelAndView mv = new ModelAndView();
+		List<Comment> commentList = commentDao.showCommentsByIdea(ideaId);
+		switch (sortChoice) {
+		case "newest":
+			commentDao.sortCommentsByDateNewFirst(commentList);
+			break;
+		case "oldest":
+			commentDao.sortCommentsByDateOldFirst(commentList);
+			break;
+		case "like":
+			commentDao.sortByLikes(commentList);
+			break;
+		case "dislike":
+			commentDao.sortByDisikes(commentList);
+			break;
+		case "controversy":
+			commentDao.sortByContreversy(commentList);
+			break;
+
+		}
+		Idea idea = ideaDao.showIdea(ideaId);
+		mv.addObject("idea", idea);
+		mv.addObject("comments", commentList);
+		mv.setViewName("WEB-INF/views/idea.jsp");
 
 		return mv;
 	}
