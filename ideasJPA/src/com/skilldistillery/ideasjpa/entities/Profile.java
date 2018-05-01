@@ -69,7 +69,6 @@ public class Profile {
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
