@@ -62,7 +62,7 @@
 		<h1>${logoutMessage }</h1>
 		<h1>${message }</h1>
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-9">
 				<!-- Sort by, don't know if this was stretch goal or not -->
 					<form action="sorting.do" method="GET">
 						<select name="sortChoice">
@@ -80,13 +80,13 @@
 				
 				<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN --%>
 				<%-- TEMPORARY INSTALL TO CHECK toPostIdea.do LOGIC --%>
-				<div class = "col-sm-5">
+				<%-- <div class = "col-sm-5">
 					<!-- Create your own idea form -->
 					<form action="toPostIdea.do" method="GET">
 						<input type="hidden" value="${profile }" name="profile" />
 						<input type="Submit" value="Create your own idea!" />
 					</form>
-				</div>
+				</div> --%>
 				
 				
 				<div class="col-sm-3">

@@ -123,6 +123,7 @@ body {
        text-align: center;
        vertical-align: middle;
        padding: .1em;
+       padding-top: .5em;
        padding-bottom: .5em;
       }
 
@@ -229,11 +230,11 @@ body {
 	    width: 25%;
 	    height: 25%;
 	    border-radius: 50%;
-	    display: block;
-	    margin-left: 0 auto;
+    	display: block; 
+	    margin-left: 10;
 	    margin-right: 0 auto;
 	    margin-top: 0 auto;
-	    margin-bottom: 0 auto;
+	    margin-bottom: 0 auto; 
 	  }
 
 
