@@ -72,12 +72,6 @@
 		  	  <input type="submit" value="Create Account" />
 			</form:form>
 			<br />
-			
-			
-			<!-- Sign In form -->
-			<form action="toToLogin.do" method="GET">
-				<input type="submit" value="Return to Log In" />
-			</form>
 	
 	
 	
