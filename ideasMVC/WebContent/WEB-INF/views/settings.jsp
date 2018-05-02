@@ -28,10 +28,10 @@
 				<form action="update.do" method="POST" align="center">
 					<!-- Fields to update/change -->
 					<label for="username">Username</label><br>
-					<input class="inner" id="title" type="text" value="${profile.user.username }" name="username" min="6" max="35" message="Must be at least 6 characters"/><br>
+					<input class="inner" id="title" type="text" value="${profile.user.username }" name="username" min="6" max="35" message="Must be at least 6 characters" required/><br>
 					<br>
 					<label for="password">Password</label><br>
-					<input class="inner" id="title" type="text" value="${profile.user.password }" name="password" min="6" max="35" message="Must be at least 6 characters"/><br>
+					<input class="inner" id="title" type="text" value="${profile.user.password }" name="password" min="6" max="35" message="Must be at least 6 characters" required/><br>
 					<br>
 					<label for="email">Email</label><br>
 					<input class="inner" id="title" type="email" value="${profile.user.email }" name="email" /><br>
