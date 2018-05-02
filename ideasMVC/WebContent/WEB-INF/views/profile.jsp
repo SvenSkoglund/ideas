@@ -76,7 +76,7 @@
 				<hr>
 				
 				<!-- Deactivate Profile form -->
-				<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == true}">
+				<c:if test="${(loggedInUser == profile.user || loggedInUser.profile.user.admin) && profile.active == true}">
 					<form action="deactivateProfile.do" method="GET">
 						<input type="submit" value="Deactivate Profile" />
 						<input type="hidden" name="pid" value="${profile.id }">
@@ -84,7 +84,7 @@
 					</form>
 				</c:if>
 				<br>
-						<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == false}">
+						<c:if test="${(loggedInUser == profile.user || loggedInUser.profile.user.admin) && profile.active == false}">
 					<form action="activateProfile.do" method="GET">
 						<input type="submit" value="Activate Profile" />
 						<input type="hidden" name="pid" value="${profile.id }">

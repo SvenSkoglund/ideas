@@ -84,25 +84,26 @@
 				</div>
 				<h4 class="textformat">${idea.content }</h4>
 				<br>
+				<c:if
+					test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == true}">
+					<form action="deactivateIdea.do" method="GET">
+						<input type="submit" value="Deactivate Idea" /> <input
+							type="hidden" name="iid" value="${idea.id }">
+						<!-- This should be replaced by a session profile -->
+						<input type="hidden" name="pid" value="${idea.profile.id}">
+					</form>
+				</c:if>
+				<c:if
+					test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == false}">
+					<form action="activateIdea.do" method="GET">
+						<input type="submit" value="Activate Idea" /> <input
+							type="hidden" name="iid" value="${idea.id }">
+						<!-- This should be replaced by a session profile -->
+						<input type="hidden" name="pid" value="${idea.profile.id}">
+					</form>
+				</c:if>
 			</div>
-			<c:if
-				test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == true}">
-				<form action="deactivateIdea.do" method="GET">
-					<input type="submit" value="Deactivate Idea" /> <input
-						type="hidden" name="iid" value="${idea.id }">
-					<!-- This should be replaced by a session profile -->
-					<input type="hidden" name="pid" value="${idea.profile.id}">
-				</form>
-			</c:if>
-			<c:if
-				test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == false}">
-				<form action="activateIdea.do" method="GET">
-					<input type="submit" value="Activate Idea" /> <input type="hidden"
-						name="iid" value="${idea.id }">
-					<!-- This should be replaced by a session profile -->
-					<input type="hidden" name="pid" value="${idea.profile.id}">
-				</form>
-			</c:if>
+
 		</div>
 		<div class="container-fluid">
 
@@ -134,12 +135,12 @@
 			</div>
 		</div>
 		<!-- Listing for comments -->
+	</div>
+	<c:forEach var="comment" items="${comments}">
+		<div class="container-fluid">
 
-		<c:forEach var="comment" items="${comments}">
-			<div class="container-fluid">
 
-
-				<%-- 				<div class="row">
+			<%-- 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-1 idearow">
 						<h3>
@@ -164,54 +165,52 @@
 						<br>
 					</div> --%>
 
-				<div id="page-wrap">
-					<div id="one-true" class="group">
-						<div class="row">
-							<div class="col-xs-2 col-md-1 ideaicons col1">
-								<a href="toProfile.do?pid=${comment.profile.id }"><img
-									src="${comment.profile.profilePic }"
-									alt="Image of ${comment.profile.user.username }"
-									class="imgsize2" /></a>
+			<div id="page-wrap">
+				<div id="one-true" class="group">
+					<div class="row">
+						<div class="col-xs-2 col-md-1 ideaicons col1">
+							<a href="toProfile.do?pid=${comment.profile.id }"><img
+								src="${comment.profile.profilePic }"
+								alt="Image of ${comment.profile.user.username }"
+								class="imgsize2" /></a>
 
-							</div>
-							<div class="col-xs-2 col-md-1 ideaicons col1">
-								<br> <br> <a
-									href="likeComment.do?cid=${comment.id }&iid=${idea.id}"><i
-									class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a>
-								<a href="dislikeComment.do?cid=${comment.id }&iid=${idea.id}"><i
-									class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a>
-								&nbsp;&nbsp;&nbsp; <br>${comment.likes } &nbsp;&nbsp;&nbsp;
-								- &nbsp;&nbsp;&nbsp; ${comment.dislikes }
-							</div>
-							<div class="col-xs-8 col-md-10 idearow col">
-								<h4>${comment.content }</h4>
-								<br>
-								<h6>${comment.dateCreated }</h6>
-								<c:if
-									test="${loggedInUser == comment.profile.user || loggedInUser.profile.user.admin}">
-									<form action="deactivateComment.do" method="GET">
-										<input type="submit" value="Deactivate Comment" /> <input
-											type="hidden" name="iid" value="${idea.id }">
-										<!-- This should be replaced by a session profile -->
-										<input type="hidden" name="cid" value="${comment.id}">
-									</form>
-								</c:if>
-							</div>
+						</div>
+						<div class="col-xs-2 col-md-1 ideaicons col1">
+							<br> <br> <a
+								href="likeComment.do?cid=${comment.id }&iid=${idea.id}"><i
+								class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a>
+							<a href="dislikeComment.do?cid=${comment.id }&iid=${idea.id}"><i
+								class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a>
+							&nbsp;&nbsp;&nbsp; <br>${comment.likes } &nbsp;&nbsp;&nbsp;
+							- &nbsp;&nbsp;&nbsp; ${comment.dislikes }
+						</div>
+						<div class="col-xs-8 col-md-10 idearow col">
+							<h4>${comment.content }</h4>
+							<br>
+							<h6>${comment.dateCreated }</h6>
+							<c:if
+								test="${loggedInUser == comment.profile.user || loggedInUser.profile.user.admin}">
+								<form action="deactivateComment.do" method="GET">
+									<input type="submit" value="Deactivate Comment" /> <input
+										type="hidden" name="iid" value="${idea.id }">
+									<!-- This should be replaced by a session profile -->
+									<input type="hidden" name="cid" value="${comment.id}">
+								</form>
+							</c:if>
 						</div>
 					</div>
 				</div>
-
-
-
-
-
 			</div>
-	</div>
-	</div>
+
+
+
+
+
+		</div>
+
 	</c:forEach>
 
 
-	</div>
 	<div class="col-sm-2"></div>
 	<div class="footer">Powered by Unholy Desolation</div>
 </body>

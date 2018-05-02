@@ -66,7 +66,7 @@
 		
 		<div class="row">
 		<div class="col-sm-1"></div>
-			<div class="col-sm-8">
+			<div class="col-sm-7">
 				<!-- Sort by, don't know if this was stretch goal or not -->
 				<c:choose>
 					<c:when test="${empty ideaKeyword}">
@@ -83,15 +83,15 @@
 					<option value="dislike">Most Dislikes</option>
 					<option value="controversy">Sort by Controversy</option>
 					<option value="username">Sort by Username</option>
-				</select> <br> <input type="hidden" name="ideaKeyword"
+				</select><input type="hidden" name="ideaKeyword"
 					value="${ideaKeyword }" /> <input type="submit" value="Submit" />
 				</form>
 			</div>
 
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
-					<input type="text" name="ideaKeyword" /> <br> <input
+					<input type="text" name="ideaKeyword" /> <input
 						type="submit" value="Search for Idea" />
 				</form>
 			</div>

@@ -505,11 +505,15 @@ public class IdeaController {
 		}else {
 		Profile profile = user.getProfile();
 		Comment comment = new Comment();
+		
 		comment.setContent(content);
 		commentDao.create(comment, profile, idea);
 		
 	}
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
+		for (Comment comment : comments) {
+			comment = commentDao.assignLikes(comment);
+		}
 		mv.addObject("comments", comments);
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
