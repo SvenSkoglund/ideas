@@ -172,6 +172,16 @@ body {
 				font-family: 'Raleway', sans-serif;
 				}
 				
+			.textformatHeadline{
+				font-family: 'Raleway', sans-serif;
+				color: white;
+				}
+				
+			.textformatBody{
+				font-family: 'Raleway', sans-serif;
+				color: white;
+				}
+				
 			
 		      .bodytext {
 		      font-family: 'Raleway', sans-serif;
@@ -328,4 +338,13 @@ body {
 			  
 			  } 
 
+		.footer {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0;
+		   width: 100%;
+		   background-color: #1f799c;
+		   color: #FCFEFF;
+		   text-align: center;
+		}
     }

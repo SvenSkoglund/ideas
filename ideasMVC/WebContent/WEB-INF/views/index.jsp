@@ -112,13 +112,14 @@
 							&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp; ${i.dislikes }
 						</div>
 						<div class="col-xs-8 col-md-10 idearow col">
-							<a href="toIdea.do?iid=${i.id }"><h2>${i.name}</h2></a>
+							<a href="toIdea.do?iid=${i.id }"><h3>${i.name}</h3></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
 
+	<div class="footer">powered by unholy desolation</div>
 	</div>
 
 </body>
