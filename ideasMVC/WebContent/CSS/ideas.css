@@ -409,7 +409,7 @@ body {
 			 } 
 			  
 			 .inner  {
-			  width: 50%;
+			  min-width: 10em;
 			  height: 5em;
 			  margin: 0 auto;
 			  float: none;
@@ -417,7 +417,7 @@ body {
 			  }
 			  
 			  #title {
-			  width: 50%;
+			  min-width: 10em;
 			  height: 2em;
 			  margin: 0 auto;
 			  float: none;
