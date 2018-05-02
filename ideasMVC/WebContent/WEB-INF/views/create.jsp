@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,45 +43,65 @@
 </head>
 <body>
 
-	
-	
-			<!-- Leading navigation bar, need to figure out logic for user -->
-			<%@ include file="loggedOutNavBar.jsp"%>
-			
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-5"></div>
-					<div class="col-sm-2">
-						<h1 class="textformat">${passwordMessage }</h1>
-						<h1 class="textformat">${createUserMessage }</h1>
-						
-						<form:form action="createUser.do" method="POST" modelAttribute="userDTO">
-						  <form:label path="username">Username:</form:label>
-						  <form:input path="username" />
-						  <form:errors path="username" />
-						  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  <form:label path="email">Email:</form:label>
-						  <form:input path="email" />
-						  <form:errors path="email" />
-						  
-						  <br />
-						  <form:label path="password">Password:</form:label>
-						  <form:input type="password" path="password" />
-						  <form:errors path="password" />
-					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  <form:label path="confirmPassword"> Confirm Password:</form:label>
-						  <form:input type="password" path="confirmPassword" />
-						  <form:errors path="confirmPassword" />
-					   
-					 		<br /><br />
-					  	  <input type="submit" value="Submit" />
-						</form:form>
-						<br />
-					</div>
-					<div class="col-sm-5"></div>
+
+
+	<!-- Leading navigation bar, need to figure out logic for user -->
+	<%@ include file="loggedOutNavBar.jsp"%>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<h1 class="textformat">${passwordMessage }</h1>
+				<h1 class="textformat">${createUserMessage }</h1>
+
+				<form:form action="createUser.do" method="POST"
+					modelAttribute="userDTO">
+					<form:label path="username">Username:</form:label><br>
+					<form:input path="username" />
+					<form:errors path="username" />
 			</div>
-			<div class="footer">Powered by Unholy Desolation</div>
+			<div class="col-sm-5"></div>
 		</div>
-	
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<form:label path="email">Email:</form:label><br>
+				<form:input path="email" />
+				<form:errors path="email" />
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<form:label path="password">Password:</form:label><br>
+				<form:input type="password" path="password" />
+				<form:errors path="password" />
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<form:label path="confirmPassword"> Confirm Password:</form:label><br>
+				<form:input type="password" path="confirmPassword" />
+				<form:errors path="confirmPassword" />
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2">
+				<br>
+				<input type="submit" value="Submit" />
+				</form:form>
+				<br />
+			</div>
+			<div class="col-sm-5"></div>
+		</div>
+		<div class="footer">Powered by Unholy Desolation</div>
+	</div>
+
 </body>
 </html>
