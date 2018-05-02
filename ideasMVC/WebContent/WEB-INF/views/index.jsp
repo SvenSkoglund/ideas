@@ -75,7 +75,7 @@
 
 		<div class="row">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-7">
+			<div class="col-sm-8">
 				<!-- Sort by, don't know if this was stretch goal or not -->
 				<c:choose>
 					<c:when test="${empty ideaKeyword}">
@@ -97,7 +97,7 @@
 				</form>
 			</div>
 
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
 					<input type="text" name="ideaKeyword" /> <input type="submit"
