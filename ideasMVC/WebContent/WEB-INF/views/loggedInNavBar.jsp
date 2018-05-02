@@ -54,7 +54,8 @@
 			<div class="dropdown">
 			<img alt="Picture of ${loggedInUser.username }" src="${loggedInUser.profile.profilePic }" class="imgsizeNav">
 				  <div class="dropdown-content">
-				    <a href="toProfile.do">Profile Settings</a>
+				    <a href="toProfile.do?pid=${loggedInUser.profile.id }">My Profile</a>
+				    <a href="toSettings.do?pid=${loggedInUser.profile.id }">Profile Settings</a>
 				    <a href="logout.do">Logout</a>
 				  </div>
 				</div>

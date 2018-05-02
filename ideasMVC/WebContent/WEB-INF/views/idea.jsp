@@ -62,7 +62,7 @@
 	<p class="textformat">${idea.content }</p>
 	<br><a href="likeIdeaFromIdea.do?iid=${idea.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a href="dislikeIdeaFromIdea.do?iid=${idea.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${idea.likes } - ${idea.dislikes }
 	
-	<c:if test="${loggedInUser == idea.profile.user || loggedInUser.profile.user.admin}">
+		<c:if test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == true}">
 		<form action="deactivateIdea.do" method="GET">
 			<input type="submit" value="Deactivate Idea" /> <input type="hidden"
 				name="iid" value="${idea.id }">
@@ -70,6 +70,15 @@
 			<input type="hidden" name="pid" value="${idea.profile.id}">
 		</form>
 	</c:if>
+		<c:if test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == false}">
+		<form action="activateIdea.do" method="GET">
+			<input type="submit" value="Activate Idea" /> <input type="hidden"
+				name="iid" value="${idea.id }">
+			<!-- This should be replaced by a session profile -->
+			<input type="hidden" name="pid" value="${idea.profile.id}">
+		</form>
+	</c:if>
+		
 		
 		<hr>
 				<!-- Sort by, don't know if this was stretch goal or not -->
@@ -105,6 +114,7 @@
 					<input type="hidden" name="cid" value="${comment.id}">
 				</form>
 			</c:if>
+
 		</c:forEach>
 
 		<form action="postComment.do" method="POST">

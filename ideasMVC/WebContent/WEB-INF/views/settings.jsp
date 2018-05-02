@@ -37,19 +37,10 @@
 		
 		<label for="bio">Bio</label><br>
 		<input type="text" value="${profile.bio }" name="bio" /><br>
+		<input type="hidden" name="pid" value="${profile.id }">
 		
 		<!-- Hidden Values that User should not Change -->
-		<%-- <input type="hidden" name="pid" value="${profile.id }">
-		
-		<input type="hidden" name="pid" value="${profile.ideas }">
-		
-		<input type="hidden" name="pid" value="${profile.comments }">
-		
-		<input type="hidden" name="pid" value="${profile.createdDate }">
-		
-		<input type="hidden" name="pid" value="${profile.reputation }">
-		
-		<input type="hidden" name="pid" value="${profile.postCount }"> --%>
+
 		
 		<!-- Submit -->
 		<input type="submit" value="Update Account" />
