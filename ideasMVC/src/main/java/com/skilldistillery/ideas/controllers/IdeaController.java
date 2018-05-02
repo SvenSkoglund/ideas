@@ -40,12 +40,13 @@ public class IdeaController {
 
 	// Home page
 	@RequestMapping(path = "index.do")
-	public ModelAndView index() {
+	public ModelAndView index(String ideaKeyword) {
 		ModelAndView mv = new ModelAndView();
 		List<Idea> ideaList = ideaDao.showAllIdeas();
 		for (Idea idea : ideaList) {
 			idea = ideaDao.assignLikes(idea);
 		}
+		mv.addObject("ideaKeyword", ideaKeyword);
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
@@ -53,9 +54,9 @@ public class IdeaController {
 	}
 
 	@RequestMapping(path = "sorting.do")
-	public ModelAndView sortIdeasIndex(String sortChoice, @RequestParam(name="ideaList") ArrayList<Idea> ideaList) {
+	public ModelAndView sortIdeasIndex(String sortChoice) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(ideaList);
+		List<Idea> ideaList = ideaDao.showAllIdeas();
 		switch (sortChoice) {
 		case "newest":
 			ideaDao.sortIdeasByDateNewFirst(ideaList);
@@ -79,6 +80,44 @@ public class IdeaController {
 		for (Idea idea : ideaList) {
 			idea = ideaDao.assignLikes(idea);
 		}
+		mv.addObject("sortChoice", sortChoice);
+		mv.addObject("ideaList", ideaList);
+		mv.setViewName("WEB-INF/views/index.jsp");
+
+		return mv;
+	}
+
+	@RequestMapping(path = "searchSorting.do")
+	public ModelAndView searchSorting(String sortChoice, String ideaKeyword) {
+		ModelAndView mv = new ModelAndView();
+		List<Idea> ideaList = ideaDao.searchIdea(ideaKeyword);
+		if (sortChoice != null) {
+			switch (sortChoice) {
+			case "newest":
+				ideaDao.sortIdeasByDateNewFirst(ideaList);
+				break;
+			case "oldest":
+				ideaDao.sortIdeasByDateOldFirst(ideaList);
+				break;
+			case "like":
+				ideaDao.sortByLikes(ideaList);
+				break;
+			case "dislike":
+				ideaDao.sortByDisikes(ideaList);
+				break;
+			case "controversy":
+				ideaDao.sortByContreversy(ideaList);
+				break;
+			case "username":
+				ideaDao.sortByUsername(ideaList);
+				break;
+			}
+		}
+		for (Idea idea : ideaList) {
+			idea = ideaDao.assignLikes(idea);
+		}
+		mv.addObject("sortChoice", sortChoice);
+		mv.addObject("ideaKeyword", ideaKeyword);
 		mv.addObject("ideaList", ideaList);
 		mv.setViewName("WEB-INF/views/index.jsp");
 
@@ -110,7 +149,7 @@ public class IdeaController {
 		Idea idea = ideaDao.showIdea(ideaId);
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
-		for (Comment c: comments) {
+		for (Comment c : comments) {
 			c = commentDao.assignLikes(c);
 		}
 		mv.addObject("comments", comments);
@@ -159,15 +198,24 @@ public class IdeaController {
 	}
 
 	@RequestMapping(path = "likeIdea.do", method = RequestMethod.GET)
-	public ModelAndView likeIdea(int iid, HttpSession session) {
+	public ModelAndView likeIdea(int iid, String ideaKeyword, String sortChoice, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(iid);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
 			mv.addObject("message", "Must be logged in to vote");
 			List<Idea> ideaList = ideaDao.showAllIdeas();
+			mv.addObject("sortChoice", sortChoice);
+			mv.addObject("ideaKeyword", ideaKeyword);
 			mv.addObject("ideaList", ideaList);
-			mv.setViewName("index.do");
+			if (ideaKeyword != null || !ideaKeyword.equals("")) {
+				mv.setViewName("searchSorting.do");
+			}else if (sortChoice != null || !sortChoice.equals("")){
+				mv.setViewName("sorting.do");
+			}
+			else {
+				mv.setViewName("index.do");
+			}
 			return mv;
 
 		}
@@ -177,20 +225,37 @@ public class IdeaController {
 		} catch (Exception e) {
 			ideaDao.updateLike(idea, profile, true);
 		}
-		mv.setViewName("index.do");
+		if (ideaKeyword.equals("") || ideaKeyword == null) {
+			mv.addObject("ideaKeyword", ideaKeyword);
+			mv.addObject("sortChoice", sortChoice);
+			mv.setViewName("sorting.do");
+		} else {
+			mv.addObject("sortChoice", sortChoice);
+			mv.addObject("ideaKeyword", ideaKeyword);
+			mv.setViewName("searchSorting.do");
+		}
 		return mv;
 	}
 
 	@RequestMapping(path = "dislikeIdea.do", method = RequestMethod.GET)
-	public ModelAndView dislikeIdea(int iid, HttpSession session) {
+	public ModelAndView dislikeIdea(int iid, String ideaKeyword, String sortChoice, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(iid);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
 			mv.addObject("message", "Must be logged in to vote");
 			List<Idea> ideaList = ideaDao.showAllIdeas();
+			mv.addObject("sortChoice", sortChoice);
+			mv.addObject("ideaKeyword", ideaKeyword);
 			mv.addObject("ideaList", ideaList);
-			mv.setViewName("index.do");
+			if (ideaKeyword != null || !ideaKeyword.equals("")) {
+				mv.setViewName("searchSorting.do");
+			}else if (sortChoice != null || !sortChoice.equals("")){
+				mv.setViewName("sorting.do");
+			}
+			else {
+				mv.setViewName("index.do");
+			}
 			return mv;
 
 		}
@@ -200,7 +265,15 @@ public class IdeaController {
 		} catch (Exception e) {
 			ideaDao.updateLike(idea, profile, false);
 		}
-		mv.setViewName("index.do");
+		if (ideaKeyword.equals("") || ideaKeyword == null) {
+			mv.addObject("ideaKeyword", ideaKeyword);
+			mv.addObject("sortChoice", sortChoice);
+			mv.setViewName("sorting.do");
+		} else {
+			mv.addObject("sortChoice", sortChoice);
+			mv.addObject("ideaKeyword", ideaKeyword);
+			mv.setViewName("searchSorting.do");
+		}
 		return mv;
 	}
 
@@ -230,15 +303,15 @@ public class IdeaController {
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(iid);
-		for (Comment c: comments) {
+		for (Comment c : comments) {
 			c = commentDao.assignLikes(c);
 		}
-		
+
 		mv.addObject("comments", comments);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "dislikeComment.do", method = RequestMethod.GET)
 	public ModelAndView dislikeComment(int cid, int iid, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -250,7 +323,7 @@ public class IdeaController {
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			List<Comment> comments = commentDao.showCommentsByIdea(iid);
-			for (Comment c: comments) {
+			for (Comment c : comments) {
 				c = commentDao.assignLikes(c);
 			}
 			mv.addObject("comments", comments);
@@ -268,20 +341,20 @@ public class IdeaController {
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(iid);
-		for (Comment c: comments) {
+		for (Comment c : comments) {
 			c = commentDao.assignLikes(c);
 		}
 		mv.addObject("comments", comments);
 		mv.setViewName("WEB-INF/views/idea.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "likeIdeaFromIdea.do", method = RequestMethod.GET)
 	public ModelAndView likeIdeaFromIdea(int iid, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(iid);
 		List<Comment> comments = commentDao.showCommentsByIdea(iid);
-		for (Comment c: comments) {
+		for (Comment c : comments) {
 			c = commentDao.assignLikes(c);
 		}
 		mv.addObject("comments", comments);
@@ -311,7 +384,7 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		Idea idea = ideaDao.showIdea(iid);
 		List<Comment> comments = commentDao.showCommentsByIdea(iid);
-		for (Comment c: comments) {
+		for (Comment c : comments) {
 			c = commentDao.assignLikes(c);
 		}
 		mv.addObject("comments", comments);
@@ -378,7 +451,7 @@ public class IdeaController {
 		idea = ideaDao.assignLikes(idea);
 		mv.addObject("idea", idea);
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
-		for (Comment comment: comments) {
+		for (Comment comment : comments) {
 			comment = commentDao.assignLikes(comment);
 		}
 		mv.addObject("comments", comments);
@@ -506,7 +579,8 @@ public class IdeaController {
 
 		Profile profileToUpdate = userUpdatingProfile.getProfile();
 		profileToUpdate.setProfilePic(newProfilePic);
-		if (profileToUpdate.getProfilePic().equals("") || profileToUpdate.getProfilePic() == "" || profileToUpdate.getProfilePic() == null) {
+		if (profileToUpdate.getProfilePic().equals("") || profileToUpdate.getProfilePic() == ""
+				|| profileToUpdate.getProfilePic() == null) {
 			profileToUpdate.setProfilePic(
 					"https://www.mybenshop.com/wp-content/uploads/2017/09/Rodin-the-Thinker-Sculpture-Medium-Figurine-Sandstone-Color-500x500.jpg");
 		}
@@ -588,11 +662,11 @@ public class IdeaController {
 		mv.setViewName("toIdea.do");
 		return mv;
 	}
+
 	@RequestMapping(path = "search.do", method = RequestMethod.GET)
 	public ModelAndView search(String ideaKeyword, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		List<Idea>foundIdeas = ideaDao.searchIdea(ideaKeyword);
-		System.out.println(foundIdeas);
+		List<Idea> foundIdeas = ideaDao.searchIdea(ideaKeyword);
 		if (foundIdeas == null) {
 			mv.addObject("message", "Search found no results");
 			mv.setViewName("index.do");
@@ -601,6 +675,7 @@ public class IdeaController {
 		for (Idea idea : foundIdeas) {
 			idea = ideaDao.assignLikes(idea);
 		}
+		mv.addObject("ideaKeyword", ideaKeyword);
 		mv.addObject("ideaList", foundIdeas);
 		mv.setViewName("WEB-INF/views/index.jsp");
 		return mv;

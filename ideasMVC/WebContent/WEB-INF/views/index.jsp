@@ -46,70 +46,86 @@
 <body>
 
 	<!-- Leading navigation bar -->
-		<c:choose>
-			<c:when test="${empty loggedInUser}">
-				<%@ include file="loggedOutNavBar.jsp"%>
-			</c:when>
-			<c:otherwise>
-				<%@ include file="loggedInNavBar.jsp"%>
-		        
-			</c:otherwise>
-		</c:choose>
+	<c:choose>
+		<c:when test="${empty loggedInUser}">
+			<%@ include file="loggedOutNavBar.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="loggedInNavBar.jsp"%>
+
+		</c:otherwise>
+	</c:choose>
 
 	<div class="container-fluid">
 
-		
+
 		<h3 class="textformat">${logoutMessage }</h3>
 		<h3 class="textformat">${message }</h3>
-			<div class="row">
-				<div class="col-sm-9">
+		<div class="row">
+			<div class="col-sm-9">
 				<!-- Sort by, don't know if this was stretch goal or not -->
-					<form action="sorting.do" method="GET">
-						<select name="sortChoice">
-							<option value="newest">Newest First</option>
-							<option value="oldest">Oldest First</option>
-							<option value="like">Most Likes</option>
-							<option value="dislike">Most Dislikes</option>
-							<option value="controversy">Sort by Controversy</option>
-							<option value="username">Sort by Username</option>
-						</select> 
-						<br>
-						<input type="hidden" name="ideaList" value="${ideaList }">
-						<input type="submit" value="Submit" />
-					</form>
-				</div>
-				
-				<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN --%>
-				<%-- TEMPORARY INSTALL TO CHECK toPostIdea.do LOGIC --%>
-				<%-- <div class = "col-sm-5">
+				<c:choose>
+					<c:when test="${empty ideaKeyword}">
+						<form action="sorting.do" method="GET">
+					</c:when>
+					<c:otherwise>
+						<form action="searchSorting.do" method="GET">
+					</c:otherwise>
+				</c:choose>
+				<select name="sortChoice">
+					<option value="newest">Newest First</option>
+					<option value="oldest">Oldest First</option>
+					<option value="like">Most Likes</option>
+					<option value="dislike">Most Dislikes</option>
+					<option value="controversy">Sort by Controversy</option>
+					<option value="username">Sort by Username</option>
+				</select> <br> <input type="hidden" name="ideaKeyword"
+					value="${ideaKeyword }" /> <input type="submit" value="Submit" />
+				</form>
+			</div>
+
+			<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN --%>
+			<%-- TEMPORARY INSTALL TO CHECK toPostIdea.do LOGIC --%>
+			<%-- <div class = "col-sm-5">
 					<!-- Create your own idea form -->
 					<form action="toPostIdea.do" method="GET">
 						<input type="hidden" value="${profile }" name="profile" />
 						<input type="Submit" value="Create your own idea!" />
 					</form>
 				</div> --%>
-				
-				
-				<div class="col-sm-3">
+
+
+			<div class="col-sm-3">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
-					<input type="text" name="ideaKeyword" /> 
-					 <br><input type="submit" value="Search for Idea" />
+					<input type="text" name="ideaKeyword" /> <br> <input
+						type="submit" value="Search for Idea" />
 				</form>
-				</div>
-				
 			</div>
-	
+
+		</div>
+
 		<!-- Listing for ideas -->
-		<c:forEach var="i" items="${ideaList}"  >
+		<c:forEach var="i" items="${ideaList}">
 			<div id="page-wrap">
-          	<div id="one-true" class="group">
-          	<div class="row">
-				<div class="col-xs-2 col-md-1 ideaicons col"><img alt="Picture of ${i.profile.user.username}" src="${i.profile.profilePic}" class="imgsize2"></div>
-				<div class="col-xs-2 col-md-1 ideaicons col">	<br><a href="likeIdea.do?iid=${i.id }"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a href="dislikeIdea.do?iid=${i.id }"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${i.likes } - ${i.dislikes }</div>
-				<div class="col-xs-8 col-md-10 idearow col"><a href="toIdea.do?iid=${i.id }">${i.name}</a></div>
-			</div>
-			</div>
+				<div id="one-true" class="group">
+					<div class="row">
+						<div class="col-xs-2 col-md-1 ideaicons col">
+							<img alt="Picture of ${i.profile.user.username}"
+								src="${i.profile.profilePic}" class="imgsize2">
+						</div>
+						<div class="col-xs-2 col-md-1 ideaicons col">
+							<br> <a href="likeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }"><i
+								class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a
+								href="dislikeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }""><i
+								class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${i.likes }
+							- ${i.dislikes }
+						</div>
+						<div class="col-xs-8 col-md-10 idearow col">
+							<a href="toIdea.do?iid=${i.id }">${i.name}</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</c:forEach>
 
