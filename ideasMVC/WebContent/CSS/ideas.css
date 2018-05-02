@@ -16,7 +16,10 @@ body {
 			margin-bottom: 50em;
 		}
 		
-
+		.rowCentSm{
+		padding-left: 20em;
+		}
+		
 		  .navtext{
 		   font-family: 'Crimson Text', serif;
 		   font-size: 2em;

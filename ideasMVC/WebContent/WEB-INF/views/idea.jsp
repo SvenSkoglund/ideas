@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="images/favicon.ico" rel="icon" type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>idea.</title>
 <meta charset="utf-8">

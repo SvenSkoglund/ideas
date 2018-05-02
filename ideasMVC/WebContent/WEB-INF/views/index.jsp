@@ -6,6 +6,7 @@
 <!--class full means-->
 
 <head>
+<link href="images/favicon.ico" rel="icon" type="image/x-icon" />
 <title>ideas.</title>
 
 <meta charset="utf-8">
