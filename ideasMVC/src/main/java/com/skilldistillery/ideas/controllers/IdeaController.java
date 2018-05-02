@@ -499,11 +499,16 @@ public class IdeaController {
 	public ModelAndView postComment(String content, int ideaId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
-		Profile profile = user.getProfile();
 		Idea idea = ideaDao.showIdea(ideaId);
+		if(user == null) {
+			mv.addObject("mustBeLoggedInMessage", "You must be logged in to comment!!");	
+		}else {
+		Profile profile = user.getProfile();
 		Comment comment = new Comment();
 		comment.setContent(content);
 		commentDao.create(comment, profile, idea);
+		
+	}
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
 		mv.addObject("comments", comments);
 		idea = ideaDao.assignLikes(idea);
