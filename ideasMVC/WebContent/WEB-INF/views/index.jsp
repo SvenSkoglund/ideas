@@ -61,6 +61,9 @@
 
 		<h3 class="textformat">${logoutMessage }</h3>
 		<h3 class="textformat">${mustBeLoggedInMessage }</h3>
+		<h3 class="textformat">${accountNotFoundMessage }</h3>
+		
+		
 		<div class="row">
 		<div class="col-sm-1"></div>
 			<div class="col-sm-8">

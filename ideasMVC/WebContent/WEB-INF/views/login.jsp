@@ -45,24 +45,17 @@
 	<!-- Leading navigation bar, need to figure out logic for user -->
 	<%@ include file="loggedOutNavBar.jsp"%>
 	<div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-2"></div>
-			<div class="col-sm-8">
-					<h1 class="textformat">${message }</h1>
-					<!-- Login form -->
-					<form action="login.do" method="POST">
-						<label for="username">Username</label>
-						<input type="text" name="username" /><br>
-						
-						<label for="password">Password</label>
-						<input type="password" name="password" /><br>
-						
-						<input type="submit" value="Log In" />
-					</form>
-			</div>
-			<div class="col-sm-2"></div>
-		</div>
-		<div class="footer">powered by unholy desolation</div>
+	<h1 class="textformat">${message }</h1>
+	<!-- Login form -->
+	<form action="login.do" method="POST">
+		<label for="username">Username</label>
+		<input type="text" name="username" /><br>
+		
+		<label for="password">Password</label>
+		<input type="password" name="password" /><br>
+		
+		<input type="submit" value="Log In" />
+	</form>
 	</div>
 </body>
 </html>
