@@ -63,6 +63,8 @@
 			<div class="col-sm-8">
 
 				<div align="center" class="errorMessage">
+					<c:if test="${empty ideaList }">
+						<h3 class="textformat">No Ideas Found</h3></c:if>
 					<h3 class="textformat">${logoutMessage }</h3>
 					<h3 class="textformat">${mustBeLoggedInMessage }</h3>
 					<h3 class="textformat">${accountNotFoundMessage }</h3>
@@ -122,7 +124,7 @@
 								class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a><br>${i.likes }
 							&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp; ${i.dislikes }
 						</div>
-						<div class="col-xs-8 col-md-10 idearow col">
+						<div class="col-xs-8 col-md-10 idearow col"><br>
 							<a href="toIdea.do?iid=${i.id }"><h3>${i.name}</h3></a>
 						</div>
 					</div>

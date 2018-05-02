@@ -66,7 +66,7 @@
 				<form action="postIdea.do" method="POST">
 					
 					
-					<textarea class="inner" id="title" type="Text" placeholder="Title/Heading" name="name" ></textarea><br>
+					<textarea class="inner" id="title" type="Text" placeholder="Title/Heading" name="name" required></textarea><br>
 					<br/>
 				
 				<!-- Stylesheet to make text box in a box form using divs to style? -->
