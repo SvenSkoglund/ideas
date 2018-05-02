@@ -148,7 +148,7 @@ body {
 		
 		      .ideastext{
 		       font-family: 'Crimson Text', serif;
-		       font-size: 2em;
+		       font-size: 3em;
 		       font-weight: bolder;
 		       text-align: left;
 		       vertical-align: middle;
@@ -207,22 +207,28 @@ body {
 		        margin-bottom: 1em;
 		      }
 		      
-		      .rowRound{
-		      border-radius: 2em;
-		      }
-		      
 		      
 		      /* Sets the column heights equal */
-		        #page-wrap { width: 80%; margin: .1em auto; align-content: center;}
+		        #page-wrap { width: 85%; margin: .1em auto; align-content: center;}
 		        #page-wrap > div { margin: 0; min-width: 500px; width: 100%; }
 		
 		        #one-true { overflow: hidden; }
 		        #one-true .col {
-		            width: 17%;
+		            width: 60%;
 		            /* padding: 1em */;
 		            /* float: left; */
 		            margin-bottom: -99999px;
 		            padding-bottom: 99999px;
+		
+		        }
+		        #one-true .col1 {
+		            width: 20%;
+		            /* padding: 1em */;
+		            /* float: left; */
+		            margin-bottom: -99999px;
+		            padding-bottom: 99999px;
+		            padding-left: 2em;
+		            
 		
 		        }
 		
