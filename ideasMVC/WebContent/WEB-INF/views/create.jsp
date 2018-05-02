@@ -50,8 +50,8 @@
 			
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-sm-2"></div>
-					<div class="col-sm-8">
+					<div class="col-sm-5"></div>
+					<div class="col-sm-2">
 						<h1 class="textformat">${passwordMessage }</h1>
 						<h1 class="textformat">${createUserMessage }</h1>
 						
@@ -74,13 +74,13 @@
 						  <form:errors path="confirmPassword" />
 					   
 					 		<br /><br />
-					  	  <input type="submit" value="Create Account" />
+					  	  <input type="submit" value="Submit" />
 						</form:form>
 						<br />
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-5"></div>
 			</div>
-			<div class="footer">powered by unholy desolation</div>
+			<div class="footer">Powered by Unholy Desolation</div>
 		</div>
 	
 </body>
