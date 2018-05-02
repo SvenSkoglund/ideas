@@ -2,6 +2,7 @@
 body {
   background-color: #78c2df;
   padding-top: 15em;
+  padding-bottom: 5em;
 }
 
 /*  ----------------------  small screens ---------------------------- */
@@ -124,6 +125,22 @@ body {
 		    margin-top: 0 auto;
 		    margin-bottom: 0 auto;
 		  }
+		  
+		  .errorMessage {
+		  color: red;
+		  
+		  }
+		  
+		  		.imgsize4 {
+		    width: 20%;
+		    height: 20%;
+		    border-radius: 50%;
+		    display: block;
+		    margin-left: auto;
+		    margin-right: auto;
+		    margin-top: auto;
+		    margin-bottom: auto;
+		  }
 		
 		 .imgsizeNav {
 			width: 10%;
@@ -193,6 +210,12 @@ body {
 
 @media (min-width: 415px) {
 
+body {
+  background-color: #78c2df;
+  padding-top: 10em;
+  padding-bottom: 5em;
+}
+	
 			.main-header {
 				position: fixed;
 				top: 0;
