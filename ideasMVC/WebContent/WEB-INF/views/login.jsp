@@ -45,7 +45,8 @@
 	<!-- Leading navigation bar, need to figure out logic for user -->
 	<%@ include file="loggedOutNavBar.jsp"%>
 	<div class="container-fluid">
-	<h1 class="textformat">${message }</h1>
+	<h1 class="textformat">${logoutMessage }</h1>
+	<h1 class="textformat">${accountNotFoundMessage }</h1>
 	<!-- Login form -->
 	<form action="login.do" method="POST">
 		<label for="username">Username</label>
