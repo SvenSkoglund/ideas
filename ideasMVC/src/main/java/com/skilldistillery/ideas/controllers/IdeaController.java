@@ -1,6 +1,5 @@
 package com.skilldistillery.ideas.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -503,16 +502,16 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		Idea idea = ideaDao.showIdea(ideaId);
-		if(user == null) {
-			mv.addObject("mustBeLoggedInMessage", "You must be logged in to comment!!");	
-		}else {
-		Profile profile = user.getProfile();
-		Comment comment = new Comment();
-		
-		comment.setContent(content);
-		commentDao.create(comment, profile, idea);
-		
-	}
+		if (user == null) {
+			mv.addObject("mustBeLoggedInMessage", "You must be logged in to comment!!");
+		} else {
+			Profile profile = user.getProfile();
+			Comment comment = new Comment();
+
+			comment.setContent(content);
+			commentDao.create(comment, profile, idea);
+
+		}
 		List<Comment> comments = commentDao.showCommentsByIdea(ideaId);
 		for (Comment comment : comments) {
 			comment = commentDao.assignLikes(comment);
@@ -570,30 +569,44 @@ public class IdeaController {
 		mv.setViewName("redirect:toSettings.do");
 		return mv;
 	}
-	
 
 	@RequestMapping(path = "toSettings.do", method = RequestMethod.GET)
 	public ModelAndView directToSettings(HttpSession session, int pid) {
 		ModelAndView mv = new ModelAndView();
-		Profile profileToUpdate  = profileDao.showProfile(pid);
+		Profile profileToUpdate = profileDao.showProfile(pid);
 		mv.addObject("profile", profileToUpdate);
 		mv.setViewName("WEB-INF/views/settings.jsp");
 		return mv;
 	}
 
 	@RequestMapping(path = "update.do", method = RequestMethod.POST)
-	public ModelAndView updateSettings(@RequestParam(name = "username") String newUsername,
-			@RequestParam(name = "password") String newPassword, @RequestParam(name = "email") String newEmail,
+	public ModelAndView updateSettings(@Valid User user, Errors errors,
 			@RequestParam(name = "profilePic") String newProfilePic, @RequestParam(name = "bio") String newBio, int pid,
 			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-
+		System.out.println(user);
+		if (errors.getErrorCount() != 0) {
+			user = profileDao.showProfile(pid).getUser();
+			mv.addObject("pid", user.getProfile().getId());
+			mv.addObject("profile", user.getProfile());
+			mv.addObject("invalidSettingsMessage", "Username or password is of invalid length");
+			mv.setViewName("WEB-INF/views/settings.jsp");
+			return mv;
+		}
 		User userUpdatingProfile = profileDao.showProfile(pid).getUser();
-		userUpdatingProfile.setUsername(newUsername);
-		userUpdatingProfile.setPassword(newPassword);
-		userUpdatingProfile.setEmail(newEmail);
-		userDao.update(userUpdatingProfile);
-
+		userUpdatingProfile.setUsername(user.getUsername());
+		userUpdatingProfile.setPassword(user.getPassword());
+		userUpdatingProfile.setEmail(user.getEmail());
+		try {
+			userDao.update(userUpdatingProfile);
+		} catch (Exception e) {
+			user = profileDao.showProfile(pid).getUser();
+			mv.addObject("pid", user.getProfile().getId());
+			mv.addObject("profile", user.getProfile());
+			mv.addObject("invalidSettingsMessage", "Username or Email is already taken");
+			mv.setViewName("WEB-INF/views/settings.jsp");
+			return mv;
+		}
 		Profile profileToUpdate = userUpdatingProfile.getProfile();
 		profileToUpdate.setProfilePic(newProfilePic);
 		if (profileToUpdate.getProfilePic().equals("") || profileToUpdate.getProfilePic() == ""
@@ -630,7 +643,7 @@ public class IdeaController {
 		mv.setViewName("toProfile.do");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "activateProfile.do", method = RequestMethod.GET)
 	public ModelAndView activateProfile(@RequestParam(name = "pid") Integer profileId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();

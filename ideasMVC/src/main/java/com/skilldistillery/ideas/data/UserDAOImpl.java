@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.ideasjpa.entities.User;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.skilldistillery.ideasjpa.entities.Idea;
 import com.skilldistillery.ideasjpa.entities.Profile;
 import com.skilldistillery.ideasjpa.entities.User;
@@ -33,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User update(User user) {
+	public User update(User user) throws MySQLIntegrityConstraintViolationException {
 		User managed = em.find(User.class, user.getId());
 		managed.setUsername(user.getUsername());
 		managed.setPassword(user.getPassword());
