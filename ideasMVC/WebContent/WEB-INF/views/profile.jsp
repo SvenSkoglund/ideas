@@ -67,12 +67,19 @@
 		<hr>
 		
 		<!-- Deactivate Profile form -->
-		<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin}">
+		<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == true}">
 			<form action="deactivateProfile.do" method="GET">
 				<input type="submit" value="Deactivate Profile" />
 				<input type="hidden" name="pid" value="${profile.id }">
 				<!-- This should be replaced by a session profile -->
-				<input type="hidden" name="profileLoggedInId" value="${profile.id}">
+			</form>
+		</c:if>
+		
+				<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == false}">
+			<form action="activateProfile.do" method="GET">
+				<input type="submit" value="Activate Profile" />
+				<input type="hidden" name="pid" value="${profile.id }">
+				<!-- This should be replaced by a session profile -->
 			</form>
 		</c:if>
 		
@@ -99,9 +106,10 @@
 		 
 		
 		<!-- Account Settings form -->
-		<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin}">
+		<c:if test="${loggedInUser.profile.user.admin}">
 			<form action="toSettings.do" method="GET">
 				<input type="submit" value="Account Settings" />
+				<input type="hidden" name ="pid" value="${profile.id }"/>
 			</form>
 		</c:if>
 	
