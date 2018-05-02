@@ -409,17 +409,18 @@ body {
 			 } 
 			  
 			 .inner  {
-			  min-width: 10em;
+			  min-width: 40%;
 			  height: 5em;
-			  margin: 0 auto;
+			  margin: auto;
 			  float: none;
-			  align: middle;
+			  align: center;
+			  align-content: center;
 			  }
 			  
 			  #title {
-			  min-width: 10em;
+			  min-width: 40%;
 			  height: 2em;
-			  margin: 0 auto;
+			  margin: auto;
 			  float: none;
 			  
 			  } 
