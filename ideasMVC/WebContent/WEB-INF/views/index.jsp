@@ -60,7 +60,7 @@
 
 
 		<h3 class="textformat">${logoutMessage }</h3>
-		<h3 class="textformat">${message }</h3>
+		<h3 class="textformat">${mustBeLoggedInMessage }</h3>
 		<div class="row">
 			<div class="col-sm-9">
 				<!-- Sort by, don't know if this was stretch goal or not -->
