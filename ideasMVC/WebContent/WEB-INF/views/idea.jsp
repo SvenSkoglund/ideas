@@ -180,7 +180,7 @@
 						<div class="col-xs-2 col-md-1 ideaicons col1">
 							<br> <br> <a
 								href="likeComment.do?cid=${comment.id }&iid=${idea.id}"><i
-								class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;</a>
+								class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
 							<a href="dislikeComment.do?cid=${comment.id }&iid=${idea.id}"><i
 								class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a>
 							&nbsp;&nbsp;&nbsp; <br>${comment.likes } &nbsp;&nbsp;&nbsp;
