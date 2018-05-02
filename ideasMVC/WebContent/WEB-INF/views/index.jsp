@@ -119,7 +119,7 @@
 			</div>
 		</c:forEach>
 
-	<div class="footer">powered by unholy desolation</div>
+	<div class="footer">Powered by Unholy Desolation</div>
 	</div>
 
 </body>
