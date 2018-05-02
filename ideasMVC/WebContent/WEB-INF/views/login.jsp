@@ -56,11 +56,6 @@
 		
 		<input type="submit" value="Log In" />
 	</form>
-	
-	<!-- Create Account form -->
-	<form action="toCreateAccount.do" method="GET">
-		<input type="submit" value="Return to Create Account" />
-	</form>
 	</div>
 </body>
 </html>
