@@ -54,7 +54,12 @@
 		</c:choose>
 
 	<div class="container-fluid">
-	<h1 class="textformat">${message }</h1>
+	<h1 class="textformat">${ideaCreatedMessage }</h1>
+	<h1 class="textformat">${ideaNotDeletedMessage }</h1>
+	<h1 class="textformat">${mustBeLoggedInMessage }</h1>
+	<h1 class="textformat">${noPermDeactivateIdeaMessage }</h1>
+	<h1 class="textformat">${noPermActivateIdeaMessage }</h1>
+	<h1 class="textformat">${noPermDeactivateCommentMessage }</h1>
 
 	<a href="toProfile.do?pid=${idea.profile.id }"><img src="${idea.profile.profilePic }" alt="Image of ${idea.profile.user.username }" class="imgsize3" /></a>
 	<br>

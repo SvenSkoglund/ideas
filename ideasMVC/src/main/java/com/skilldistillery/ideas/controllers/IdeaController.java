@@ -165,7 +165,7 @@ public class IdeaController {
 		if (result) {
 			mv.setViewName("redirect:index.do");
 		} else {
-			mv.addObject("message", "Idea not deleted!");
+			mv.addObject("ideaNotDeletedMessage", "Idea not deleted!");
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
@@ -189,7 +189,7 @@ public class IdeaController {
 
 			mv.setViewName("WEB-INF/views/idea.jsp");
 		} else {
-			redir.addFlashAttribute("message", "Idea Created!");
+			redir.addFlashAttribute("ideaCreatedMessage", "Idea Created!");
 			redir.addFlashAttribute("idea", idea);
 			mv.setViewName("redirect:redirectIdea.do");
 		}
@@ -203,7 +203,7 @@ public class IdeaController {
 		Idea idea = ideaDao.showIdea(iid);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
-			mv.addObject("message", "Must be logged in to vote");
+			mv.addObject("mustBeLoggedInMessage", "Must be logged in to vote");
 			List<Idea> ideaList = ideaDao.showAllIdeas();
 			mv.addObject("sortChoice", sortChoice);
 			mv.addObject("ideaKeyword", ideaKeyword);
@@ -242,7 +242,7 @@ public class IdeaController {
 		Idea idea = ideaDao.showIdea(iid);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
-			mv.addObject("message", "Must be logged in to vote");
+			mv.addObject("mustBeLoggedInMessage", "Must be logged in to vote");
 			List<Idea> ideaList = ideaDao.showAllIdeas();
 			mv.addObject("sortChoice", sortChoice);
 			mv.addObject("ideaKeyword", ideaKeyword);
@@ -282,7 +282,7 @@ public class IdeaController {
 		Idea idea = ideaDao.showIdea(iid);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
-			mv.addObject("message", "Must be logged in to vote");
+			mv.addObject("mustBeLoggedInMessage", "Must be logged in to vote");
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			List<Comment> comments = commentDao.showCommentsByIdea(iid);
@@ -317,7 +317,7 @@ public class IdeaController {
 		Idea idea = ideaDao.showIdea(iid);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
-			mv.addObject("message", "Must be logged in to vote");
+			mv.addObject("mustBeLoggedInMessage", "Must be logged in to vote");
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			List<Comment> comments = commentDao.showCommentsByIdea(iid);
@@ -358,7 +358,7 @@ public class IdeaController {
 		mv.addObject("comments", comments);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
-			mv.addObject("message", "Must be logged in to vote");
+			mv.addObject("mustBeLoggedInMessage", "Must be logged in to vote");
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			mv.setViewName("WEB-INF/views/idea.jsp");
@@ -388,7 +388,7 @@ public class IdeaController {
 		mv.addObject("comments", comments);
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user == null) {
-			mv.addObject("message", "Must be logged in to vote");
+			mv.addObject("mustBeLoggedInMessage", "Must be logged in to vote");
 			Integer likes = ideaDao.getLikes(idea);
 			idea.setLikes(likes);
 			Integer dislikes = ideaDao.getDislikes(idea);
@@ -484,7 +484,7 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		User user = userDao.findUserByUsernameAndPassword(username, password);
 		if (user == null) {
-			mv.addObject("message", "Account not found");
+			mv.addObject("accountNotFoundMessage", "Account not found");
 			mv.setViewName("WEB-INF/views/login.jsp");
 			return mv;
 		} else {
@@ -603,13 +603,13 @@ public class IdeaController {
 			Profile profileLoggedIn = loggedInUser.getProfile();
 
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
-				mv.addObject("message", "Profile De-Activated");
+				mv.addObject("profileDeActivatedMessage", "Profile De-Activated");
 				profileDao.makeInactive(profileId);
 			} else {
-				mv.addObject("message", "You do not have permission to deactivate this profile");
+				mv.addObject("noPermissionDeActivateMessage", "You do not have permission to deactivate this profile");
 			}
 		} else {
-			mv.addObject("message", "You do not have permission to deactivate this profile");
+			mv.addObject("noPermissionDeActivateMessage", "You do not have permission to deactivate this profile");
 		}
 
 		mv.addObject("pid", profile.getId());
@@ -626,13 +626,13 @@ public class IdeaController {
 			Profile profileLoggedIn = loggedInUser.getProfile();
 
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
-				mv.addObject("message", "Profile Activated");
+				mv.addObject("activaedMessage", "Profile Activated");
 				profileDao.makeActive(profileId);
 			} else {
-				mv.addObject("message", "You do not have permission to activate this profile");
+				mv.addObject("noPermissionActivateMessage", "You do not have permission to activate this profile");
 			}
 		} else {
-			mv.addObject("message", "You do not have permission to activate this profile");
+			mv.addObject("noPermissionActivateMessage", "You do not have permission to activate this profile");
 		}
 
 		mv.addObject("pid", profile.getId());
@@ -652,10 +652,10 @@ public class IdeaController {
 				mv.addObject("message", "Idea De-Activated");
 				ideaDao.makeInactive(ideaId);
 			} else {
-				mv.addObject("message", "You do not have permission to deactivate this Idea");
+				mv.addObject("noPermDeactivateIdeaMessage", "You do not have permission to deactivate this Idea");
 			}
 		} else {
-			mv.addObject("message", "You do not have permission to deactivate this Idea");
+			mv.addObject("noPermDeactivateIdeaMessage", "You do not have permission to deactivate this Idea");
 		}
 		mv.addObject("iid", ideaId);
 		mv.setViewName("toIdea.do");
@@ -674,10 +674,10 @@ public class IdeaController {
 				mv.addObject("message", "Idea Activated");
 				ideaDao.makeActive(ideaId);
 			} else {
-				mv.addObject("message", "You do not have permission to activate this Idea");
+				mv.addObject("noPermActivateIdeaMessage", "You do not have permission to activate this Idea");
 			}
 		} else {
-			mv.addObject("message", "You do not have permission to activate this Idea");
+			mv.addObject("noPermActivateIdeaMessage", "You do not have permission to activate this Idea");
 		}
 		mv.addObject("iid", ideaId);
 		mv.setViewName("toIdea.do");
@@ -698,10 +698,10 @@ public class IdeaController {
 				session.setAttribute("message", "Comment De-Activated");
 				commentDao.makeInactive(commentId);
 			} else {
-				session.setAttribute("message", "You do not have permission to deactivate this comment");
+				session.setAttribute("noPermDeactivateCommentMessage", "You do not have permission to deactivate this comment");
 			}
 		} else {
-			session.setAttribute("message", "You do not have permission to deactivate this comment");
+			session.setAttribute("noPermDeactivateCommentMessage", "You do not have permission to deactivate this comment");
 		}
 		mv.addObject("iid", ideaId);
 		mv.addObject("cid", comment.getId());

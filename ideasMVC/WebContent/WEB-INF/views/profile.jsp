@@ -54,7 +54,11 @@
 			</c:otherwise>
 		</c:choose>
 	<div class="container-fluid">
-		<h1 class="textformat">${message }</h1>
+		<h1 class="textformat">${profileDeActivatedMessage }</h1>
+		<h1 class="textformat">${noPermissionDeActivateMessage }</h1>
+		<h1 class="textformat">${noPermissionActivateMessage }</h1>
+		<h1 class="textformat">${activaedMessage }</h1>
+	
 		
 		<!-- Big headline telling you whose profile you're looking at -->
 		<h1 class="textformat">${profile.user.username }</h1><br>
