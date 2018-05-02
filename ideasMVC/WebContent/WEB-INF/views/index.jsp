@@ -61,8 +61,12 @@
 
 		<h3 class="textformat">${logoutMessage }</h3>
 		<h3 class="textformat">${mustBeLoggedInMessage }</h3>
+		<h3 class="textformat">${accountNotFoundMessage }</h3>
+		
+		
 		<div class="row">
-			<div class="col-sm-9">
+		<div class="col-sm-1"></div>
+			<div class="col-sm-8">
 				<!-- Sort by, don't know if this was stretch goal or not -->
 				<c:choose>
 					<c:when test="${empty ideaKeyword}">
@@ -84,17 +88,6 @@
 				</form>
 			</div>
 
-			<%-- MOVE THIS CREATE IDEA TO NAVBAR WHEN LOGGED IN --%>
-			<%-- TEMPORARY INSTALL TO CHECK toPostIdea.do LOGIC --%>
-			<%-- <div class = "col-sm-5">
-					<!-- Create your own idea form -->
-					<form action="toPostIdea.do" method="GET">
-						<input type="hidden" value="${profile }" name="profile" />
-						<input type="Submit" value="Create your own idea!" />
-					</form>
-				</div> --%>
-
-
 			<div class="col-sm-3">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
@@ -110,25 +103,26 @@
 			<div id="page-wrap">
 				<div id="one-true" class="group">
 					<div class="row">
-						<div class="col-xs-2 col-md-1 ideaicons col">
+						<div class="col-xs-2 col-md-1 ideaicons col1">
 							<img alt="Picture of ${i.profile.user.username}"
 								src="${i.profile.profilePic}" class="imgsize2">
 						</div>
-						<div class="col-xs-2 col-md-1 ideaicons col">
-							<br> <a href="likeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }"><i
-								class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a
+						<div class="col-xs-2 col-md-1 ideaicons col1">
+							<br><br> <a href="likeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }"><i
+								class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a
 								href="dislikeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }""><i
-								class="fa fa-thumbs-o-down" aria-hidden="true"></i></a><br>${i.likes }
-							- ${i.dislikes }
+								class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a><br>${i.likes }
+							&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp; ${i.dislikes }
 						</div>
 						<div class="col-xs-8 col-md-10 idearow col">
-							<a href="toIdea.do?iid=${i.id }">${i.name}</a>
+							<a href="toIdea.do?iid=${i.id }"><h3>${i.name}</h3></a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
 
+	<div class="footer">Powered by Unholy Desolation</div>
 	</div>
 
 </body>

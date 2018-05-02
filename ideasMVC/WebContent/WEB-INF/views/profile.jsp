@@ -54,69 +54,77 @@
 			</c:otherwise>
 		</c:choose>
 	<div class="container-fluid">
-		<h1 class="textformat">${profileDeActivatedMessage }</h1>
-		<h1 class="textformat">${noPermissionDeActivateMessage }</h1>
-		<h1 class="textformat">${noPermissionActivateMessage }</h1>
-		<h1 class="textformat">${activaedMessage }</h1>
 	
-		
-		<!-- Big headline telling you whose profile you're looking at -->
-		<h1 class="textformat">${profile.user.username }</h1><br>
-		
-		<img alt="Profile picture of ${profile.user.username }" src="${profile.profilePic }" class="imgsize3"><br>
 	
-		<h5 class="textformat">Member since: ${profile.createdDate }</h5><br>
-		<p class="textformat">${profile.bio }</p>
-		
-		<hr>
-		
-		<!-- Deactivate Profile form -->
-		<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == true}">
-			<form action="deactivateProfile.do" method="GET">
-				<input type="submit" value="Deactivate Profile" />
-				<input type="hidden" name="pid" value="${profile.id }">
-				<!-- This should be replaced by a session profile -->
-			</form>
-		</c:if>
-		
-				<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == false}">
-			<form action="activateProfile.do" method="GET">
-				<input type="submit" value="Activate Profile" />
-				<input type="hidden" name="pid" value="${profile.id }">
-				<!-- This should be replaced by a session profile -->
-			</form>
-		</c:if>
-		
-		<hr>
-		
-						<!-- Reputation probably special object in Controller -->
-						<%-- 	<h5>Reputation: ${profile.reputation }</h5><br>
-						 --%>	
-						<!-- ideaCount probably special object in Controller -->
-							
-		<h5 class="textformat">Total Ideas: ${size }</h5><br>
-		
-		
-		<!-- Listing for user's ideas -->
-		<c:forEach var="i" items="${ideas }">
-			<h3 class="textformat">
-				<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
-			</h3><br>
-				<form action="destoryIdea.do" method="POST">
-					<input type="hidden" value="${i }" name="idea">
-				</form>
-			<br>
-		</c:forEach>
-		 
-		
-		<!-- Account Settings form -->
-		<c:if test="${loggedInUser.profile.user.admin}">
-			<form action="toSettings.do" method="GET">
-				<input type="submit" value="Account Settings" />
-				<input type="hidden" name ="pid" value="${profile.id }"/>
-			</form>
-		</c:if>
-	
+	<div class="row">
+		<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<h1 class="textformat">${profileDeActivatedMessage }</h1>
+				<h1 class="textformat">${noPermissionDeActivateMessage }</h1>
+				<h1 class="textformat">${noPermissionActivateMessage }</h1>
+				<h1 class="textformat">${activaedMessage }</h1>
+			
+				
+				<!-- Big headline telling you whose profile you're looking at -->
+				<h1 class="textformat">${profile.user.username }</h1><br>
+				
+				<img alt="Profile picture of ${profile.user.username }" src="${profile.profilePic }" class="imgsize3"><br>
+			
+				<h5 class="textformat">Member since: ${profile.createdDate }</h5><br>
+				<p class="textformat">${profile.bio }</p>
+				
+				<hr>
+				
+				<!-- Deactivate Profile form -->
+				<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == true}">
+					<form action="deactivateProfile.do" method="GET">
+						<input type="submit" value="Deactivate Profile" />
+						<input type="hidden" name="pid" value="${profile.id }">
+						<!-- This should be replaced by a session profile -->
+					</form>
+				</c:if>
+				<br>
+						<c:if test="${loggedInUser == profile.user || loggedInUser.profile.user.admin && profile.active == false}">
+					<form action="activateProfile.do" method="GET">
+						<input type="submit" value="Activate Profile" />
+						<input type="hidden" name="pid" value="${profile.id }">
+						<!-- This should be replaced by a session profile -->
+					</form>
+				</c:if>
+				
+			
+				
+								<!-- Reputation probably special object in Controller -->
+								<%-- 	<h5>Reputation: ${profile.reputation }</h5><br>
+								 --%>	
+								<!-- ideaCount probably special object in Controller -->
+									
+				<h5 class="textformat">Total Ideas: ${size }</h5><br>
+				
+				
+				<!-- Listing for user's ideas -->
+				<c:forEach var="i" items="${ideas }">
+					<h3 class="textformatHeadline">
+						<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
+					</h3><br>
+						<form action="destoryIdea.do" method="POST">
+							<input type="hidden" value="${i }" name="idea">
+						</form>
+					<br>
+				</c:forEach>
+				 
+				
+				<!-- Account Settings form -->
+				<c:if test="${loggedInUser.profile.user.admin}">
+					<form action="toSettings.do" method="GET">
+						<input type="submit" value="Account Settings" />
+						<input type="hidden" name ="pid" value="${profile.id }"/>
+					</form>
+				</c:if>
+			</div>
+		<div class="col-sm-2"></div>
+	</div>
+	<div class="footer">powered by unholy desolation</div>
 	</div>
 </body>
 </html>

@@ -61,28 +61,29 @@
 	
 	
 	<div class="row">
-	<div class="col-sm-4"></div>
-	<div class="col-sm-8">
-	<form action="postIdea.do" method="POST">
-		
-		
-		<textarea class="inner" id="title" type="Text" placeholder="Title/Heading" name="name" ></textarea><br>
-		<br/>
-	
-	<!-- Stylesheet to make text box in a box form using divs to style? -->
-	
-
-		
-		<textarea class="inner" type="Text"   placeholder="idea" name="content"  ></textarea><br><br>
-		
-		<input class="" type="hidden" value="${loggedInUser.profile.id }" name="profileId" />
-
-	
-		<input type="Submit" value="Post Idea" />
-	</form>
-	</div>
-<div class="col-sm-2"></div> 
-	</div>
+		<div class="col-sm-4"></div>
+			<div class="col-sm-8">
+				<form action="postIdea.do" method="POST">
+					
+					
+					<textarea class="inner" id="title" type="Text" placeholder="Title/Heading" name="name" ></textarea><br>
+					<br/>
+				
+				<!-- Stylesheet to make text box in a box form using divs to style? -->
+				
+			
+					
+					<textarea class="inner" type="Text"   placeholder="idea" name="content"  ></textarea><br><br>
+					
+					<input class="" type="hidden" value="${loggedInUser.profile.id }" name="profileId" />
+				<br>
+				
+					<input type="Submit" value="Post Idea" />
+				</form>
+				</div>
+			<div class="col-sm-2"></div> 
+		</div>
+	<div class="footer">powered by unholy desolation</div>
 </div>
 </body>
 </html>

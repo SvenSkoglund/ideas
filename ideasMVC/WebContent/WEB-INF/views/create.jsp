@@ -47,33 +47,41 @@
 	
 			<!-- Leading navigation bar, need to figure out logic for user -->
 			<%@ include file="loggedOutNavBar.jsp"%>
-			<h1 class="textformat">${passwordMessage }</h1>
-			<h1 class="textformat">${createUserMessage }</h1>
 			
-			<form:form action="createUser.do" method="POST" modelAttribute="userDTO">
-			  <form:label path="username">Username:</form:label>
-			  <form:input path="username" />
-			  <form:errors path="username" />
-			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			  <form:label path="email">Email:</form:label>
-			  <form:input path="email" />
-			  <form:errors path="email" />
-			  
-			  <br />
-			  <form:label path="password">Password:</form:label>
-			  <form:input type="password" path="password" />
-			  <form:errors path="password" />
-		   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			  <form:label path="confirmPassword"> Confirm Password:</form:label>
-			  <form:input type="password" path="confirmPassword" />
-			  <form:errors path="confirmPassword" />
-		   
-		 		<br /><br />
-		  	  <input type="submit" value="Create Account" />
-			</form:form>
-			<br />
-	
-	
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<h1 class="textformat">${passwordMessage }</h1>
+						<h1 class="textformat">${createUserMessage }</h1>
+						
+						<form:form action="createUser.do" method="POST" modelAttribute="userDTO">
+						  <form:label path="username">Username:</form:label>
+						  <form:input path="username" />
+						  <form:errors path="username" />
+						  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  <form:label path="email">Email:</form:label>
+						  <form:input path="email" />
+						  <form:errors path="email" />
+						  
+						  <br />
+						  <form:label path="password">Password:</form:label>
+						  <form:input type="password" path="password" />
+						  <form:errors path="password" />
+					   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  <form:label path="confirmPassword"> Confirm Password:</form:label>
+						  <form:input type="password" path="confirmPassword" />
+						  <form:errors path="confirmPassword" />
+					   
+					 		<br /><br />
+					  	  <input type="submit" value="Create Account" />
+						</form:form>
+						<br />
+					</div>
+					<div class="col-sm-2"></div>
+			</div>
+			<div class="footer">powered by unholy desolation</div>
+		</div>
 	
 </body>
 </html>
