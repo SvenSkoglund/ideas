@@ -50,14 +50,23 @@
 
 	<div class="container-fluid">
 		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+
+				<div align="center" class="errorMessage">
+					<h3 class="textformat">${passwordMessage }</h3>
+					<h3 class="textformat">${createUserMessage }</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-sm-5"></div>
 			<div class="col-sm-2">
-				<h1 class="textformat">${passwordMessage }</h1>
-				<h1 class="textformat">${createUserMessage }</h1>
 
 				<form:form action="createUser.do" method="POST"
 					modelAttribute="userDTO">
-					<form:label path="username">Username:</form:label><br>
+					<form:label path="username">Username:</form:label>
+					<br>
 					<form:input path="username" />
 					<form:errors path="username" />
 			</div>
@@ -66,7 +75,8 @@
 		<div class="row">
 			<div class="col-sm-5"></div>
 			<div class="col-sm-2">
-				<form:label path="email">Email:</form:label><br>
+				<form:label path="email">Email:</form:label>
+				<br>
 				<form:input path="email" />
 				<form:errors path="email" />
 			</div>
@@ -75,7 +85,8 @@
 		<div class="row">
 			<div class="col-sm-5"></div>
 			<div class="col-sm-2">
-				<form:label path="password">Password:</form:label><br>
+				<form:label path="password">Password:</form:label>
+				<br>
 				<form:input type="password" path="password" />
 				<form:errors path="password" />
 			</div>
@@ -84,7 +95,8 @@
 		<div class="row">
 			<div class="col-sm-5"></div>
 			<div class="col-sm-2">
-				<form:label path="confirmPassword"> Confirm Password:</form:label><br>
+				<form:label path="confirmPassword"> Confirm Password:</form:label>
+				<br>
 				<form:input type="password" path="confirmPassword" />
 				<form:errors path="confirmPassword" />
 			</div>
@@ -93,8 +105,7 @@
 		<div class="row">
 			<div class="col-sm-5"></div>
 			<div class="col-sm-2">
-				<br>
-				<input type="submit" value="Submit" />
+				<br> <input type="submit" value="Submit" />
 				</form:form>
 				<br />
 			</div>
@@ -102,6 +113,5 @@
 		</div>
 		<div class="footer">Powered by Unholy Desolation</div>
 	</div>
-
 </body>
 </html>

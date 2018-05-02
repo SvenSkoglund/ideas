@@ -286,6 +286,9 @@ public class IdeaController {
 			idea = ideaDao.assignLikes(idea);
 			mv.addObject("idea", idea);
 			List<Comment> comments = commentDao.showCommentsByIdea(iid);
+			for (Comment c : comments) {
+				c = commentDao.assignLikes(c);
+			}
 			mv.addObject("comments", comments);
 			mv.setViewName("WEB-INF/views/idea.jsp");
 			return mv;
@@ -526,12 +529,14 @@ public class IdeaController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("logoutMessage", "Logged out succesfully");
 		session.removeAttribute("loggedInUser");
+		session.invalidate();
 		mv.setViewName("index.do");
 		return mv;
 	}
 
 	@RequestMapping(path = "createUser.do", method = RequestMethod.POST)
 	public ModelAndView creatingUser(@Valid UserDTO userDTO, Errors errors, HttpSession session) {
+		User user = new User();
 		ModelAndView mv = new ModelAndView();
 
 		if (errors.getErrorCount() != 0) {
@@ -541,13 +546,12 @@ public class IdeaController {
 		}
 
 		if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
-			mv.addObject("passwordMessage", "Passwwords did not match");
+			mv.addObject("passwordMessage", "Passwords did not match");
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
 		}
 		if (!userDao.checkForExistingEmail(userDTO.getEmail())
 				&& !userDao.checkForExistingUsername(userDTO.getUsername())) {
-			User user = new User();
 			user.setUsername(userDTO.getUsername());
 			user.setEmail(userDTO.getEmail());
 			user.setPassword(userDTO.getPassword());
@@ -562,6 +566,7 @@ public class IdeaController {
 			mv.setViewName("WEB-INF/views/create.jsp");
 			return mv;
 		}
+		mv.addObject("pid", user.getProfile().getId());
 		mv.setViewName("redirect:toSettings.do");
 		return mv;
 	}
@@ -702,15 +707,14 @@ public class IdeaController {
 		if (loggedInUser != null) {
 			Profile profileLoggedIn = loggedInUser.getProfile();
 
-			System.out.println("in deactivate comment.do");
 			if (profileLoggedIn.getId() == comment.getProfile().getId() || profileLoggedIn.getUser().isAdmin()) {
-				session.setAttribute("message", "Comment De-Activated");
+				mv.addObject("deactivateMessage", "Comment De-Activated");
 				commentDao.makeInactive(commentId);
 			} else {
-				session.setAttribute("noPermDeactivateCommentMessage", "You do not have permission to deactivate this comment");
+				mv.addObject("noPermDeactivateCommentMessage", "You do not have permission to deactivate this comment");
 			}
 		} else {
-			session.setAttribute("noPermDeactivateCommentMessage", "You do not have permission to deactivate this comment");
+			mv.addObject("noPermDeactivateCommentMessage", "You do not have permission to deactivate this comment");
 		}
 		mv.addObject("iid", ideaId);
 		mv.addObject("cid", comment.getId());

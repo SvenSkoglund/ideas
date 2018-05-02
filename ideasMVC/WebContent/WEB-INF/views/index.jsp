@@ -58,14 +58,21 @@
 
 	<div class="container-fluid">
 
-
-		<h3 class="textformat">${logoutMessage }</h3>
-		<h3 class="textformat">${mustBeLoggedInMessage }</h3>
-		<h3 class="textformat">${accountNotFoundMessage }</h3>
-		
-		
 		<div class="row">
-		<div class="col-sm-1"></div>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+
+				<div align="center" class="errorMessage">
+					<h3 class="textformat">${logoutMessage }</h3>
+					<h3 class="textformat">${mustBeLoggedInMessage }</h3>
+					<h3 class="textformat">${accountNotFoundMessage }</h3>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-sm-1"></div>
 			<div class="col-sm-7">
 				<!-- Sort by, don't know if this was stretch goal or not -->
 				<c:choose>
@@ -83,16 +90,16 @@
 					<option value="dislike">Most Dislikes</option>
 					<option value="controversy">Sort by Controversy</option>
 					<option value="username">Sort by Username</option>
-				</select><input type="hidden" name="ideaKeyword"
-					value="${ideaKeyword }" /> <input type="submit" value="Submit" />
+				</select><input type="hidden" name="ideaKeyword" value="${ideaKeyword }" />
+				<input type="submit" value="Submit" />
 				</form>
 			</div>
 
 			<div class="col-sm-4">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
-					<input type="text" name="ideaKeyword" /> <input
-						type="submit" value="Search for Idea" />
+					<input type="text" name="ideaKeyword" /> <input type="submit"
+						value="Search for Idea" />
 				</form>
 			</div>
 
@@ -108,7 +115,8 @@
 								src="${i.profile.profilePic}" class="imgsize2">
 						</div>
 						<div class="col-xs-2 col-md-1 ideaicons col1">
-							<br><br> <a href="likeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }"><i
+							<br> <br> <a
+								href="likeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }"><i
 								class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a
 								href="dislikeIdea.do?iid=${i.id }&ideaKeyword=${ideaKeyword }&sortChoice=${sortChoice }""><i
 								class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a><br>${i.likes }
@@ -122,8 +130,7 @@
 			</div>
 		</c:forEach>
 
-	<div class="footer">Powered by Unholy Desolation</div>
+		<div class="footer">Powered by Unholy Desolation</div>
 	</div>
-
 </body>
 </html>

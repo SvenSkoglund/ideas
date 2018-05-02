@@ -134,7 +134,7 @@
 							</div>
 							<div class="col-xs-8 col-md-10 idearow col">
 						
-								<h3 class="textformatHeadline">
+								<h3 class="textformatHeadline" >
 									<a href="toIdea.do?iid=${i.id }" id="ideaLink">${i.name}</a>
 								</h3>
 								<br>

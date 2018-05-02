@@ -44,24 +44,28 @@
 
 	<!-- Leading navigation bar, need to figure out logic for user -->
 	<%@ include file="loggedOutNavBar.jsp"%>
-	<div class="container-fluid">
-		<h1 class="textformat">${message }</h1>
-		
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8 ">
+
+			<div align="center" class="errorMessage">
+				<h3 class="textformat">${accountNotFoundMessage }</h3>
+			</div>
+		</div>
+
 		<!-- Login form -->
 		<div class="row">
-			<div class="col-sm-5"></div>
-				<div class="col-sm-4">
-				<form action="login.do" method="POST">
-					<label for="username">Username</label>
-					<input type="text" name="username" /><br><br>
-					
-					<label for="password">Password</label>
-					<input type="password" name="password" /><br><br>
-					
-					<input type="submit" value="Log In" />
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<form action="login.do" method="POST" align="center">
+					<label for="username">Username</label><br> <input type="text"
+						name="username" /><br>
+					<br> <label for="password">Password</label> <br><input
+						type="password" name="password" /><br>
+					<br> <input type="submit" value="Log In" />
 				</form>
-				</div>
-			<div class="col-sm-3"></div>
+			</div>
+			<div class="col-sm-4"></div>
 		</div>
 		<div class="footer">Powered by Unholy Desolation</div>
 	</div>

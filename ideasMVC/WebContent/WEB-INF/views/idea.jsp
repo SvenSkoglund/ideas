@@ -69,6 +69,7 @@
 					<h1 class="textformat">${noPermDeactivateCommentMessage }</h1>
 					<h1 class="textformat">${activatedIdeaMessage }</h1>
 					<h1 class="textformat">${deactivatedIdeaMessage }</h1>
+					<h1 class="textformat">${deactivateMessage }</h1>
 				</div>
 
 				<a href="toProfile.do?pid=${idea.profile.id }"><img
