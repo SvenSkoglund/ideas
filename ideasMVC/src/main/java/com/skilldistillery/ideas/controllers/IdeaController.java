@@ -649,7 +649,7 @@ public class IdeaController {
 		if (loggedInUser != null) {
 			Profile profileLoggedIn = loggedInUser.getProfile();
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
-				mv.addObject("message", "Idea De-Activated");
+				mv.addObject("deactivatedIdeaMessage", "Idea De-Activated");
 				ideaDao.makeInactive(ideaId);
 			} else {
 				mv.addObject("noPermDeactivateIdeaMessage", "You do not have permission to deactivate this Idea");
@@ -671,7 +671,7 @@ public class IdeaController {
 		if (loggedInUser != null) {
 			Profile profileLoggedIn = loggedInUser.getProfile();
 			if (profileLoggedIn.getId() == profile.getId() || profileLoggedIn.getUser().isAdmin()) {
-				mv.addObject("message", "Idea Activated");
+				mv.addObject("activatedIdeaMessage", "Idea Activated");
 				ideaDao.makeActive(ideaId);
 			} else {
 				mv.addObject("noPermActivateIdeaMessage", "You do not have permission to activate this Idea");
