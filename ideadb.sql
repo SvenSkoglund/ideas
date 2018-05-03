@@ -191,10 +191,10 @@ INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `a
 INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (2, 2, 'Sven Skoglund likes pineapples', 'https://i.imgur.com/oMcBTCQ.jpg', DEFAULT, 1);
 INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (3, 3, 'Let\'s go skiing!', 'https://i.imgur.com/g9ntKaa.jpg', DEFAULT, 1);
 INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (4, 4, 'Surprise me, Nate.', 'https://i.imgur.com/bfU70Gl.png', DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (5, 5, 'Hey, man. I\'m here to post, dude!', 'https://i.imgur.com/7FIGTH2r.jpg', DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (6, 6, 'One of tyhe greatest chefs in the known regions, Gordon Ramsey is a force to be reckoned with in the kitchen.', 'https://i.imgur.com/X0pdPIM.jpg', DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (7, 7, 'I am Socrates. Some might call me an intellectual because I know so much, but, in truth, I know nothing.', 'https://i.imgur.com/uyk1R1G.gif', DEFAULT, 1);
-INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (8, 8, 'I liek driving my kids in our car.', DEFAULT, DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (5, 5, 'Hey, man. I\'m here to post, dude!', 'http://www.freakingnews.com/pictures/8000/Surfer-8401.jpg', DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (6, 6, 'One of the greatest chefs in the known regions, Gordon Ramsey is a force to be reckoned with in the kitchen.', 'https://tse3.mm.bing.net/th?id=OIP.2_oO0BAJUpqUD535j1JrbwHaHa&pid=Api', DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (7, 7, 'I am Socrates. Some might call me an intellectual because I know so much, but, in truth, I know nothing.', 'http://4.bp.blogspot.com/-hxY8PJVTQ5E/To7Rzv4z1jI/AAAAAAAAALw/yckQMUAlMyg/s1600/socrates2.jpg', DEFAULT, 1);
+INSERT INTO `profile` (`id`, `user_id`, `bio`, `profile_pic`, `created_date`, `active`) VALUES (8, 8, 'I like driving my kids in our car.', 'http://uploads.haystak.com/Production_Templates/Images/2016/Honda/16hondafit2a/honda_16fit2a_angularfront_aegeanbluemetallic.png', DEFAULT, 1);
 
 COMMIT;
 
@@ -274,10 +274,10 @@ COMMIT;
 START TRANSACTION;
 USE `ideadb`;
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (1, 2, 3, 'I agree. Jeans are telltale sign of someone who doesn\'t belong here.', DEFAULT, 1);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (2, 3, 2, 'Pineapple pizza rocks!', DEFAULT, 1);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (3, 4, 2, 'Go to Hawaii if you want pineapple! We don\'t care for your fruity ways!', DEFAULT, 1);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (4, 2, 4, 'Pineapple on spaghetti sounds pretty good. I\'ll have to try it!', DEFAULT, 1);
-INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (5, 4, 4, 'Hey guys, tone down the weed, will ya?', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (2, 3, 13, 'Pineapple pizza rocks!', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (3, 4, 13, 'Go to Hawaii if you want pineapple! We don\'t care for your fruity ways!', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (4, 2, 12, 'Pineapple on spaghetti sounds pretty good. I\'ll have to try it!', DEFAULT, 1);
+INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (5, 4, 12, 'Hey guys, tone down the weed, will ya?', DEFAULT, 1);
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (6, 5, 11, 'Sugar!', DEFAULT, 1);
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (7, 2, 11, 'adding a bit of sour cream to the batter is really delicious!', DEFAULT, 1);
 INSERT INTO `comment` (`id`, `profile_id`, `idea_id`, `content`, `date_created`, `active`) VALUES (8, 6, 5, 'Astounding idea', DEFAULT, 1);
