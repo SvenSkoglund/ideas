@@ -1,5 +1,11 @@
 # Team - Unholy Desolation
-##  -ideas.- midterm project
+<ul>
+  <li>Grace Carter</li>
+  <li>Dora Harper</li>
+  <li>Sven Skoglund</li>
+  <li>Nate Trainor</li>
+</ul>
+##  ideas. midterm project
 
 ## Technologies Used
 <ul>
@@ -29,11 +35,30 @@ interact with other users by commenting on ideas, liking and disliking ideas as
 well as comments.
 
 
-## Learning Objectives
+## Lessons Learned
 
-##Things We Would Have Done Differently
+Pair Programming
+Group Workflow (No merge conflicts)
+Communication
+Trello / Assignment Tracking
+Session Attributes
+Getting hacked
+
+
+
 
 ## Would Have Done With More Time
+Badges
+Comments on comments
+Following users
+Hover-over likes/dislikes
+User notifications
+Privacy settings
+Account Verification
+Reactivate account
+Retrieve password
+Email confirmation
+
 
 ### Group Members
 <ul>
