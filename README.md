@@ -37,13 +37,12 @@ well as comments.
 
 ## Lessons Learned
 
-Pair Programming
+Pair Programming<br>
 Group Workflow (No merge conflicts)
 Communication
 Trello / Assignment Tracking
 Session Attributes
 Getting hacked
-
 
 
 
