@@ -5,7 +5,8 @@
   <li>Sven Skoglund</li>
   <li>Nate Trainor</li>
 </ul>
-##  ideas. midterm project
+
+## ideas. midterm project
 
 ## Technologies Used
 <ul>
