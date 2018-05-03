@@ -98,7 +98,7 @@
 				</form>
 			</div>
 
-			<div class="col-xs-3 col-sm-3">
+			<div class="col-xs-4 col-sm-3">
 				<!-- Search bar for ideas -->
 				<form action="search.do" method="GET">
 					<input type="text" name="ideaKeyword" /> <input type="submit"
