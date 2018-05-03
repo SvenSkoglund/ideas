@@ -1,4 +1,4 @@
-# User Stories-Users
+# User Stories
 
 ## User Story 1
 
@@ -6,8 +6,8 @@ A non-logged in user will have browsing and read-only abilities.
 
 ## User Story 2
 
-Non-logged in user will have Buttons in nav bar to:
-Create account :
+Non-logged in user will have Buttons in nav bar to create account
+with:
 <ul>
   <li>last name</li>
   <li>email</li>
