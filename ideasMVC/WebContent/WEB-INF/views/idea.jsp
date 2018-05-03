@@ -76,7 +76,7 @@
 				<a href="toProfile.do?pid=${idea.profile.id }"><img
 					src="${idea.profile.profilePic }"
 					alt="Image of ${idea.profile.user.username }" class="imgsize4" /></a>
-				<h1 class="textformat" align="center">${idea.name }</h1>
+				<h1 class="textformat" align="center"><c:out value="${idea.name }"></c:out></h1>
 				<div align="center">
 					<a href="likeIdeaFromIdea.do?iid=${idea.id }"><i
 						class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;<a
@@ -84,7 +84,7 @@
 						class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i></a><br>${idea.likes }&nbsp;&nbsp;&nbsp;
 					- &nbsp;&nbsp;&nbsp;${idea.dislikes }
 				</div>
-				<h4 class="textformat">${idea.content }</h4>
+				<h4 class="textformat"><c:out value="${idea.content }"></c:out></h4>
 				<br>
 				<c:if
 					test="${(loggedInUser == idea.profile.user || loggedInUser.profile.user.admin) && idea.active == true}">
